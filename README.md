@@ -11,7 +11,7 @@ This project implements a **reinforcement learning agent** that places **moneyli
 - **Course**: CS 486 — Introduction to Artificial Intelligence
 - **Institution**: Drexel University
 - **Term**: Spring 2025
-- **Team**: [Nathan Ho, Matthew Protacio, Alexey Kuraev]
+- **Team**: Nathan Ho, Matthew Protacio, Alexey Kuraev
 
 ---
 
