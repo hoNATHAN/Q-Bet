@@ -1,4 +1,4 @@
-# League of Legends Esports Betting Agent 🤖💸
+# League of Legends eSports Moneyline Betting Agent
 
 **CS 486 Final Project — Drexel University**
 
@@ -11,7 +11,7 @@ This project implements a **reinforcement learning agent** that places **moneyli
 - **Course**: CS 486 — Introduction to Artificial Intelligence
 - **Institution**: Drexel University
 - **Term**: Spring 2025
-- **Team**: [Your Name(s) Here]
+- **Team**: [Nathan Ho, Matthew Protacio, Alexey Kuraev]
 
 ---
 
