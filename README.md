@@ -15,7 +15,9 @@ This project implements a **reinforcement learning agent** that places **moneyli
 
 ---
 
-## 🎮 Project Overview
+## TODO: Update with actual project stuff
+
+## Project Overview
 
 We train a DRL (Deep Reinforcement Learning) agent that:
 
@@ -31,7 +33,7 @@ Core components:
 
 ---
 
-## 🧠 Objectives
+## Objectives
 
 - Apply RL algorithms to a real-world domain (sports betting)
 - Analyze decision timing, expected value, and model confidence
