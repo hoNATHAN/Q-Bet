@@ -6,7 +6,7 @@ This project implements a **reinforcement learning agent** that places **moneyli
 
 ---
 
-## 📚 Course Info
+## Course Info
 
 - **Course**: CS 486 — Introduction to Artificial Intelligence
 - **Institution**: Drexel University
