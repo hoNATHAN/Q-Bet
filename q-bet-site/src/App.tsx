@@ -12,7 +12,7 @@ function App() {
         <SidebarProvider>
           <AppSidebar />
           <TopNavBar />
-          <Home />
+          {/* <Home /> */}
         </SidebarProvider>
       </ThemeProvider>
     </>
