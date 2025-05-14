@@ -12,8 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as RoutesImport } from './routes/routes'
-import { Route as RouterImport } from './routes/Router'
-import { Route as IndexImport } from './routes/index'
+import { Route as AppRouterImport } from './routes/AppRouter'
+import { Route as RouterUtilImport } from './routes/router.util'
 
 // Create/Update Routes
 
@@ -23,15 +23,15 @@ const RoutesRoute = RoutesImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const RouterRoute = RouterImport.update({
-  id: '/Router',
-  path: '/Router',
+const AppRouterRoute = AppRouterImport.update({
+  id: '/AppRouter',
+  path: '/AppRouter',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+const RouterUtilRoute = RouterUtilImport.update({
+  id: '/router/util',
+  path: '/router/util',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,18 +39,11 @@ const IndexRoute = IndexImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/Router': {
-      id: '/Router'
-      path: '/Router'
-      fullPath: '/Router'
-      preLoaderRoute: typeof RouterImport
+    '/AppRouter': {
+      id: '/AppRouter'
+      path: '/AppRouter'
+      fullPath: '/AppRouter'
+      preLoaderRoute: typeof AppRouterImport
       parentRoute: typeof rootRoute
     }
     '/routes': {
@@ -60,49 +53,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoutesImport
       parentRoute: typeof rootRoute
     }
+    '/router/util': {
+      id: '/router/util'
+      path: '/router/util'
+      fullPath: '/router/util'
+      preLoaderRoute: typeof RouterUtilImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/Router': typeof RouterRoute
+  '/AppRouter': typeof AppRouterRoute
   '/routes': typeof RoutesRoute
+  '/router/util': typeof RouterUtilRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/Router': typeof RouterRoute
+  '/AppRouter': typeof AppRouterRoute
   '/routes': typeof RoutesRoute
+  '/router/util': typeof RouterUtilRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/Router': typeof RouterRoute
+  '/AppRouter': typeof AppRouterRoute
   '/routes': typeof RoutesRoute
+  '/router/util': typeof RouterUtilRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Router' | '/routes'
+  fullPaths: '/AppRouter' | '/routes' | '/router/util'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Router' | '/routes'
-  id: '__root__' | '/' | '/Router' | '/routes'
+  to: '/AppRouter' | '/routes' | '/router/util'
+  id: '__root__' | '/AppRouter' | '/routes' | '/router/util'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  RouterRoute: typeof RouterRoute
+  AppRouterRoute: typeof AppRouterRoute
   RoutesRoute: typeof RoutesRoute
+  RouterUtilRoute: typeof RouterUtilRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  RouterRoute: RouterRoute,
+  AppRouterRoute: AppRouterRoute,
   RoutesRoute: RoutesRoute,
+  RouterUtilRoute: RouterUtilRoute,
 }
 
 export const routeTree = rootRoute
@@ -115,19 +115,19 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/Router",
-        "/routes"
+        "/AppRouter",
+        "/routes",
+        "/router/util"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/Router": {
-      "filePath": "Router.tsx"
+    "/AppRouter": {
+      "filePath": "AppRouter.tsx"
     },
     "/routes": {
       "filePath": "routes.tsx"
+    },
+    "/router/util": {
+      "filePath": "router.util.ts"
     }
   }
 }
