@@ -1,45 +1,70 @@
 import { createRoute, createRootRoute } from '@tanstack/react-router'
 import { rootRoute } from './__root'
-import { Home } from 'lucide-react'
-import { Finances } from '@/pages/finances'
-import { Analytics } from '@/pages/analytics'
+import {
+  About,
+  Analytics,
+  Docs,
+  Finances,
+  Gymnasium,
+  Home,
+  Profile,
+  Settings,
+} from '@/pages'
 
 export const redirectRoute = createRootRoute({
   component: () => <div>Home</div>,
 })
 
+// =================
+//  Side Bar Routes
+// =================
+
 export const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/home',
-  component: () => (
-    <div>
-      <Home />
-    </div>
-  ),
+  component: () => <Home />,
 })
 
 export const financesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/finances',
-  component: () => (
-    <div>
-      <Finances />
-    </div>
-  ),
+  component: () => <Finances />,
 })
 
 export const analyticsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/analytics',
-  component: () => (
-    <div>
-      <Analytics />
-    </div>
-  ),
+  component: () => <Analytics />,
+})
+
+export const settingsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/settings',
+  component: () => <Settings />,
+})
+
+// =================
+//  Top Bar Routes
+// =================
+
+export const gymnasiumRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/gymnasium',
+  component: () => <Gymnasium />,
+})
+export const docsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/docs',
+  component: () => <Docs />,
+})
+export const aboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/about',
+  component: () => <About />,
 })
 
 export const profileRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/profile',
-  component: () => <div>Profile</div>,
+  component: () => <Profile />,
 })
