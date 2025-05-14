@@ -12,10 +12,6 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as RoutesImport } from './routes/routes'
-import { Route as ProfileImport } from './routes/profile'
-import { Route as MainImport } from './routes/main'
-import { Route as HomeImport } from './routes/home'
-import { Route as AboutImport } from './routes/about'
 import { Route as RouterImport } from './routes/Router'
 import { Route as IndexImport } from './routes/index'
 
@@ -24,30 +20,6 @@ import { Route as IndexImport } from './routes/index'
 const RoutesRoute = RoutesImport.update({
   id: '/routes',
   path: '/routes',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ProfileRoute = ProfileImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MainRoute = MainImport.update({
-  id: '/main',
-  path: '/main',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const HomeRoute = HomeImport.update({
-  id: '/home',
-  path: '/home',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -81,34 +53,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RouterImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
-    }
-    '/home': {
-      id: '/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof HomeImport
-      parentRoute: typeof rootRoute
-    }
-    '/main': {
-      id: '/main'
-      path: '/main'
-      fullPath: '/main'
-      preLoaderRoute: typeof MainImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileImport
-      parentRoute: typeof rootRoute
-    }
     '/routes': {
       id: '/routes'
       path: '/routes'
@@ -124,20 +68,12 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/Router': typeof RouterRoute
-  '/about': typeof AboutRoute
-  '/home': typeof HomeRoute
-  '/main': typeof MainRoute
-  '/profile': typeof ProfileRoute
   '/routes': typeof RoutesRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/Router': typeof RouterRoute
-  '/about': typeof AboutRoute
-  '/home': typeof HomeRoute
-  '/main': typeof MainRoute
-  '/profile': typeof ProfileRoute
   '/routes': typeof RoutesRoute
 }
 
@@ -145,54 +81,27 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/Router': typeof RouterRoute
-  '/about': typeof AboutRoute
-  '/home': typeof HomeRoute
-  '/main': typeof MainRoute
-  '/profile': typeof ProfileRoute
   '/routes': typeof RoutesRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/Router'
-    | '/about'
-    | '/home'
-    | '/main'
-    | '/profile'
-    | '/routes'
+  fullPaths: '/' | '/Router' | '/routes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Router' | '/about' | '/home' | '/main' | '/profile' | '/routes'
-  id:
-    | '__root__'
-    | '/'
-    | '/Router'
-    | '/about'
-    | '/home'
-    | '/main'
-    | '/profile'
-    | '/routes'
+  to: '/' | '/Router' | '/routes'
+  id: '__root__' | '/' | '/Router' | '/routes'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RouterRoute: typeof RouterRoute
-  AboutRoute: typeof AboutRoute
-  HomeRoute: typeof HomeRoute
-  MainRoute: typeof MainRoute
-  ProfileRoute: typeof ProfileRoute
   RoutesRoute: typeof RoutesRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RouterRoute: RouterRoute,
-  AboutRoute: AboutRoute,
-  HomeRoute: HomeRoute,
-  MainRoute: MainRoute,
-  ProfileRoute: ProfileRoute,
   RoutesRoute: RoutesRoute,
 }
 
@@ -208,10 +117,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/Router",
-        "/about",
-        "/home",
-        "/main",
-        "/profile",
         "/routes"
       ]
     },
@@ -220,18 +125,6 @@ export const routeTree = rootRoute
     },
     "/Router": {
       "filePath": "Router.tsx"
-    },
-    "/about": {
-      "filePath": "about.tsx"
-    },
-    "/home": {
-      "filePath": "home.tsx"
-    },
-    "/main": {
-      "filePath": "main.tsx"
-    },
-    "/profile": {
-      "filePath": "profile.tsx"
     },
     "/routes": {
       "filePath": "routes.tsx"
