@@ -2,8 +2,7 @@ import './App.css'
 import { AppSidebar } from './components/app-sidebar'
 import { ThemeProvider } from './components/theme-provider'
 import { TopNavBar } from './components/top-nav-bar'
-import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
-import { Home } from './pages/Home'
+import { SidebarProvider } from './components/ui/sidebar'
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
         <SidebarProvider>
           <AppSidebar />
           <TopNavBar />
-          {/* <Home /> */}
         </SidebarProvider>
       </ThemeProvider>
     </>

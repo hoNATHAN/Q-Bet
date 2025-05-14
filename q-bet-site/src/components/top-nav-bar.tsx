@@ -25,7 +25,21 @@ export const TopNavBar = () => {
           <SidebarTrigger />
         </MenubarMenu>
         <MenubarMenu>
+          <MenubarTrigger>
+            <div className="h-5 flex flex-row gap-1 font-">
+              <img src="../../public/logo-only.png" alt="logo" />
+              Q-BET
+            </div>
+          </MenubarTrigger>
+        </MenubarMenu>
+        <MenubarMenu>
           <MenubarTrigger>Gymnasium</MenubarTrigger>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Docs</MenubarTrigger>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>About</MenubarTrigger>
         </MenubarMenu>
         <MenubarMenu>
           <MenubarTrigger>Profile</MenubarTrigger>
@@ -51,12 +65,6 @@ export const TopNavBar = () => {
               Print... <MenubarShortcut>⌘P</MenubarShortcut>
             </MenubarItem>
           </MenubarContent>
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger>Docs</MenubarTrigger>
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger>About</MenubarTrigger>
         </MenubarMenu>
         <MenubarMenu>
           <Button

@@ -14,28 +14,27 @@ import {
 // Menu items.
 const items = [
   {
-    title: 'Home',
-    url: '#',
-    icon: Home,
-  },
-  {
     title: 'Search',
-    url: '#',
     icon: Search,
   },
   {
+    title: 'Home',
+    url: '/home',
+    icon: Home,
+  },
+  {
     title: 'Finances',
-    url: '#',
+    url: '/finances',
     icon: DollarSignIcon,
   },
   {
     title: 'Analytics',
-    url: '#',
+    url: '/analytics',
     icon: Activity,
   },
   {
     title: 'Settings',
-    url: '#',
+    url: '/settings',
     icon: Settings,
   },
 ]
