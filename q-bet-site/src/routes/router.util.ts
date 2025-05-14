@@ -1,6 +1,5 @@
-import { Router, RouterProvider } from '@tanstack/react-router'
+import { createRouter } from '@tanstack/react-router'
 import { rootRoute } from './__root'
-import App from '@/App'
 import {
   aboutRoute,
   analyticsRoute,
@@ -23,19 +22,10 @@ const routeTree = rootRoute.addChildren([
   profileRoute,
 ])
 
-const router = new Router({ routeTree, defaultPreload: 'intent' })
+export const router = createRouter({ routeTree, defaultPreload: 'intent' })
 
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
   }
-}
-
-export const AppRouter = () => {
-  return (
-    <>
-      <RouterProvider router={router} />
-      <App />
-    </>
-  )
 }

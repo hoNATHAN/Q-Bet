@@ -1,4 +1,4 @@
-import { createRoute, createRootRoute } from '@tanstack/react-router'
+import { createRoute } from '@tanstack/react-router'
 import { rootRoute } from './__root'
 import {
   About,
@@ -10,10 +10,6 @@ import {
   Profile,
   Settings,
 } from '@/pages'
-
-export const redirectRoute = createRootRoute({
-  component: () => <div>Home</div>,
-})
 
 // =================
 //  Side Bar Routes
