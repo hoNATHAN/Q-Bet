@@ -21,9 +21,18 @@ import {
   User,
 } from 'lucide-react'
 import { IconAvatar } from './ui/avataricon'
+import { router } from '@/routes/router.util'
 
 export const TopNavBar = () => {
   const { theme, setTheme } = useTheme()
+
+  const onGymnasiumClick = () => {
+    router.navigate({ to: '/gymnasium' })
+  }
+
+  const onLogoClick = () => {
+    router.navigate({ to: '/about' })
+  }
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
@@ -32,15 +41,15 @@ export const TopNavBar = () => {
           <SidebarTrigger />
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger>
+          <MenubarTrigger onClick={onLogoClick}>
             <div className="h-5 flex flex-row gap-1 font-">
-              <img src="../../public/logo-only.png" alt="logo" />
+              <img src="/public/logo-only.png" alt="logo" />
               Q-BET
             </div>
           </MenubarTrigger>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger>Gymnasium</MenubarTrigger>
+          <MenubarTrigger onClick={onGymnasiumClick}>Gymnasium</MenubarTrigger>
         </MenubarMenu>
         <MenubarMenu>
           <MenubarTrigger>Docs</MenubarTrigger>
@@ -90,9 +99,6 @@ export const TopNavBar = () => {
               </a>
             </MenubarItem>
           </MenubarContent>
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger>About</MenubarTrigger>
         </MenubarMenu>
         <MenubarMenu>
           <MenubarTrigger>Profile</MenubarTrigger>
