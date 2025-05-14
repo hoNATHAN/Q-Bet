@@ -1,5 +1,5 @@
 import './App.css'
-import { AppSidebar } from './components/app-sidebar'
+import { AppSidebar } from './components/side-nav-bar'
 import { ThemeProvider } from './components/theme-provider'
 import { TopNavBar } from './components/top-nav-bar'
 import { SidebarProvider } from './components/ui/sidebar'
