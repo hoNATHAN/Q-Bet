@@ -22,6 +22,7 @@ const routeTree = rootRoute.addChildren([
   aboutRoute,
   profileRoute,
 ])
+
 const router = new Router({ routeTree, defaultPreload: 'intent' })
 
 declare module '@tanstack/react-router' {

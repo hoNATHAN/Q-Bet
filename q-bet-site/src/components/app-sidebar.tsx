@@ -14,14 +14,13 @@ import {
 // Menu items.
 const items = [
   {
+    title: 'Search',
+    icon: Search,
+  },
+  {
     title: 'Home',
     url: '/home',
     icon: Home,
-  },
-  {
-    title: 'Search',
-    url: '/home',
-    icon: Search,
   },
   {
     title: 'Finances',
