@@ -81,7 +81,7 @@ async def get_game_rounds(game_id: str):
         for round in doc["rounds"]
     ]
 
-@app.get("/game/{game_id}/rounds/{round_number}", response_Model=RoundOut)
+@app.get("/game/{game_id}/rounds/{round_number}", response_model=RoundOut)
 async def get_game_round(game_id: str, round_number: int):
     doc = await app.mongodb["games"].find_one({"_id": ObjectId(game_id)})
     if doc and 0 <= round_number <= doc["total_rounds"]:
@@ -100,3 +100,10 @@ async def get_game_round_by_id(game_id: str, round_id: str):
     
     round = doc["rounds"][0]
     return RoundOut(**{**round, "id": str(round["_id"])})
+
+
+@app.get("/health")
+async def health_check():
+    # try a cheap DB call
+    count = await app.mongodb["bets"].count_documents({})
+    return {"http": "up", "db_bets_count": count}
