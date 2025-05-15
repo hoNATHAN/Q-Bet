@@ -102,8 +102,16 @@ async def get_game_round_by_id(game_id: str, round_id: str):
     return RoundOut(**{**round, "id": str(round["_id"])})
 
 
-@app.get("/health")
-async def health_check():
-    # try a cheap DB call
-    count = await app.mongodb["bets"].count_documents({})
-    return {"http": "up", "db_bets_count": count}
+@app.get("/testing", response_model=str)
+async def testing():
+    return "Hello, World!"
+
+
+if __name__ == "__main__":
+    import uvicorn 
+    uvicorn.run(
+                "app:app", 
+                host="127.0.0.1",
+                port=8000,
+                reload=True,
+    )
