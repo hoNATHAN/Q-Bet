@@ -1,5 +1,5 @@
-import { createRouter } from '@tanstack/react-router'
-import { rootRoute } from './__root'
+import { createRouter } from '@tanstack/react-router';
+import { rootRoute } from './__root';
 import {
   aboutRoute,
   analyticsRoute,
@@ -9,7 +9,7 @@ import {
   homeRoute,
   profileRoute,
   settingsRoute,
-} from './routes'
+} from './routes';
 
 const routeTree = rootRoute.addChildren([
   homeRoute,
@@ -20,12 +20,12 @@ const routeTree = rootRoute.addChildren([
   docsRoute,
   aboutRoute,
   profileRoute,
-])
+]);
 
-export const router = createRouter({ routeTree, defaultPreload: 'intent' })
+export const router = createRouter({ routeTree, defaultPreload: 'intent' });
 
 declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router
+    router: typeof router;
   }
 }

@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { LineChart, Brain, Target, Trophy, Code, Users } from 'lucide-react'
+} from '@/components/ui/card';
+import { LineChart, Brain, Target, Trophy, Code, Users } from 'lucide-react';
 
 export const About = () => {
   return (
@@ -236,5 +236,5 @@ export const About = () => {
         </div>
       </footer>
     </>
-  )
-}
+  );
+};
