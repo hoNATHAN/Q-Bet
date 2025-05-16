@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TrainingTab } from './training-tab';
-import { MatchHistoryTab } from './match-history-tab';
+import { TrainingTab } from './training/training-tab';
+import { BetHistory } from './match-history-tab';
 import { RunMatchTab } from './run-match-tab';
 
 const tabValues = [
@@ -10,9 +10,9 @@ const tabValues = [
     content: <RunMatchTab />,
   },
   {
-    value: 'match-history',
-    title: 'Match History',
-    content: <MatchHistoryTab />,
+    value: 'bet-history',
+    title: 'Bet History',
+    content: <BetHistory />,
   },
   {
     value: 'training',

@@ -1,3 +1,3 @@
-export const MatchHistoryTab = () => {
+export const BetHistory = () => {
   return <div>Match History</div>;
 };
