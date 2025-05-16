@@ -1,3 +1,5 @@
+import { GymnasiumBase } from '@/components/gymnasium/gymnasium-base';
+
 export const Gymnasium = () => {
-  return <div>Gymnasium</div>;
+  return <GymnasiumBase />;
 };
