@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import type { LucideIcon } from 'lucide-react'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import type { LucideIcon } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 interface IconAvatarProps {
-  icon: LucideIcon
-  size?: 'sm' | 'md' | 'lg'
-  bgColor?: string
-  iconColor?: string
+  icon: LucideIcon;
+  size?: 'sm' | 'md' | 'lg';
+  bgColor?: string;
+  iconColor?: string;
 }
 
 export function IconAvatar({
@@ -20,13 +20,13 @@ export function IconAvatar({
     sm: 'h-8 w-8',
     md: 'h-10 w-10',
     lg: 'h-16 w-16',
-  }
+  };
 
   const iconSizes = {
     sm: 'h-4 w-4',
     md: 'h-5 w-5',
     lg: 'h-8 w-8',
-  }
+  };
 
   return (
     <Avatar className={sizeClasses[size]}>
@@ -34,5 +34,5 @@ export function IconAvatar({
         <Icon className={`${iconSizes[size]} ${iconColor}`} />
       </AvatarFallback>
     </Avatar>
-  )
+  );
 }
