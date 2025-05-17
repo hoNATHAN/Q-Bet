@@ -1,0 +1,25 @@
+[
+  {
+    "match_id": "a-vs-b-dd-mm-yyyy",
+    "tournament": "tournament_name",
+    "team_a": "Team A",
+    "team_b": "Team B",
+    "stage": "Group Stage",
+    "start_time": "yyyy-mm-ddTutc",
+    "status": "Ended",
+    "winner": "Team A",
+    "game_count": 3,
+    "link": "url",
+    "game1": {
+      "rounds": 17,
+      "map": "Train",
+      "round1": {
+        "victory_type": "ace",
+        "duration (seconds)": 63,
+        "winner": "a",
+      },
+      ...
+    },
+  }
+
+]
