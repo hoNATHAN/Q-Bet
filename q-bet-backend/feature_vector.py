@@ -59,8 +59,8 @@ sample_state_json = """
 }
 """
 
-# TODO: enumerate the maps
-MAPS = {
+# TODO: include unknown maps
+MAPS_ENUM = {
     "train": 0,
     "ancient": 1,
     "anubis": 2,
@@ -76,7 +76,6 @@ MAPS = {
     "italy": 12,
 }
 
-# TODO: enumerate buy types
 BUY_TYPE_ENUM = {"Eco": 0, "Semi": 1, "Full": 2, "Force": 3}
 
 WIN_TYPE_ENUM = {
@@ -91,12 +90,21 @@ WINNER_ENUM = {
 }
 
 
+# TODO: consider if this is needed
+MAX_ECON = 16000
+MAX_ROUNDS = 16  # maybe 24? or indefinite
+
+# includes buy + round + bomb
+MAX_ROUND_TIME = 195  # seconds
+MAX_GAME_TIME = 2400  # seconds
+
+
 # TODO: consider pandas json normalize
 # figure out what values need to be divided
-def flatten_and_append_features(d, features):
+def append_game_features(d, features):
     for key, value in d.items():
         if isinstance(value, dict):
-            flatten_and_append_features(value, features)
+            append_game_features(value, features)
         elif isinstance(value, (int, float)):
             features.append(float(value))
         elif isinstance(value, str):
@@ -108,6 +116,11 @@ def flatten_and_append_features(d, features):
                 features.append(WIN_TYPE_ENUM.get(value, -1))
             elif key == "winner":
                 features.append(WINNER_ENUM.get(value, -1))
+            elif key == "score":
+                print("score found")
+                score = list(map(int, value.split("-")))
+                features.append(score[0] / MAX_ROUNDS)
+                features.append(score[1] / MAX_ROUNDS)
             else:
                 pass
         else:
@@ -120,6 +133,7 @@ def process_state(json_str):
     data = json.loads(json_str)
 
     game = data["game1"]
+    map = game["map"]
     rounds = game["rounds"]
 
     # TODO: iterate and pull game state
@@ -127,11 +141,8 @@ def process_state(json_str):
 
     features = []
 
-    # TODO: consider if this is needed
-    max_econ = 16000
-    max_rounds = 16  # maybe 24? or indefinite
-
-    flatten_and_append_features(round_data, features)
+    append_game_features(round_data, features)
+    features.append(MAPS_ENUM.get(map, -1))
 
     print(features)
 
