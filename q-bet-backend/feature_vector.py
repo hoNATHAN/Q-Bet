@@ -60,7 +60,21 @@ sample_state_json = """
 """
 
 # TODO: enumerate the maps
-MAPS = ["train", "dust2", "mirage", "inferno"]
+MAPS = {
+    "train": 0,
+    "ancient": 1,
+    "anubis": 2,
+    "dust2": 3,
+    "inferno": 4,
+    "mirage": 5,
+    "nuke": 6,
+    "overpass": 7,
+    "office": 8,
+    "vertigo": 9,
+    "basalt": 10,
+    "edin": 11,
+    "italy": 12,
+}
 
 # TODO: enumerate buy types
 BUY_TYPE_ENUM = {"Eco": 0, "Semi": 1, "Full": 2, "Force": 3}
