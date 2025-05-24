@@ -1,6 +1,18 @@
+"""
+Filename: feature_vector.py
+Author: Nathan Ho
+Date: 2025-05-24
+Version: 1.0
+Description:
+    This script has functions that takes in a game state
+    and maps it to a feature vector as a pytorch tensor
+Dependencies: json, torch, numpy, time
+"""
+
 import json
 import torch
 import numpy as np
+import time
 
 sample_state_json = """
 {
@@ -17,30 +29,30 @@ sample_state_json = """
     "map": "train",
     "rounds": {
         "round_1": {
-        "initial_team_a_econ": 4000,
-        "initial_team_b_econ": 4000,
-        "buy_team_a_econ": 600,
-        "buy_team_b_econ": 600,
-        "final_team_a_econ": 18400,
-        "final_team_b_econ": 10600,
-        "winner": "Team A",
-        "win_type": "ace",
-        "duration": 122,
-        "team_a_buy_type": "Eco",
-        "team_b_buy_type": "Eco",
-        "score": "1-0",
-        "players_alive_end": {
-            "team_a": 0,
-            "team_b": 0
-        },
-        "kills_end": {
-            "team_a": 5,
-            "team_b": 2
-        },
-        "assists_end": {
-            "team_a": 0,
-            "team_b": 0
-        }
+            "initial_team_a_econ": 4000,
+            "initial_team_b_econ": 4000,
+            "buy_team_a_econ": 600,
+            "buy_team_b_econ": 600,
+            "final_team_a_econ": 18400,
+            "final_team_b_econ": 10600,
+            "winner": "Team A",
+            "win_type": "ace",
+            "duration": 122,
+            "team_a_buy_type": "Eco",
+            "team_b_buy_type": "Eco",
+            "score": "1-0",
+            "players_alive_end": {
+                "team_a": 0,
+                "team_b": 0
+            },
+            "kills_end": {
+                "team_a": 5,
+                "team_b": 2
+            },
+            "assists_end": {
+                "team_a": 0,
+                "team_b": 0
+            }
         }
     }
   }
@@ -89,6 +101,8 @@ MAX_ROUND_TIME = 155  # seconds
 MAX_ROUND_TIME_BOMB = 155  # seconds
 MAX_GAME_TIME = 2400  # seconds
 
+MAX_PLAYERS = 5.0
+
 
 def one_hot(value, categories):
     ohe_vector = np.zeros(len(categories))
@@ -97,13 +111,11 @@ def one_hot(value, categories):
     return ohe_vector
 
 
-# elif isinstance(value, str):
-
-
 # TODO: consider pandas json normalize
 # figure out what values need to be divided
 def append_game_features(d, features):
     for key, value in d.items():
+        # Handles single string categorical data
         if isinstance(value, str):
             if key == "team_a_buy_type" or key == "team_b_buy_type":
                 features.extend(one_hot(value, BUY_TYPES))
@@ -115,8 +127,7 @@ def append_game_features(d, features):
                 score = list(map(int, str(value).split("-")))
                 features.append(score[0] / MAX_ROUNDS)
                 features.append(score[1] / MAX_ROUNDS)
-            else:
-                print("unknown dictionary handling error")
+        # Normalizes numerical input
         elif isinstance(value, (int, float)):
             if key == "initial_team_a_econ" or key == "initial_team_b_econ":
                 features.append(float(value) / MAX_ECON)
@@ -126,9 +137,11 @@ def append_game_features(d, features):
                 features.append(float(value) / MAX_ECON)
             elif key == "duration":
                 features.append(float(value) / MAX_ROUND_TIME)
-        else:
-            print("unknown entry encountered")
-            pass
+        # Handles dictionary types like player stats
+        elif isinstance(value, dict):
+            if key == "players_alive_end" or key == "kills_end" or key == "assists_end":
+                for item in value.items():
+                    features.append(float(item[1]) / MAX_PLAYERS)
 
 
 def process_state(json_str):
@@ -152,11 +165,14 @@ def process_state(json_str):
     final_feature_vector = torch.tensor(feature_vector, dtype=torch.float32)
     print("Final Feature Vector: \n", final_feature_vector, "\n")
 
-    return final_feature_vector
+    # TODO: use as a return
+    # return final_feature_vector
 
 
 def main():
+    start_time = time.time()
     process_state(sample_state_json)
+    print("--- Feature Vector Performance: %s seconds ---" % (time.time() - start_time))
 
 
 if __name__ == "__main__":
