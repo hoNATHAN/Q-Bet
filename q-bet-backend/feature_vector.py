@@ -1,6 +1,6 @@
 import json
 import torch
-import numpy
+import numpy as np
 
 sample_state_json = """
 {
@@ -33,18 +33,6 @@ sample_state_json = """
             "team_a": 0,
             "team_b": 0
         },
-        "weapons_end": {
-            "team_a": {
-            "AK": 0,
-            "M4": 0,
-            "AWP": 0
-            },
-            "team_b": {
-            "AK": 0,
-            "M4": 0,
-            "AWP": 0
-            }
-        },
         "kills_end": {
             "team_a": 5,
             "team_b": 2
@@ -60,7 +48,7 @@ sample_state_json = """
 """
 
 # TODO: include unknown maps
-MAPS_ENUM = {
+MAPS = {
     "train": 0,
     "ancient": 1,
     "anubis": 2,
@@ -76,15 +64,15 @@ MAPS_ENUM = {
     "italy": 12,
 }
 
-BUY_TYPE_ENUM = {"Eco": 0, "Semi": 1, "Full": 2, "Force": 3}
+BUY_TYPES = {"Eco": 0, "Semi": 1, "Full": 2, "Force": 3}
 
-WIN_TYPE_ENUM = {
+WIN_TYPES = {
     "ace": 0,
     "defuse": 1,
     "planted": 2,
 }
 
-WINNER_ENUM = {
+WINNER = {
     "Team A": 0,
     "Team B": 1,
 }
@@ -95,36 +83,51 @@ MAX_ECON = 16000
 MAX_ROUNDS = 16  # maybe 24? or indefinite
 
 # includes buy + round + bomb
-MAX_ROUND_TIME = 195  # seconds
+MAX_ROUND_TIME = 155  # seconds
+
+# should we have a different max for bomb wins timers ?
+MAX_ROUND_TIME_BOMB = 155  # seconds
 MAX_GAME_TIME = 2400  # seconds
+
+
+def one_hot(value, categories):
+    ohe_vector = np.zeros(len(categories))
+    ohe_vector[categories[value]] = 1
+
+    return ohe_vector
+
+
+# elif isinstance(value, str):
 
 
 # TODO: consider pandas json normalize
 # figure out what values need to be divided
 def append_game_features(d, features):
     for key, value in d.items():
-        if isinstance(value, dict):
-            append_game_features(value, features)
-        elif isinstance(value, (int, float)):
-            features.append(float(value))
-        elif isinstance(value, str):
+        if isinstance(value, str):
             if key == "team_a_buy_type" or key == "team_b_buy_type":
-                features.append(
-                    BUY_TYPE_ENUM.get(value, -1)
-                )  # TODO: use -1 or some default for unknown
+                features.extend(one_hot(value, BUY_TYPES))
             elif key == "win_type":
-                features.append(WIN_TYPE_ENUM.get(value, -1))
+                features.extend(one_hot(value, WIN_TYPES))
             elif key == "winner":
-                features.append(WINNER_ENUM.get(value, -1))
+                features.extend(one_hot(value, WINNER))
             elif key == "score":
-                print("score found")
-                score = list(map(int, value.split("-")))
+                score = list(map(int, str(value).split("-")))
                 features.append(score[0] / MAX_ROUNDS)
                 features.append(score[1] / MAX_ROUNDS)
             else:
-                pass
+                print("unknown dictionary handling error")
+        elif isinstance(value, (int, float)):
+            if key == "initial_team_a_econ" or key == "initial_team_b_econ":
+                features.append(float(value) / MAX_ECON)
+            elif key == "buy_team_a_econ" or key == "buy_team_b_econ":
+                features.append(float(value) / MAX_ECON)
+            elif key == "final_team_a_econ" or key == "final_team_b_econ":
+                features.append(float(value) / MAX_ECON)
+            elif key == "duration":
+                features.append(float(value) / MAX_ROUND_TIME)
         else:
-            # ignore other types or handle accordingly
+            print("unknown entry encountered")
             pass
 
 
@@ -139,12 +142,17 @@ def process_state(json_str):
     # TODO: iterate and pull game state
     round_data = rounds["round_1"]
 
-    features = []
+    feature_vector = []
 
-    append_game_features(round_data, features)
-    features.append(MAPS_ENUM.get(map, -1))
+    append_game_features(round_data, feature_vector)
+    feature_vector.extend(one_hot(map, MAPS))
 
-    print(features)
+    print("Raw Feature Vector: \n", feature_vector, "\n")
+
+    final_feature_vector = torch.tensor(feature_vector, dtype=torch.float32)
+    print("Final Feature Vector: \n", final_feature_vector, "\n")
+
+    return final_feature_vector
 
 
 def main():
