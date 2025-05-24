@@ -237,8 +237,6 @@ with sync_playwright() as p:
             rd = {
                 'initial_team_a_econ': init_a,
                 'initial_team_b_econ': init_b,
-                'buy_team_a_econ': buy_a,
-                'buy_team_b_econ': buy_b,
                 'final_team_a_econ': final_a,
                 'final_team_b_econ': final_b,
                 'winner': winner,
@@ -247,10 +245,7 @@ with sync_playwright() as p:
                 'team_a_buy_type': team_a_buy_type,
                 'team_b_buy_type': team_b_buy_type,
                 'score': f"{game_score['a']}-{game_score['b']}",
-                'players_alive_end': {'team_a': alive_a, 'team_b': alive_b},
-                'weapons_end': {'team_a': weap_a, 'team_b': weap_b},
                 'kills_end': {'team_a': team_a_kills, 'team_b': team_b_kills},
-
             }
             match_data[f'game{game_idx}'][f'round_{i+1}'] = rd  
 
