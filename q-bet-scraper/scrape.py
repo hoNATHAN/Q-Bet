@@ -50,12 +50,34 @@ def end_buy_phase(page):
 
     page.mouse.up()
 
+def count_weapons(table):
+    # find all weapon cells in the end‐of‐round table
+    cells = table.find('div', class_='table-group') \
+                 .find_all('div', class_='table-cell weapon')
+    counts = {'AK': 0, 'M4': 0, 'AWP': 0}
+    for cell in cells:
+        icon = cell.find('i')
+        if not icon:
+            continue
+        classes = icon.get('class', [])
+        for cls in classes:
+            cls_lower = cls.lower()
+            # adjust these substrings to your site’s actual icon names
+            if 'ak-47' in cls_lower or 'ak' in cls_lower:
+                counts['AK'] += 1
+                break
+            elif 'm4a4' in cls_lower or 'm4a1' in cls_lower or 'm4' in cls_lower:
+                counts['M4'] += 1
+                break
+            elif 'awp' in cls_lower:
+                counts['AWP'] += 1
+                break
+    return counts
 
-
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True)
-    page = browser.new_page()
-    page.goto(url)
+with sync_playwright() as p:  
+    browser = p.chromium.launch(headless=True)  
+    page = browser.new_page()  
+    page.goto(url)  
 
     try:
         page.wait_for_selector('a.tournament', state="attached", timeout=10000)
@@ -70,56 +92,50 @@ with sync_playwright() as p:
     soup = BeautifulSoup(html, "html.parser")
 
     tournament_tag = soup.find('a', class_='tournament')
-    tournament_name = tournament_tag.find_all('span')[-1].text
+    tournament_name = tournament_tag.find_all('span')[-1].text # type: ignore
     match_data["tournament"] = tournament_name
 
     teams = soup.find_all('div', class_="name") 
     match_data["team_a"] = teams[0].text
     match_data["team_b"] = teams[1].text
 
-    status = soup.find('span', class_='status').text
+    status = soup.find('span', class_='status').text # type: ignore
     match_data["status"] = status
 
 
-    dt = soup.find('div', class_="o-profile-sidebar__item").find_all('li', class_="o-list-bare__item")[0].find('p').text
+    dt = soup.find('div', class_="o-profile-sidebar__item").find_all('li', class_="o-list-bare__item")[0].find('p').text # type: ignore
     match_data["start_time"] = dt #TODO: convert to datetime object utc
 
     match_data["link"] = url
     match_data["match_id"] = url.split('/')[-1]
 
-    games = soup.find_all('div', class_="c-nav-match-menu-item c-nav-match-menu-item--game c-nav-match-menu-item--finished")
-    game_count = len(games)
-    match_data["game_count"] = game_count
+    games = soup.find_all('div', class_='c-nav-match-menu-item c-nav-match-menu-item--game c-nav-match-menu-item--finished')  
+    match_data['game_count'] = len(games)  
 
+    for game_idx, game in enumerate(games, start=1):  
+        game_map = game.find('div', class_='map-name').text.lower().strip()  
+        new_url = f"{url}/{game_map}"  
+        page.goto(new_url)  
+        match_data[f'game{game_idx}'] = {'rounds': None, 'map': game_map}  
+        game_score = {'a': 0, 'b': 0}  
+        try:  
+            page.wait_for_selector('a.tournament', state="attached", timeout=10000)  
+            page.wait_for_selector('div.name', state="attached", timeout=10000)  
+            page.wait_for_selector('span.round__number', state="attached", timeout=15000)  
+            page.wait_for_selector('div.o-table__body', state="attached", timeout=15000)  
+        except Exception as e:  
+            print("Timeout waiting", e)  
+            browser.close()  
+            exit()  
 
-    game_idx = 0
-    for game in games:
-        game_map = game.find("div", class_="map-name").text.lower().strip()
-        new_url = url + "/" + game_map
-        page.goto(new_url)
+        game_html = page.content()  
+        soup = BeautifulSoup(game_html, 'html.parser')  
+        round_count = len(soup.find_all('span', class_='round__number'))  
+        match_data[f'game{game_idx}']['rounds'] = round_count  
+        match_data[f'game{game_idx}']['map'] = game_map  
 
-        try:
-            page.wait_for_selector('a.tournament', state="attached", timeout=10000)
-            page.wait_for_selector('div.name', state="attached", timeout=10000)
-            page.wait_for_selector('span.round__number', state="attached", timeout=15000)
-            page.wait_for_selector('div.o-table__body', state="attached", timeout=15000)
-        except Exception as e:
-            print("Timeout waiting", e)
-            browser.close()
-            exit()
-
-        game_html = page.content()
-        soup = BeautifulSoup(game_html, "html.parser")
-        game_idx += 1
-        match_data["game" + str(game_idx)] = {}
-        round_count = len(soup.find_all("span", class_="round__number"))
-        match_data["game" + str(game_idx)]["rounds"] = round_count
-        match_data["game" + str(game_idx)]["map"] = game_map
-
-        for i in range(round_count):
-            round_url = new_url + "/round-" + str(i+1)
-            page.goto(round_url)
-
+        for i in range(round_count):  
+            page.goto(f"{new_url}/round-{i+1}")  
             try:
                 page.wait_for_selector('a.tournament', state="attached", timeout=10000)
                 page.wait_for_selector('div.name', state="attached", timeout=10000)
@@ -131,68 +147,44 @@ with sync_playwright() as p:
                 browser.close()
                 exit()
 
-            game_html = page.content()
-            soup = BeautifulSoup(game_html, "html.parser")
+            game_html = page.content()  
+            soup = BeautifulSoup(game_html, 'html.parser')  
 
-            tables = soup.find_all("div", class_="o-table__body")
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)] = {}
-            team_a_table = tables[0]
-            team_b_table = tables[1]
+            tables = soup.find_all('div', class_='o-table__body')  
+            team_a_table, team_b_table = tables  
 
-            team_a_kill_cells = team_a_table.find('div', class_="table-group").find_all("div", class_="table-cell kills")
-            team_a_kills = 0
-            for row in team_a_kill_cells:
-                num = int(row.find('p').text)
-                team_a_kills += num
+            final_a = get_econ(team_a_table)  
+            final_b = get_econ(team_b_table)  
 
+            page.click('button.timeline__button')  
+            time.sleep(0.5)  
+            page.click('button.timeline__button')  
+            game_html = page.content()  
+            soup = BeautifulSoup(game_html, 'html.parser')  
+            tables = soup.find_all('div', class_='o-table__body')  
+            init_a = get_econ(tables[0])  
+            init_b = get_econ(tables[1])  
 
-            team_b_kill_cells = team_b_table.find('div', class_="table-group").find_all("div", class_="table-cell kills")
-            team_b_kills = 0
-            for row in team_b_kill_cells:
-                num = int(row.find('p').text)
-                team_b_kills += num
+            end_buy_phase(page)  
+            game_html = page.content()  
+            soup = BeautifulSoup(game_html, 'html.parser')  
+            tables = soup.find_all('div', class_='o-table__body')  
+            buy_a = get_econ(tables[0])  
+            buy_b = get_econ(tables[1])  
 
-            final_team_a_econ = get_econ(team_a_table)
-            final_team_b_econ = get_econ(team_b_table)
+            if team_a_table.find('span', class_='winner-mark'):  
+                winner = 'Team A'  
+                game_score['a'] += 1  
+            elif team_b_table.find('span', class_='winner-mark'):  
+                winner = 'Team B'  
+                game_score['b'] += 1  
+            else:  
+                winner = None  
 
-            #CLICK BUTTON
-            page.click('button.timeline__button')
-
-            time.sleep(0.5)
-            page.click('button.timeline__button')
-
-            #Scrape the initial econ
-            game_html = page.content()
-            soup = BeautifulSoup(game_html, "html.parser")
-            tables = soup.find_all("div", class_="o-table__body")
-            team_a_table = tables[0]
-            team_b_table = tables[1]
-            initial_team_a_econ = get_econ(team_a_table)
-            initial_team_b_econ = get_econ(team_b_table)
-
-            end_buy_phase(page)
-
-            #Scrape the econ after buy phase
-            game_html = page.content()
-            soup = BeautifulSoup(game_html, "html.parser")
-            tables = soup.find_all("div", class_="o-table__body")
-            team_a_table = tables[0]
-            team_b_table = tables[1]
-            buy_team_a_econ = get_econ(team_a_table)
-            buy_team_b_econ = get_econ(team_b_table)
-
-
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["initial_team_a_econ"] = initial_team_a_econ
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["initial_team_b_econ"] = initial_team_b_econ
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["buy_team_a_econ"] = buy_team_a_econ
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["buy_team_b_econ"] = buy_team_b_econ
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["final_team_a_econ"] = final_team_a_econ
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["final_team_b_econ"] = final_team_b_econ
-
-            if team_a_table.find('span', class_='winner-mark'):
-                match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["winner"] = "Team A"
-            elif team_b_table.find('span', class_='winner-mark'):
-                match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["winner"] = "Team B"
+            alive_a = len(team_a_table.select('.player--alive'))  
+            alive_b = len(team_b_table.select('.player--alive'))  
+            weap_a = count_weapons(team_a_table)  
+            weap_b = count_weapons(team_b_table)  
 
             rounds = soup.find_all("a", class_="round")
             icon = rounds[i].find("i").get("class")[1]
@@ -206,15 +198,13 @@ with sync_playwright() as p:
                 win_type = "explode"
             elif icon == "o-icon--timer":
                 win_type = "timeout"
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["win_type"] = win_type
 
             timestamps = soup.find_all("div", class_="timeline-label")
             duration = timestamps[-1].text.strip()
             minutes, seconds = map(int, duration.split(':'))
             total_seconds = minutes * 60 + seconds
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["duration"] = total_seconds
 
-            team_a_diff = initial_team_a_econ - buy_team_a_econ
+            team_a_diff = init_a - buy_a
             team_a_buy_type = ""
             if team_a_diff >= 0 and team_a_diff <= 5000:
                 team_a_buy_type = "Eco"
@@ -224,9 +214,8 @@ with sync_playwright() as p:
                 team_a_buy_type = "Semi"
             elif team_a_diff > 10000 and team_a_diff <= 20000:
                 team_a_buy_type = "Full"
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["team_a_buy_type"] = team_a_buy_type
 
-            team_b_diff = initial_team_b_econ - buy_team_b_econ
+            team_b_diff = init_b - buy_b
             team_b_buy_type = ""
             if team_b_diff >= 0 and team_b_diff <= 5000:
                 team_b_buy_type = "Eco"
@@ -236,10 +225,37 @@ with sync_playwright() as p:
                 team_b_buy_type = "Semi"
             elif team_b_diff > 10000 and team_b_diff <= 20000:
                 team_b_buy_type = "Full"
-            match_data["game" + str(game_idx)]["round"+"_"+str(i+1)]["team_b_buy_type"] = team_b_buy_type
+
+            # count kills at end of round
+            team_a_kill_cells = team_a_table.find('div', class_='table-group').find_all('div', class_='table-cell kills')
+            team_a_kills = sum(int(cell.find('p').text) for cell in team_a_kill_cells)
+            team_b_kill_cells = team_b_table.find('div', class_='table-group').find_all('div', class_='table-cell kills')
+            team_b_kills = sum(int(cell.find('p').text) for cell in team_b_kill_cells)
 
 
-            break
+
+            rd = {
+                'initial_team_a_econ': init_a,
+                'initial_team_b_econ': init_b,
+                'buy_team_a_econ': buy_a,
+                'buy_team_b_econ': buy_b,
+                'final_team_a_econ': final_a,
+                'final_team_b_econ': final_b,
+                'winner': winner,
+                'win_type': win_type,
+                'duration': total_seconds,
+                'team_a_buy_type': team_a_buy_type,
+                'team_b_buy_type': team_b_buy_type,
+                'score': f"{game_score['a']}-{game_score['b']}",
+                'players_alive_end': {'team_a': alive_a, 'team_b': alive_b},
+                'weapons_end': {'team_a': weap_a, 'team_b': weap_b},
+                'kills_end': {'team_a': team_a_kills, 'team_b': team_b_kills},
+
+            }
+            match_data[f'game{game_idx}'][f'round_{i+1}'] = rd  
+
         break
 
-    print(json.dumps(match_data, indent=2))
+    print(json.dumps(match_data, indent=2))  
+    with open('match_data.json', 'w') as f:  
+        json.dump(match_data, f, indent=2)  

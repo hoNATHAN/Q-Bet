@@ -1,8 +1,8 @@
-import './App.css'
-import { AppSidebar } from './components/side-nav-bar'
-import { ThemeProvider } from './components/theme-provider'
-import { TopNavBar } from './components/top-nav-bar'
-import { SidebarProvider } from './components/ui/sidebar'
+import './App.css';
+import { AppSidebar } from './components/side-nav-bar';
+import { ThemeProvider } from './components/theme-provider';
+import { TopNavBar } from './components/top-nav-bar';
+import { SidebarProvider } from './components/ui/sidebar';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         </SidebarProvider>
       </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

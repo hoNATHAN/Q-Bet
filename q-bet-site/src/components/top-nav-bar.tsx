@@ -1,4 +1,4 @@
-import { useTheme } from './theme-provider'
+import { useTheme } from './theme-provider';
 import {
   Menubar,
   MenubarContent,
@@ -9,9 +9,9 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from '@/components/ui/menubar'
-import { SidebarTrigger } from './ui/sidebar'
-import { Button } from './ui/button'
+} from '@/components/ui/menubar';
+import { SidebarTrigger } from './ui/sidebar';
+import { Button } from './ui/button';
 import {
   BookMarked,
   Github,
@@ -19,20 +19,21 @@ import {
   Pencil,
   School,
   User,
-} from 'lucide-react'
-import { IconAvatar } from './ui/avataricon'
-import { router } from '@/routes/router.util'
+} from 'lucide-react';
+import { IconAvatar } from './ui/avataricon';
+import { useRouter } from '@tanstack/react-router';
 
 export const TopNavBar = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
+  const router = useRouter();
 
   const onGymnasiumClick = () => {
-    router.navigate({ to: '/gymnasium' })
-  }
+    router.navigate({ to: '/gymnasium' });
+  };
 
   const onLogoClick = () => {
-    router.navigate({ to: '/about' })
-  }
+    router.navigate({ to: '/about' });
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
@@ -133,5 +134,5 @@ export const TopNavBar = () => {
         </MenubarMenu>
       </Menubar>
     </div>
-  )
-}
+  );
+};
