@@ -105,6 +105,18 @@ MAX_PLAYERS = 5.0
 
 
 def one_hot(value, categories):
+    """
+    Converts a categorical string value into a one-hot encoded numpy array
+    based on a provided category-to-index mapping.
+
+    Parameters:
+        value (str): The categorical value to encode.
+        categories (dict): A dictionary mapping category names to integer indices.
+
+    Returns:
+        np.ndarray: A one-hot encoded numpy array representing the category.
+    """
+
     ohe_vector = np.zeros(len(categories))
     ohe_vector[categories[value]] = 1
 
@@ -114,6 +126,20 @@ def one_hot(value, categories):
 # TODO: consider pandas json normalize
 # figure out what values need to be divided
 def append_game_features(d, features):
+    """
+    Extracts and encodes features from a single game round dictionary,
+    and appends them to the provided feature list.
+
+    Handles:
+        - Categorical string values via one-hot encoding.
+        - Numerical values via normalization.
+        - Dictionary-type values (like player stats) via normalization of subfields.
+
+    Parameters:
+        d (dict): A dictionary containing game round data.
+        features (list): A list to which processed numerical features are appended.
+    """
+
     for key, value in d.items():
         # Handles single string categorical data
         if isinstance(value, str):
@@ -145,6 +171,17 @@ def append_game_features(d, features):
 
 
 def process_state(json_str):
+    """
+    Parses a game state JSON string, extracts round-level features from game1 round_1,
+    applies normalization and encoding, and converts the result into a PyTorch tensor.
+
+    Parameters:
+        json_str (str): A string containing JSON-formatted match data.
+
+    Returns:
+        torch.Tensor: A 1D tensor containing the normalized feature vector.
+    """
+
     # load json data
     data = json.loads(json_str)
 
