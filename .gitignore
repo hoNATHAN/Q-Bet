@@ -190,3 +190,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Ignore LaTex Builders
+.aux
+.fdb_latexmk
+.fls
+.log
+.synctex.gz
