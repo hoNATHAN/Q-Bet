@@ -37,3 +37,19 @@ Core components:
 
 - Apply RL algorithms to a real-world domain (sports betting)
 - Analyze decision timing, expected value, and model confidence
+
+---
+
+## Running Locally
+
+# TODO write instructions to run website
+
+To run the website
+
+# TODO write instructions to run agent
+
+To run the agent
+
+# TODO write instructions to run web scraper
+
+To run the web scraper
