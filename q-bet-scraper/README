@@ -21,3 +21,8 @@ This script will scrape the match data from bo3.gg and generate a json file
 
 sync.py (WIP)
 This script will take both match and odds data and "zip" the files together
+
+1. Change odds_file to your odds_file in scrape.py
+2. Change mtach_file to your match_file in scrape.py
+*** odds_file = {yourname}_odds.json
+*** match_file = {yourname}_match.json

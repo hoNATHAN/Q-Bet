@@ -6,7 +6,7 @@ import json
 
 test_url = "https://bo3.gg/matches/astralis-vs-spirit-18-05-2025"
 base_url = "https://bo3.gg"
-
+delay = random.uniform(1, 10)
 match_data = {}
 
 def get_econ(table):
@@ -93,6 +93,7 @@ def get_match_data(url, output_path):
     with sync_playwright() as p:  
         browser = p.chromium.launch(headless=True)  
         page = browser.new_page()  
+        time.sleep(delay) # Randomly wait to make it seem like human behavior
         page.goto(url)  
 
         try:
@@ -143,6 +144,7 @@ def get_match_data(url, output_path):
             game_map = game.find('div', class_='map-name').text.lower().strip()
             new_url = f"{base_url}{game_links[game_idx-1]}"  
             print(new_url)
+            time.sleep(delay) # Randomly wait to make it seem like human behavior
             page.goto(new_url)  
             match_data[f'game{game_idx}'] = {'rounds': None, 'map': game_map}  
             game_score = {'a': 0, 'b': 0}  
@@ -163,6 +165,7 @@ def get_match_data(url, output_path):
             match_data[f'game{game_idx}']['map'] = game_map  
 
             for i in range(round_count):  
+                time.sleep(delay) # Randomly wait to make it seem like human behavior
                 page.goto(f"{new_url}/round-{i+1}")  
                 try:
                     page.wait_for_selector('a.tournament', state="attached", timeout=10000)

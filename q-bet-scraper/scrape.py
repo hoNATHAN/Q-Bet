@@ -1,6 +1,9 @@
 from match_data_scraper import get_match_data
 from odds_data_scraper import get_odds_data
+import time 
+import random
 
+delay = random.uniform(1, 10) # Randomly choose delay between 1-10 seconds
 #match_url = "https://bo3.gg/matches/astralis-vs-spirit-18-05-2025"
 #odds_url = "https://www.oddsportal.com/pl/esports/counter-strike/counter-strike-pgl-astana/astralis-counter-strike-team-spirit-counter-strike-z3MtGpbS/"
 odds_file = "matt_odds.json"
@@ -19,6 +22,7 @@ if __name__ == "main":
     print("Scraping Match Data")
     for tournament in match_data.keys():
         match_url = match_data[tournament]["matches"]["match_url"]
+        delay = random.uniform(1, 10) # Randomly choose delay between 1-10 seconds
         get_match_data(match_url, match_path)
     print("Done Scraping Match Data")
 
@@ -26,6 +30,7 @@ if __name__ == "main":
     print("Scraping Odds Data")
     for tournament in match_data.keys():
         odds_url = odds_data[tournament]["matches"]
+        time.sleep(delay) # Randomly wait to make it seem like human behavior
         get_odds_data(odds_url,  odds_path)
     print("Done Scraping Odds Data")
 
