@@ -197,3 +197,8 @@ cython_debug/
 *.fls
 *.log
 *.synctex.gz
+*.bcf
+*.fff
+*.out
+*.run.xml
+*.ttt
