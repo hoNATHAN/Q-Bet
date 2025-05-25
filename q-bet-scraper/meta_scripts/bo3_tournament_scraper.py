@@ -4,6 +4,10 @@ import time
 import random
 import json
 
+'''
+Finds and gathers links of s-tier tournaments from bo3.gg
+'''
+
 url = "https://bo3.gg/tournaments/finished?tiers=s&period=all_time"
 base_url = "https://bo3.gg"
 tournaments = {}

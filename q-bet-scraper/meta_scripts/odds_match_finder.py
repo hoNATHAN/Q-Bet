@@ -4,6 +4,10 @@ import time
 import random
 import json
 
+'''
+Finds all the oddsportal links for matches related to an oddsportal link
+'''
+
 url = "https://www.oddsportal.com/pl/esports/counter-strike/counter-strike-the-perfect-world-shanghai-major/results/"
 base_url = "https://www.oddsportal.com"
 tournaments = {
