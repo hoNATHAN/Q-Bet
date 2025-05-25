@@ -8,6 +8,59 @@ from datetime import datetime
 url = "https://www.oddsportal.com/esports/league-of-legends/league-of-legends-lck/gen-g-league-of-legends-t1-league-of-legends-2NqeG5Gd/"
 a_odds_by_time = {}
 b_odds_by_time = {}
+team_1 = ""
+team_2 = ""
+reverse_team_name_map = {
+    "team spirit": "spirit",
+    "aurora": "aurora-gaming",
+    "ninjas in pyjamas": "nip",
+    "navi": "natus-vincere",
+    "the mongolz": "the-mongolz",
+    "virtus.pro": "virtus-pro",
+    "g2 esports": "g2",
+    "pain": "pain-gaming",
+    "m80": "m80-cs-go",
+    "falcons": "falcons-esports",
+    "team vitality": "vitality",
+    "mouz": "mousesports",
+    "wildcard gaming": "wildcard-gaming",
+    "team liquid": "liquid",
+    "complexity gaming": "complexity",
+    "apogee": "betclic-apogee-esports",
+    "rare atom": "rare-atom",
+    "legacy": "legacy-br",
+    "the huns": "the-huns-esports",
+    "tyloo": "tyloo-cs-go",
+    "nemiga gaming": "nemiga",
+    "nrg esports": "nrg",
+    "lynn vision": "lynn-vision",
+    "imperial k": "imperial-female",
+    "beatboom team": "betboom-team",
+    "passion ua": "passion-ua",
+    "9z team": "9z",
+    "red canids": "red-canids-cs-go",
+    "sangal esports": "sangal",
+    "alternate attax": "alternate-attax-cs-go",
+    "amkal esports": "amkal",
+    "bleed esports": "bleed-esports-cs",
+    "true rippers": "true-rippers",
+    "dms": "future",
+    "revenant esports": "revenant-cs",
+    "sashi": "sashi-esport",
+    "betboom team": "betboom",
+    "gamin gladiators": "gaimingladiators",
+    "steel helmet": "steel-helmet",
+    "9 pandas": "9-pandas"
+}
+
+
+
+def remap_name(team_name):
+    if team_name in reverse_team_name_map:
+        return reverse_team_name_map[team_name]
+    else:
+        name = team_name.strip()
+        return name.replace(" ", "-").lower()
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
@@ -16,11 +69,26 @@ with sync_playwright() as p:
 
     try:
         page.wait_for_selector('div.flex.flex-col', state="attached", timeout=10000)
+        page.wait_for_selector('#react-event-header', state="attached", timeout=10000)
     except Exception as e:
         print("Timeout waiting", e)
         browser.close()
         exit()
+
     odd_container_divs = page.query_selector_all('[data-testid="odd-container"]')
+    html = page.content()
+    soup = BeautifulSoup(html, "html.parser")
+    teams = soup.find_all('p', 'text-[22px] self-center truncate')
+    team_1 =  remap_name(teams[0].text)
+    team_2 =  remap_name(teams[1].text)
+    date_parts = soup.find('div', class_='item-center flex gap-1 font-main text-xs font-normal text-gray-dark').find_all('p')
+    date_str = ""
+    for part in date_parts:
+        date_str += f"{part.text} "
+
+    date_str = date_str.strip()
+    dt = datetime.strptime(date_str, "%A, %d %B %Y, %H:%M")
+    final_date = dt.strftime("%d-%m-%Y")
 
     a = True
     for div in odd_container_divs:
@@ -70,21 +138,16 @@ with sync_playwright() as p:
                 sign = "-"
             b_odds_by_time[key] = [f"{sign}{avg}"]
 
+    odds_by_time = {team_1: a_odds_by_time, team_2: b_odds_by_time}
 
-
-    odds_by_time = {"a": a_odds_by_time, "b": b_odds_by_time}
-    #print(odds_by_time)
-
+    print(odds_by_time)
     json_ready = {
-        outer_key: {
-            dt_key.strftime("%Y-%m-%d %H:%M:%S"): value
-            for dt_key, value in inner_dict.items()
-        }
-        for outer_key, inner_dict in odds_by_time.items()
+        team: {dt.strftime("%Y-%m-%d %H:%M"): odds for dt, odds in odds_dict.items()}
+        for team, odds_dict in odds_by_time.items()
     }
-    #json_ready = {dt.strftime("%Y-%m-%d %H:%M:%S"): odds for dt, odds in odds_by_time.items()}
+
     json_str = json.dumps(json_ready, indent=4)
-    print(json_str)
+    with open(f'{team_1}-vs-{team_2}-{final_date}.json', 'w') as f:  
+        json.dump(json_ready, f, indent=2)  
 
 
-    #match_list = soup.find_all('ul', class_='flex content-start w-full text-xs border-l max-sm:flex-col min-sm:flex-wrap border-black-borders')[0]
