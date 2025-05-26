@@ -66,7 +66,7 @@ def get_odds_data(url, output_path):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
-        page.goto(url)
+        page.goto(url, wait_until="networkidle")  
 
         try:
             page.wait_for_selector('div.flex.flex-col', state="attached", timeout=10000)
@@ -74,7 +74,7 @@ def get_odds_data(url, output_path):
         except Exception as e:
             print("Timeout waiting", e)
             browser.close()
-            exit()
+            return False
 
         odd_container_divs = page.query_selector_all('[data-testid="odd-container"]')
         html = page.content()
@@ -150,3 +150,4 @@ def get_odds_data(url, output_path):
         json_str = json.dumps(json_ready, indent=4)
         with open(f'odds_{team_1}-vs-{team_2}-{final_date}.json', 'w') as f:  
             json.dump(json_ready, f, indent=2)  
+        return True

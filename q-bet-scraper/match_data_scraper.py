@@ -6,8 +6,7 @@ import json
 
 test_url = "https://bo3.gg/matches/astralis-vs-spirit-18-05-2025"
 base_url = "https://bo3.gg"
-delay = random.uniform(1, 10)
-match_data = {}
+delay = random.uniform(1, 5)
 
 def get_econ(table):
     '''
@@ -87,6 +86,7 @@ def get_match_data(url, output_path):
     Gets all match data from bo3.gg link
     Output is written to json file at specified path
     '''
+    match_data = {}
     slug = url.rsplit("/", 1)[-1]
     file_name = f"match_{slug}"
 
@@ -94,7 +94,7 @@ def get_match_data(url, output_path):
         browser = p.chromium.launch(headless=True)  
         page = browser.new_page()  
         time.sleep(delay) # Randomly wait to make it seem like human behavior
-        page.goto(url)  
+        page.goto(url, wait_until="networkidle")  
 
         try:
             page.wait_for_selector('a.tournament', state="attached", timeout=10000)
@@ -105,7 +105,7 @@ def get_match_data(url, output_path):
         except Exception as e:
             print("Timeout waiting", e)
             browser.close()
-            exit()
+            return False
 
         html = page.content()
 
@@ -145,7 +145,7 @@ def get_match_data(url, output_path):
             new_url = f"{base_url}{game_links[game_idx-1]}"  
             print(new_url)
             time.sleep(delay) # Randomly wait to make it seem like human behavior
-            page.goto(new_url)  
+            page.goto(new_url, wait_until="networkidle")  
             match_data[f'game{game_idx}'] = {'rounds': None, 'map': game_map}  
             game_score = {'a': 0, 'b': 0}  
             try:  
@@ -156,7 +156,7 @@ def get_match_data(url, output_path):
             except Exception as e:  
                 print("Timeout waiting", e)  
                 browser.close()  
-                exit()  
+                return False
 
             game_html = page.content()  
             soup = BeautifulSoup(game_html, 'html.parser')  
@@ -166,7 +166,7 @@ def get_match_data(url, output_path):
 
             for i in range(round_count):  
                 time.sleep(delay) # Randomly wait to make it seem like human behavior
-                page.goto(f"{new_url}/round-{i+1}")  
+                page.goto(f"{new_url}/round-{i+1}", wait_until="networkidle")  
                 try:
                     page.wait_for_selector('a.tournament', state="attached", timeout=10000)
                     page.wait_for_selector('div.name', state="attached", timeout=10000)
@@ -176,7 +176,7 @@ def get_match_data(url, output_path):
                 except Exception as e:
                     print("Timeout waiting", e)
                     browser.close()
-                    exit()
+                    return False
 
                 game_html = page.content()  
                 soup = BeautifulSoup(game_html, 'html.parser')  
@@ -243,7 +243,7 @@ def get_match_data(url, output_path):
                     team_a_buy_type = "Force"
                 elif team_a_diff > 10000 and team_a_diff <= 20000:
                     team_a_buy_type = "Semi"
-                elif team_a_diff > 10000 and team_a_diff <= 20000:
+                elif team_a_diff > 20000:
                     team_a_buy_type = "Full"
 
                 team_b_diff = init_b - buy_b
@@ -254,7 +254,7 @@ def get_match_data(url, output_path):
                     team_b_buy_type = "Force"
                 elif team_b_diff > 10000 and team_b_diff <= 20000:
                     team_b_buy_type = "Semi"
-                elif team_b_diff > 10000 and team_b_diff <= 20000:
+                elif team_b_diff > 20000:
                     team_b_buy_type = "Full"
 
                 # count kills at end of round
@@ -286,3 +286,4 @@ def get_match_data(url, output_path):
 
         with open(f'{output_path}{file_name}.json', 'w') as f:  
             json.dump(match_data, f, indent=2)  
+        return True
