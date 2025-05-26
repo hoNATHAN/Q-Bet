@@ -27,12 +27,12 @@ if __name__ == "__main__":
         for match in matches:
             match_url = match["match_url"]
             delay = random.uniform(1, 10) # Randomly choose delay between 1-10 seconds
-            success = get_match_data(match_url, match_path):
+            success = get_match_data(match_url, match_path)
             retry_count = 0
             while not success and retry_count < 3:
                 retry_count += 1
                 print(f"Retrying {match_url}: {retry_count}")
-                success = get_match_data(match_url, match_path):
+                success = get_match_data(match_url, match_path)
 
     print("Done Scraping Match Data")
 
