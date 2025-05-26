@@ -4,6 +4,7 @@ import time
 import random
 import json
 from datetime import datetime
+import os
 
 test_url = "https://www.oddsportal.com/pl/esports/counter-strike/counter-strike-pgl-astana/astralis-counter-strike-team-spirit-counter-strike-z3MtGpbS/"
 a_odds_by_time = {}
@@ -89,16 +90,20 @@ def get_odds_data(url, output_path):
             date_str += f"{part.text} "
 
         date_str = date_str.strip()
-        dt = datetime.strptime(date_str, "%d %B %Y, %H:%M")
+        dt = datetime.strptime(date_str, "%d %b %Y, %H:%M")
         final_date = dt.strftime("%d-%m-%Y")
 
         a = True
+        odd_container_divs = page.query_selector_all('[data-testid="odd-container"]')
         for div in odd_container_divs:
             div.hover()
-            time.sleep(0.05)  # let DOM update
+            time.sleep(0.05)
             html_of_hovered_element = div.inner_html()
             soup = BeautifulSoup(html_of_hovered_element, "html.parser")
             divs = soup.find_all('div', class_="flex flex-col gap-1")
+            if len(divs) < 3:
+                print(f"  ⚠️  skipping odd container (unexpected structure) on {url}")
+                continue
             date_divs = divs[1].find_all('div', class_="text-[10px] font-normal")
             timestamps = []
             for d in date_divs:
@@ -118,27 +123,24 @@ def get_odds_data(url, output_path):
             a = not a
 
 
-        for key in a_odds_by_time.keys():
-            if len(a_odds_by_time[key]) > 1:
-                total = 0
-                for string in a_odds_by_time[key]:
-                    total += int(string)
-                avg = total / len(a_odds_by_time[key])
-                sign = "+"
-                if avg < 0:
-                    sign = "-"
-                a_odds_by_time[key] = [f"{sign}{avg}"]
+        for key, lst in a_odds_by_time.items():
+            if len(lst) > 1:
+                # parse as ints, compute avg, round to int
+                vals = [int(x) for x in lst]
+                avg = sum(vals) / len(vals)
+                avg_int = int(round(avg))
+                sign = "-" if avg_int < 0 else "+"
+                a_odds_by_time[key] = [f"{sign}{abs(avg_int)}"]
 
-        for key in b_odds_by_time.keys():
-            if len(b_odds_by_time[key]) > 1:
-                total = 0
-                for string in b_odds_by_time[key]:
-                    total += int(string)
-                avg = total / len(b_odds_by_time[key])
-                sign = "+"
-                if avg < 0:
-                    sign = "-"
-                b_odds_by_time[key] = [f"{sign}{avg}"]
+        # average B‐side odds
+        for key, lst in b_odds_by_time.items():
+            if len(lst) > 1:
+                vals = [int(x) for x in lst]
+                avg = sum(vals) / len(vals)
+                avg_int = int(round(avg))
+                sign = "-" if avg_int < 0 else "+"
+                b_odds_by_time[key] = [f"{sign}{abs(avg_int)}"]
+
 
         odds_by_time = {team_1: a_odds_by_time, team_2: b_odds_by_time}
 
@@ -147,7 +149,10 @@ def get_odds_data(url, output_path):
             for team, odds_dict in odds_by_time.items()
         }
 
-        json_str = json.dumps(json_ready, indent=4)
-        with open(f'odds_{team_1}-vs-{team_2}-{final_date}.json', 'w') as f:  
+        os.makedirs(output_path, exist_ok=True)
+
+        file_name = f'odds_{team_1}-vs-{team_2}-{final_date}.json'
+        full_path = os.path.join(output_path, file_name)
+        with open(full_path, 'w') as f:
             json.dump(json_ready, f, indent=2)  
         return True

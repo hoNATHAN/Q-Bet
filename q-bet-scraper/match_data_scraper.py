@@ -171,7 +171,7 @@ def get_match_data(url, output_path):
                     page.wait_for_selector('a.tournament', state="attached", timeout=10000)
                     page.wait_for_selector('div.name', state="attached", timeout=10000)
                     page.wait_for_selector('span.round__number', state="attached", timeout=15000)
-                    page.wait_for_selector('div.o-table__body', state="attached", timeout=15000)
+                    page.wait_for_selector('div.o-table__body', state="attached", timeout=30000)
                     page.wait_for_selector('button.timeline__button', state="attached", timeout=15000)
                 except Exception as e:
                     print("Timeout waiting", e)
