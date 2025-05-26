@@ -203,7 +203,7 @@ def process_state(json_str):
     print("Final Feature Vector: \n", final_feature_vector, "\n")
 
     # TODO: use as a return
-    # return final_feature_vector
+    return final_feature_vector
 
 
 def main():
