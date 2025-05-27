@@ -19,18 +19,18 @@ def get_curr_odds(timestamp_list, team, team_curr_odds, curr_time, odds_data):
 #match_file = "match_astralis-vs-spirit-18-05-2025.json"
 
 def match_team(team, odds_teams):
-    print(odds_teams)
+    team = team.lower()
     best_team = None
     best_similarity = -1
 
     for odds_team in odds_teams:
         distance = jaro_winkler(team, odds_team)
-        if distance > best_similarity:
+        if distance > best_similarity and team in odds_team:
             best_similarity = distance
             best_team = odds_team
 
     print(f"{team} {best_team}")
-    odds_teams.remove(best_team)
+    #odds_teams.remove(best_team)
     return best_team
 
 

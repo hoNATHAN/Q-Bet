@@ -89,7 +89,7 @@ def get_odds_data(url, output_path):
             date_str += f"{part.text} "
 
         date_str = date_str.strip()
-        dt = datetime.strptime(date_str, "%d %B %Y, %H:%M")
+        dt = datetime.strptime(date_str, "%d %b %Y, %H:%M")
         final_date = dt.strftime("%d-%m-%Y")
 
         a = True
@@ -148,6 +148,6 @@ def get_odds_data(url, output_path):
         }
 
         json_str = json.dumps(json_ready, indent=4)
-        with open(f'odds_{team_1}-vs-{team_2}-{final_date}.json', 'w') as f:  
+        with open(f'{output_path}odds_{team_1}-vs-{team_2}-{final_date}.json', 'w') as f:  
             json.dump(json_ready, f, indent=2)  
         return True

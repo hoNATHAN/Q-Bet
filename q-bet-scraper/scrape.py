@@ -38,16 +38,19 @@ if __name__ == "__main__":
 
     '''Scrape Odds Data'''
     print("Scraping Odds Data")
-    for tournament in match_data.keys():
+    for tournament in odds_data.keys():
         print(tournament + "\n")
-        odds_url = odds_data[tournament]["matches"]
-        time.sleep(delay) # Randomly wait to make it seem like human behavior
-        success = get_odds_data(odds_url,  odds_path)
-        retry_count = 0 
-        while not success and retry_count < 3:
-            retry_count += 1
-            print(f"Retrying {odds_url}: {retry_count}")
-            success = get_odds_data(odds_url, odds_path)
+        matches = odds_data[tournament]["matches"]
+        for match in matches:
+            odds_url = match 
+            print(odds_url)
+            time.sleep(delay) # Randomly wait to make it seem like human behavior
+            success = get_odds_data(odds_url,  odds_path)
+            retry_count = 0 
+            while not success and retry_count < 3:
+                retry_count += 1
+                print(f"Retrying {odds_url}: {retry_count}")
+                success = get_odds_data(odds_url, odds_path)
     print("Done Scraping Odds Data")
 
 
