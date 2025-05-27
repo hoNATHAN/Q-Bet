@@ -91,6 +91,7 @@ def get_odds_data(url, output_path):
         date_str = date_str.strip()
         dt = datetime.strptime(date_str, "%d %b %Y, %H:%M")
         final_date = dt.strftime("%d-%m-%Y")
+        final_year = dt.year
 
         a = True
         for div in odd_container_divs:
@@ -103,7 +104,7 @@ def get_odds_data(url, output_path):
             timestamps = []
             for d in date_divs:
                 date_str = d.text.strip()
-                timestamps.append(datetime.strptime(date_str, "%d %b, %H:%M").replace(year=2025))
+                timestamps.append(datetime.strptime(date_str, "%d %b, %H:%M").replace(year=final_year))
 
             odds = []
             odds_divs = divs[2].find_all('div')
