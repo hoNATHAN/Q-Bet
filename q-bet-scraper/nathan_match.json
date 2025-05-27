@@ -3,26 +3,6 @@
     "url": "https://bo3.gg/tournaments/esl-pro-league-season-21/results",
     "matches": [
       {
-        "match_name": "liquid-vs-3dmax-11-03-2025",
-        "match_url": "https://bo3.gg/matches/liquid-vs-3dmax-11-03-2025"
-      },
-      {
-        "match_name": "falcons-esports-vs-furia-10-03-2025",
-        "match_url": "https://bo3.gg/matches/falcons-esports-vs-furia-10-03-2025"
-      },
-      {
-        "match_name": "g2-vs-natus-vincere-10-03-2025",
-        "match_url": "https://bo3.gg/matches/g2-vs-natus-vincere-10-03-2025"
-      },
-      {
-        "match_name": "eternal-fire-vs-pain-gaming-10-03-2025",
-        "match_url": "https://bo3.gg/matches/eternal-fire-vs-pain-gaming-10-03-2025"
-      },
-      {
-        "match_name": "mousesports-vs-liquid-10-03-2025",
-        "match_url": "https://bo3.gg/matches/mousesports-vs-liquid-10-03-2025"
-      },
-      {
         "match_name": "saw-vs-gamerlegion-10-03-2025",
         "match_url": "https://bo3.gg/matches/saw-vs-gamerlegion-10-03-2025"
       },
@@ -1361,4 +1341,3 @@
     ]
   }
 }
-
