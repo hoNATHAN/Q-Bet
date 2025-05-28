@@ -874,7 +874,7 @@
             "team_b": 1
           },
           "team_a_odds": "+110",
-          "team_b_odds": "--407.0"
+          "team_b_odds": "-407.0"
         },
         "round_23": {
           "initial_team_a_econ": 34600,
@@ -894,7 +894,7 @@
             "team_b": 2
           },
           "team_a_odds": "+110",
-          "team_b_odds": "--407.0"
+          "team_b_odds": "-407.0"
         },
         "round_24": {
           "initial_team_a_econ": 42000,
@@ -914,7 +914,7 @@
             "team_b": 5
           },
           "team_a_odds": "+110",
-          "team_b_odds": "--407.0"
+          "team_b_odds": "-407.0"
         }
       },
       "map": "ancient",

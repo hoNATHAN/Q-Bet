@@ -1,0 +1,1374 @@
+{
+  "Intel Extreme Masters Melbourne 2025": {
+    "url": "https://bo3.gg/tournaments/intel-extreme-masters-melbourne-2025/results",
+    "matches": [
+      {
+        "match_name": "falcons-esports-vs-vitality-27-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-vitality-27-04-2025"
+      },
+      {
+        "match_name": "vitality-vs-the-mongolz-26-04-2025",
+        "match_url": "https://bo3.gg/matches/vitality-vs-the-mongolz-26-04-2025"
+      },
+      {
+        "match_name": "mousesports-vs-falcons-esports-26-04-2025",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-falcons-esports-26-04-2025"
+      },
+      {
+        "match_name": "the-mongolz-vs-liquid-25-04-2025",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-liquid-25-04-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-falcons-esports-25-04-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-falcons-esports-25-04-2025"
+      },
+      {
+        "match_name": "liquid-vs-natus-vincere-23-04-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-natus-vincere-23-04-2025"
+      },
+      {
+        "match_name": "vitality-vs-falcons-esports-23-04-2025",
+        "match_url": "https://bo3.gg/matches/vitality-vs-falcons-esports-23-04-2025"
+      },
+      {
+        "match_name": "mousesports-vs-the-mongolz-23-04-2025",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-the-mongolz-23-04-2025"
+      },
+      {
+        "match_name": "faze-vs-gamerlegion-23-04-2025",
+        "match_url": "https://bo3.gg/matches/faze-vs-gamerlegion-23-04-2025"
+      },
+      {
+        "match_name": "liquid-vs-mibr-23-04-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-mibr-23-04-2025"
+      },
+      {
+        "match_name": "flyquest-vs-natus-vincere-23-04-2025",
+        "match_url": "https://bo3.gg/matches/flyquest-vs-natus-vincere-23-04-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-complexity-23-04-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-complexity-23-04-2025"
+      },
+      {
+        "match_name": "faze-vs-3dmax-23-04-2025",
+        "match_url": "https://bo3.gg/matches/faze-vs-3dmax-23-04-2025"
+      },
+      {
+        "match_name": "flyquest-vs-virtus-pro-22-04-2025",
+        "match_url": "https://bo3.gg/matches/flyquest-vs-virtus-pro-22-04-2025"
+      },
+      {
+        "match_name": "saw-vs-mibr-22-04-2025",
+        "match_url": "https://bo3.gg/matches/saw-vs-mibr-22-04-2025"
+      },
+      {
+        "match_name": "falcons-esports-vs-natus-vincere-22-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-natus-vincere-22-04-2025"
+      },
+      {
+        "match_name": "liquid-vs-vitality-22-04-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-vitality-22-04-2025"
+      },
+      {
+        "match_name": "pain-gaming-vs-complexity-22-04-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-complexity-22-04-2025"
+      },
+      {
+        "match_name": "faze-vs-the-mongolz-22-04-2025",
+        "match_url": "https://bo3.gg/matches/faze-vs-the-mongolz-22-04-2025"
+      },
+      {
+        "match_name": "big-vs-3dmax-22-04-2025",
+        "match_url": "https://bo3.gg/matches/big-vs-3dmax-22-04-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-mousesports-22-04-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-mousesports-22-04-2025"
+      },
+      {
+        "match_name": "falcons-esports-vs-saw-21-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-saw-21-04-2025"
+      },
+      {
+        "match_name": "natus-vincere-vs-mibr-21-04-2025",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-mibr-21-04-2025"
+      },
+      {
+        "match_name": "vitality-vs-flyquest-21-04-2025",
+        "match_url": "https://bo3.gg/matches/vitality-vs-flyquest-21-04-2025"
+      },
+      {
+        "match_name": "liquid-vs-virtus-pro-21-04-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-virtus-pro-21-04-2025"
+      },
+      {
+        "match_name": "mousesports-vs-big-21-04-2025",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-big-21-04-2025"
+      },
+      {
+        "match_name": "3dmax-vs-gamerlegion-21-04-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-gamerlegion-21-04-2025"
+      },
+      {
+        "match_name": "faze-vs-pain-gaming-21-04-2025",
+        "match_url": "https://bo3.gg/matches/faze-vs-pain-gaming-21-04-2025"
+      },
+      {
+        "match_name": "the-mongolz-vs-complexity-21-04-2025",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-complexity-21-04-2025"
+      }
+    ]
+  },
+  "PGL Bucharest 2025": {
+    "url": "https://bo3.gg/tournaments/pgl-bucharest-2025/results",
+    "matches": [
+      {
+        "match_name": "falcons-esports-vs-g2-13-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-g2-13-04-2025"
+      },
+      {
+        "match_name": "faze-vs-complexity-13-04-2025",
+        "match_url": "https://bo3.gg/matches/faze-vs-complexity-13-04-2025"
+      },
+      {
+        "match_name": "complexity-vs-g2-12-04-2025",
+        "match_url": "https://bo3.gg/matches/complexity-vs-g2-12-04-2025"
+      },
+      {
+        "match_name": "falcons-esports-vs-faze-12-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-faze-12-04-2025"
+      },
+      {
+        "match_name": "g2-vs-virtus-pro-11-04-2025",
+        "match_url": "https://bo3.gg/matches/g2-vs-virtus-pro-11-04-2025"
+      },
+      {
+        "match_name": "complexity-vs-aurora-gaming-11-04-2025",
+        "match_url": "https://bo3.gg/matches/complexity-vs-aurora-gaming-11-04-2025"
+      },
+      {
+        "match_name": "3dmax-vs-faze-11-04-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-faze-11-04-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-falcons-esports-11-04-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-falcons-esports-11-04-2025"
+      },
+      {
+        "match_name": "falcons-esports-vs-the-mongolz-10-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-the-mongolz-10-04-2025"
+      },
+      {
+        "match_name": "betclic-apogee-esports-vs-faze-10-04-2025",
+        "match_url": "https://bo3.gg/matches/betclic-apogee-esports-vs-faze-10-04-2025"
+      },
+      {
+        "match_name": "astralis-vs-virtus-pro-10-04-2025",
+        "match_url": "https://bo3.gg/matches/astralis-vs-virtus-pro-10-04-2025"
+      },
+      {
+        "match_name": "furia-vs-the-mongolz-09-04-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-the-mongolz-09-04-2025"
+      },
+      {
+        "match_name": "aurora-gaming-vs-betclic-apogee-esports-09-04-2025",
+        "match_url": "https://bo3.gg/matches/aurora-gaming-vs-betclic-apogee-esports-09-04-2025"
+      },
+      {
+        "match_name": "rare-atom-vs-falcons-esports-09-04-2025",
+        "match_url": "https://bo3.gg/matches/rare-atom-vs-falcons-esports-09-04-2025"
+      },
+      {
+        "match_name": "complexity-vs-faze-09-04-2025",
+        "match_url": "https://bo3.gg/matches/complexity-vs-faze-09-04-2025"
+      },
+      {
+        "match_name": "astralis-vs-legacy-br-09-04-2025",
+        "match_url": "https://bo3.gg/matches/astralis-vs-legacy-br-09-04-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-virtus-pro-09-04-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-virtus-pro-09-04-2025"
+      },
+      {
+        "match_name": "the-mongolz-vs-liquid-08-04-2025",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-liquid-08-04-2025"
+      },
+      {
+        "match_name": "aurora-gaming-vs-3dmax-08-04-2025",
+        "match_url": "https://bo3.gg/matches/aurora-gaming-vs-3dmax-08-04-2025"
+      },
+      {
+        "match_name": "falcons-esports-vs-pain-gaming-08-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-pain-gaming-08-04-2025"
+      },
+      {
+        "match_name": "g2-vs-complexity-08-04-2025",
+        "match_url": "https://bo3.gg/matches/g2-vs-complexity-08-04-2025"
+      },
+      {
+        "match_name": "rare-atom-vs-faze-08-04-2025",
+        "match_url": "https://bo3.gg/matches/rare-atom-vs-faze-08-04-2025"
+      },
+      {
+        "match_name": "furia-vs-virtus-pro-08-04-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-virtus-pro-08-04-2025"
+      },
+      {
+        "match_name": "astralis-vs-betclic-apogee-esports-08-04-2025",
+        "match_url": "https://bo3.gg/matches/astralis-vs-betclic-apogee-esports-08-04-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-legacy-br-08-04-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-legacy-br-08-04-2025"
+      },
+      {
+        "match_name": "furia-vs-complexity-07-04-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-complexity-07-04-2025"
+      },
+      {
+        "match_name": "faze-vs-pain-gaming-07-04-2025",
+        "match_url": "https://bo3.gg/matches/faze-vs-pain-gaming-07-04-2025"
+      },
+      {
+        "match_name": "the-mongolz-vs-betclic-apogee-esports-07-04-2025",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-betclic-apogee-esports-07-04-2025"
+      },
+      {
+        "match_name": "3dmax-vs-astralis-07-04-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-astralis-07-04-2025"
+      },
+      {
+        "match_name": "aurora-gaming-vs-legacy-br-07-04-2025",
+        "match_url": "https://bo3.gg/matches/aurora-gaming-vs-legacy-br-07-04-2025"
+      },
+      {
+        "match_name": "liquid-vs-virtus-pro-07-04-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-virtus-pro-07-04-2025"
+      },
+      {
+        "match_name": "g2-vs-rare-atom-07-04-2025",
+        "match_url": "https://bo3.gg/matches/g2-vs-rare-atom-07-04-2025"
+      },
+      {
+        "match_name": "falcons-esports-vs-gamerlegion-07-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-gamerlegion-07-04-2025"
+      },
+      {
+        "match_name": "furia-vs-betclic-apogee-esports-06-04-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-betclic-apogee-esports-06-04-2025"
+      },
+      {
+        "match_name": "faze-vs-astralis-06-04-2025",
+        "match_url": "https://bo3.gg/matches/faze-vs-astralis-06-04-2025"
+      },
+      {
+        "match_name": "liquid-vs-legacy-br-06-04-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-legacy-br-06-04-2025"
+      },
+      {
+        "match_name": "aurora-gaming-vs-pain-gaming-06-04-2025",
+        "match_url": "https://bo3.gg/matches/aurora-gaming-vs-pain-gaming-06-04-2025"
+      },
+      {
+        "match_name": "falcons-esports-vs-complexity-06-04-2025",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-complexity-06-04-2025"
+      },
+      {
+        "match_name": "g2-vs-gamerlegion-06-04-2025",
+        "match_url": "https://bo3.gg/matches/g2-vs-gamerlegion-06-04-2025"
+      },
+      {
+        "match_name": "the-mongolz-vs-3dmax-06-04-2025",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-3dmax-06-04-2025"
+      },
+      {
+        "match_name": "virtus-pro-vs-rare-atom-06-04-2025",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-rare-atom-06-04-2025"
+      }
+    ]
+  },
+  "ESL Pro League Season 21 Play-in": {
+    "url": "https://bo3.gg/tournaments/esl-pro-league-season-21-play-in/results",
+    "matches": [
+      {
+        "match_name": "furia-vs-m80-cs-go-05-03-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-m80-cs-go-05-03-2025"
+      },
+      {
+        "match_name": "pain-gaming-vs-nemiga-05-03-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-nemiga-05-03-2025"
+      },
+      {
+        "match_name": "flyquest-vs-tyloo-cs-go-05-03-2025",
+        "match_url": "https://bo3.gg/matches/flyquest-vs-tyloo-cs-go-05-03-2025"
+      },
+      {
+        "match_name": "furia-vs-nrg-04-03-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-nrg-04-03-2025"
+      },
+      {
+        "match_name": "3dmax-vs-m80-cs-go-04-03-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-m80-cs-go-04-03-2025"
+      },
+      {
+        "match_name": "pain-gaming-vs-lynn-vision-04-03-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-lynn-vision-04-03-2025"
+      },
+      {
+        "match_name": "eternal-fire-vs-flyquest-04-03-2025",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-flyquest-04-03-2025"
+      },
+      {
+        "match_name": "heroic-vs-nemiga-04-03-2025",
+        "match_url": "https://bo3.gg/matches/heroic-vs-nemiga-04-03-2025"
+      },
+      {
+        "match_name": "mibr-vs-tyloo-cs-go-04-03-2025",
+        "match_url": "https://bo3.gg/matches/mibr-vs-tyloo-cs-go-04-03-2025"
+      },
+      {
+        "match_name": "eternal-fire-vs-nrg-03-03-2025",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-nrg-03-03-2025"
+      },
+      {
+        "match_name": "flyquest-vs-pain-gaming-03-03-2025",
+        "match_url": "https://bo3.gg/matches/flyquest-vs-pain-gaming-03-03-2025"
+      },
+      {
+        "match_name": "furia-vs-mibr-03-03-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-mibr-03-03-2025"
+      },
+      {
+        "match_name": "m80-cs-go-vs-saw-03-03-2025",
+        "match_url": "https://bo3.gg/matches/m80-cs-go-vs-saw-03-03-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-tyloo-cs-go-03-03-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-tyloo-cs-go-03-03-2025"
+      },
+      {
+        "match_name": "nemiga-vs-mindfreak-03-03-2025",
+        "match_url": "https://bo3.gg/matches/nemiga-vs-mindfreak-03-03-2025"
+      },
+      {
+        "match_name": "lynn-vision-vs-housebets-03-03-2025",
+        "match_url": "https://bo3.gg/matches/lynn-vision-vs-housebets-03-03-2025"
+      },
+      {
+        "match_name": "heroic-vs-3dmax-03-03-2025",
+        "match_url": "https://bo3.gg/matches/heroic-vs-3dmax-03-03-2025"
+      },
+      {
+        "match_name": "pain-gaming-vs-m80-cs-go-02-03-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-m80-cs-go-02-03-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-mibr-02-03-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-mibr-02-03-2025"
+      },
+      {
+        "match_name": "furia-vs-saw-02-03-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-saw-02-03-2025"
+      },
+      {
+        "match_name": "nemiga-vs-nrg-02-03-2025",
+        "match_url": "https://bo3.gg/matches/nemiga-vs-nrg-02-03-2025"
+      },
+      {
+        "match_name": "eternal-fire-vs-tyloo-cs-go-02-03-2025",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-tyloo-cs-go-02-03-2025"
+      },
+      {
+        "match_name": "heroic-vs-housebets-02-03-2025",
+        "match_url": "https://bo3.gg/matches/heroic-vs-housebets-02-03-2025"
+      },
+      {
+        "match_name": "flyquest-vs-lynn-vision-02-03-2025",
+        "match_url": "https://bo3.gg/matches/flyquest-vs-lynn-vision-02-03-2025"
+      },
+      {
+        "match_name": "3dmax-vs-mindfreak-02-03-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-mindfreak-02-03-2025"
+      },
+      {
+        "match_name": "pain-gaming-vs-housebets-01-03-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-housebets-01-03-2025"
+      },
+      {
+        "match_name": "gamerlegion-vs-nrg-01-03-2025",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-nrg-01-03-2025"
+      },
+      {
+        "match_name": "furia-vs-lynn-vision-01-03-2025",
+        "match_url": "https://bo3.gg/matches/furia-vs-lynn-vision-01-03-2025"
+      },
+      {
+        "match_name": "mibr-vs-nemiga-01-03-2025",
+        "match_url": "https://bo3.gg/matches/mibr-vs-nemiga-01-03-2025"
+      },
+      {
+        "match_name": "3dmax-vs-tyloo-cs-go-01-03-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-tyloo-cs-go-01-03-2025"
+      },
+      {
+        "match_name": "heroic-vs-saw-01-03-2025",
+        "match_url": "https://bo3.gg/matches/heroic-vs-saw-01-03-2025"
+      },
+      {
+        "match_name": "eternal-fire-vs-mindfreak-01-03-2025",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-mindfreak-01-03-2025"
+      },
+      {
+        "match_name": "m80-cs-go-vs-flyquest-01-03-2025",
+        "match_url": "https://bo3.gg/matches/m80-cs-go-vs-flyquest-01-03-2025"
+      }
+    ]
+  },
+  "Intel Extreme Masters Katowice 2025 Play-In": {
+    "url": "https://bo3.gg/tournaments/intel-extreme-masters-katowice-2025-play-in/results",
+    "matches": [
+      {
+        "match_name": "pain-gaming-vs-astralis-31-01-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-astralis-31-01-2025"
+      },
+      {
+        "match_name": "liquid-vs-wildcard-gaming-31-01-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-wildcard-gaming-31-01-2025"
+      },
+      {
+        "match_name": "mibr-vs-virtus-pro-31-01-2025",
+        "match_url": "https://bo3.gg/matches/mibr-vs-virtus-pro-31-01-2025"
+      },
+      {
+        "match_name": "heroic-vs-big-31-01-2025",
+        "match_url": "https://bo3.gg/matches/heroic-vs-big-31-01-2025"
+      },
+      {
+        "match_name": "wildcard-gaming-vs-furia-31-01-2025",
+        "match_url": "https://bo3.gg/matches/wildcard-gaming-vs-furia-31-01-2025"
+      },
+      {
+        "match_name": "complexity-vs-liquid-31-01-2025",
+        "match_url": "https://bo3.gg/matches/complexity-vs-liquid-31-01-2025"
+      },
+      {
+        "match_name": "eternal-fire-vs-heroic-30-01-2025",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-heroic-30-01-2025"
+      },
+      {
+        "match_name": "big-vs-imperial-female-30-01-2025",
+        "match_url": "https://bo3.gg/matches/big-vs-imperial-female-30-01-2025"
+      },
+      {
+        "match_name": "flyquest-vs-astralis-30-01-2025",
+        "match_url": "https://bo3.gg/matches/flyquest-vs-astralis-30-01-2025"
+      },
+      {
+        "match_name": "3dmax-vs-mibr-30-01-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-mibr-30-01-2025"
+      },
+      {
+        "match_name": "pain-gaming-vs-gamerlegion-30-01-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-gamerlegion-30-01-2025"
+      },
+      {
+        "match_name": "virtus-pro-vs-saw-30-01-2025",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-saw-30-01-2025"
+      },
+      {
+        "match_name": "liquid-vs-heroic-29-01-2025",
+        "match_url": "https://bo3.gg/matches/liquid-vs-heroic-29-01-2025"
+      },
+      {
+        "match_name": "complexity-vs-eternal-fire-29-01-2025",
+        "match_url": "https://bo3.gg/matches/complexity-vs-eternal-fire-29-01-2025"
+      },
+      {
+        "match_name": "imperial-female-vs-furia-29-01-2025",
+        "match_url": "https://bo3.gg/matches/imperial-female-vs-furia-29-01-2025"
+      },
+      {
+        "match_name": "wildcard-gaming-vs-big-29-01-2025",
+        "match_url": "https://bo3.gg/matches/wildcard-gaming-vs-big-29-01-2025"
+      },
+      {
+        "match_name": "astralis-vs-mibr-29-01-2025",
+        "match_url": "https://bo3.gg/matches/astralis-vs-mibr-29-01-2025"
+      },
+      {
+        "match_name": "saw-vs-gamerlegion-29-01-2025",
+        "match_url": "https://bo3.gg/matches/saw-vs-gamerlegion-29-01-2025"
+      },
+      {
+        "match_name": "3dmax-vs-flyquest-29-01-2025",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-flyquest-29-01-2025"
+      },
+      {
+        "match_name": "pain-gaming-vs-virtus-pro-29-01-2025",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-virtus-pro-29-01-2025"
+      }
+    ]
+  },
+  "IEM Rio 2024": {
+    "url": "https://bo3.gg/tournaments/iem-rio-2024/results",
+    "matches": [
+      {
+        "match_name": "mousesports-vs-natus-vincere-13-10-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-natus-vincere-13-10-2024"
+      },
+      {
+        "match_name": "furia-vs-mousesports-12-10-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-mousesports-12-10-2024"
+      },
+      {
+        "match_name": "heroic-vs-natus-vincere-12-10-2024",
+        "match_url": "https://bo3.gg/matches/heroic-vs-natus-vincere-12-10-2024"
+      },
+      {
+        "match_name": "vitality-vs-mousesports-11-10-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-mousesports-11-10-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-natus-vincere-11-10-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-natus-vincere-11-10-2024"
+      },
+      {
+        "match_name": "mousesports-vs-faze-09-10-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-faze-09-10-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-the-mongolz-09-10-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-the-mongolz-09-10-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-furia-09-10-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-furia-09-10-2024"
+      },
+      {
+        "match_name": "vitality-vs-heroic-09-10-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-heroic-09-10-2024"
+      },
+      {
+        "match_name": "astralis-vs-virtus-pro-09-10-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-virtus-pro-09-10-2024"
+      },
+      {
+        "match_name": "the-mongolz-vs-eternal-fire-09-10-2024",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-eternal-fire-09-10-2024"
+      },
+      {
+        "match_name": "mousesports-vs-complexity-08-10-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-complexity-08-10-2024"
+      },
+      {
+        "match_name": "liquid-vs-faze-08-10-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-faze-08-10-2024"
+      },
+      {
+        "match_name": "astralis-vs-heroic-08-10-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-heroic-08-10-2024"
+      },
+      {
+        "match_name": "eternal-fire-vs-g2-08-10-2024",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-g2-08-10-2024"
+      },
+      {
+        "match_name": "vitality-vs-the-mongolz-08-10-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-the-mongolz-08-10-2024"
+      },
+      {
+        "match_name": "9z-vs-virtus-pro-08-10-2024",
+        "match_url": "https://bo3.gg/matches/9z-vs-virtus-pro-08-10-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-liquid-07-10-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-liquid-07-10-2024"
+      },
+      {
+        "match_name": "imperial-vs-complexity-07-10-2024",
+        "match_url": "https://bo3.gg/matches/imperial-vs-complexity-07-10-2024"
+      },
+      {
+        "match_name": "faze-vs-pain-gaming-07-10-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-pain-gaming-07-10-2024"
+      },
+      {
+        "match_name": "furia-vs-mousesports-07-10-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-mousesports-07-10-2024"
+      },
+      {
+        "match_name": "eternal-fire-vs-astralis-07-10-2024/inferno",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-astralis-07-10-2024/inferno"
+      },
+      {
+        "match_name": "virtus-pro-vs-the-mongolz-07-10-2024/mirage",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-the-mongolz-07-10-2024/mirage"
+      },
+      {
+        "match_name": "g2-vs-heroic-07-10-2024/dust2",
+        "match_url": "https://bo3.gg/matches/g2-vs-heroic-07-10-2024/dust2"
+      },
+      {
+        "match_name": "vitality-vs-9z-07-10-2024/mirage",
+        "match_url": "https://bo3.gg/matches/vitality-vs-9z-07-10-2024/mirage"
+      },
+      {
+        "match_name": "natus-vincere-vs-imperial-07-10-2024/nuke",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-imperial-07-10-2024/nuke"
+      },
+      {
+        "match_name": "liquid-vs-complexity-07-10-2024/inferno",
+        "match_url": "https://bo3.gg/matches/liquid-vs-complexity-07-10-2024/inferno"
+      },
+      {
+        "match_name": "faze-vs-furia-07-10-2024/dust2",
+        "match_url": "https://bo3.gg/matches/faze-vs-furia-07-10-2024/dust2"
+      },
+      {
+        "match_name": "mousesports-vs-pain-gaming-07-10-2024/dust2",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-pain-gaming-07-10-2024/dust2"
+      }
+    ]
+  },
+  "BLAST Premier: Fall Final 2024": {
+    "url": "https://bo3.gg/tournaments/blast-premier-fall-final-2024/results",
+    "matches": [
+      {
+        "match_name": "g2-vs-natus-vincere-29-09-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-natus-vincere-29-09-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-faze-28-09-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-faze-28-09-2024"
+      },
+      {
+        "match_name": "vitality-vs-g2-28-09-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-g2-28-09-2024"
+      },
+      {
+        "match_name": "faze-vs-liquid-27-09-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-liquid-27-09-2024"
+      },
+      {
+        "match_name": "g2-vs-spirit-27-09-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-spirit-27-09-2024"
+      },
+      {
+        "match_name": "vitality-vs-liquid-26-09-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-liquid-26-09-2024"
+      },
+      {
+        "match_name": "astralis-vs-spirit-26-09-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-spirit-26-09-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-g2-26-09-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-g2-26-09-2024"
+      },
+      {
+        "match_name": "falcons-esports-vs-faze-26-09-2024",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-faze-26-09-2024"
+      },
+      {
+        "match_name": "spirit-vs-liquid-25-09-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-liquid-25-09-2024"
+      },
+      {
+        "match_name": "vitality-vs-astralis-25-09-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-astralis-25-09-2024"
+      },
+      {
+        "match_name": "g2-vs-faze-25-09-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-faze-25-09-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-falcons-esports-25-09-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-falcons-esports-25-09-2024"
+      }
+    ]
+  },
+  "ESL Pro League Season 20": {
+    "url": "https://bo3.gg/tournaments/esl-pro-league-season-20/results",
+    "matches": [
+      {
+        "match_name": "eternal-fire-vs-natus-vincere-22-09-2024",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-natus-vincere-22-09-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-g2-21-09-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-g2-21-09-2024"
+      },
+      {
+        "match_name": "mibr-vs-eternal-fire-21-09-2024",
+        "match_url": "https://bo3.gg/matches/mibr-vs-eternal-fire-21-09-2024"
+      },
+      {
+        "match_name": "g2-vs-liquid-20-09-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-liquid-20-09-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-spirit-20-09-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-spirit-20-09-2024"
+      },
+      {
+        "match_name": "vitality-vs-eternal-fire-19-09-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-eternal-fire-19-09-2024"
+      },
+      {
+        "match_name": "m80-cs-go-vs-mibr-19-09-2024",
+        "match_url": "https://bo3.gg/matches/m80-cs-go-vs-mibr-19-09-2024"
+      },
+      {
+        "match_name": "liquid-vs-complexity-18-09-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-complexity-18-09-2024"
+      },
+      {
+        "match_name": "imperial-vs-spirit-18-09-2024",
+        "match_url": "https://bo3.gg/matches/imperial-vs-spirit-18-09-2024"
+      },
+      {
+        "match_name": "eternal-fire-vs-the-mongolz-18-09-2024",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-the-mongolz-18-09-2024"
+      },
+      {
+        "match_name": "mibr-vs-heroic-18-09-2024",
+        "match_url": "https://bo3.gg/matches/mibr-vs-heroic-18-09-2024"
+      },
+      {
+        "match_name": "faze-vs-complexity-17-09-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-complexity-17-09-2024"
+      },
+      {
+        "match_name": "spirit-vs-furia-17-09-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-furia-17-09-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-heroic-17-09-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-heroic-17-09-2024"
+      },
+      {
+        "match_name": "big-vs-the-mongolz-17-09-2024",
+        "match_url": "https://bo3.gg/matches/big-vs-the-mongolz-17-09-2024"
+      },
+      {
+        "match_name": "liquid-vs-vitality-15-09-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-vitality-15-09-2024"
+      },
+      {
+        "match_name": "red-canids-cs-go-vs-furia-15-09-2024",
+        "match_url": "https://bo3.gg/matches/red-canids-cs-go-vs-furia-15-09-2024"
+      },
+      {
+        "match_name": "mousesports-vs-complexity-15-09-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-complexity-15-09-2024"
+      },
+      {
+        "match_name": "imperial-vs-m80-cs-go-14-09-2024",
+        "match_url": "https://bo3.gg/matches/imperial-vs-m80-cs-go-14-09-2024"
+      },
+      {
+        "match_name": "furia-vs-atox-14-09-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-atox-14-09-2024"
+      },
+      {
+        "match_name": "astralis-vs-complexity-14-09-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-complexity-14-09-2024"
+      },
+      {
+        "match_name": "red-canids-cs-go-vs-falcons-esports-14-09-2024",
+        "match_url": "https://bo3.gg/matches/red-canids-cs-go-vs-falcons-esports-14-09-2024"
+      },
+      {
+        "match_name": "fnatic-vs-mousesports-14-09-2024",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-mousesports-14-09-2024"
+      },
+      {
+        "match_name": "furia-vs-virtus-pro-13-09-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-virtus-pro-13-09-2024"
+      },
+      {
+        "match_name": "atox-vs-ence-13-09-2024",
+        "match_url": "https://bo3.gg/matches/atox-vs-ence-13-09-2024"
+      },
+      {
+        "match_name": "big-vs-complexity-13-09-2024",
+        "match_url": "https://bo3.gg/matches/big-vs-complexity-13-09-2024"
+      },
+      {
+        "match_name": "rooster-vs-astralis-13-09-2024",
+        "match_url": "https://bo3.gg/matches/rooster-vs-astralis-13-09-2024"
+      },
+      {
+        "match_name": "falcons-esports-vs-virtus-pro-13-09-2024",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-virtus-pro-13-09-2024"
+      },
+      {
+        "match_name": "furia-vs-red-canids-cs-go-13-09-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-red-canids-cs-go-13-09-2024"
+      },
+      {
+        "match_name": "big-vs-fnatic-12-09-2024",
+        "match_url": "https://bo3.gg/matches/big-vs-fnatic-12-09-2024"
+      },
+      {
+        "match_name": "complexity-vs-mousesports-12-09-2024",
+        "match_url": "https://bo3.gg/matches/complexity-vs-mousesports-12-09-2024"
+      },
+      {
+        "match_name": "ence-vs-red-canids-cs-go-12-09-2024",
+        "match_url": "https://bo3.gg/matches/ence-vs-red-canids-cs-go-12-09-2024"
+      },
+      {
+        "match_name": "vitality-vs-furia-12-09-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-furia-12-09-2024"
+      },
+      {
+        "match_name": "atox-vs-falcons-esports-12-09-2024",
+        "match_url": "https://bo3.gg/matches/atox-vs-falcons-esports-12-09-2024"
+      },
+      {
+        "match_name": "liquid-vs-virtus-pro-12-09-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-virtus-pro-12-09-2024"
+      },
+      {
+        "match_name": "mousesports-vs-imperial-11-09-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-imperial-11-09-2024"
+      },
+      {
+        "match_name": "fnatic-vs-m80-cs-go-11-09-2024",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-m80-cs-go-11-09-2024"
+      },
+      {
+        "match_name": "astralis-vs-complexity-11-09-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-complexity-11-09-2024"
+      },
+      {
+        "match_name": "rooster-vs-big-11-09-2024",
+        "match_url": "https://bo3.gg/matches/rooster-vs-big-11-09-2024"
+      },
+      {
+        "match_name": "vitality-vs-atox-11-09-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-atox-11-09-2024"
+      },
+      {
+        "match_name": "furia-vs-falcons-esports-11-09-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-falcons-esports-11-09-2024"
+      },
+      {
+        "match_name": "red-canids-cs-go-vs-virtus-pro-10-09-2024",
+        "match_url": "https://bo3.gg/matches/red-canids-cs-go-vs-virtus-pro-10-09-2024"
+      },
+      {
+        "match_name": "complexity-vs-m80-cs-go-10-09-2024",
+        "match_url": "https://bo3.gg/matches/complexity-vs-m80-cs-go-10-09-2024"
+      },
+      {
+        "match_name": "big-vs-imperial-10-09-2024",
+        "match_url": "https://bo3.gg/matches/big-vs-imperial-10-09-2024"
+      },
+      {
+        "match_name": "liquid-vs-ence-10-09-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-ence-10-09-2024"
+      },
+      {
+        "match_name": "mousesports-vs-rooster-10-09-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-rooster-10-09-2024"
+      },
+      {
+        "match_name": "fnatic-vs-astralis-10-09-2024",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-astralis-10-09-2024"
+      },
+      {
+        "match_name": "mibr-vs-g2-08-09-2024",
+        "match_url": "https://bo3.gg/matches/mibr-vs-g2-08-09-2024"
+      },
+      {
+        "match_name": "sangal-vs-heroic-08-09-2024",
+        "match_url": "https://bo3.gg/matches/sangal-vs-heroic-08-09-2024"
+      },
+      {
+        "match_name": "the-mongolz-vs-3dmax-08-09-2024",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-3dmax-08-09-2024"
+      }
+    ]
+  },
+  "BetBoom Dacha Belgrade 2024 #2 Play-in": {
+    "url": "https://bo3.gg/tournaments/betboom-dacha-belgrade-season-2-play-in/results",
+    "matches": [
+      {
+        "match_name": "eternal-fire-vs-furia-27-08-2024/dust2",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-furia-27-08-2024/dust2"
+      },
+      {
+        "match_name": "furia-vs-9-pandas-27-08-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-9-pandas-27-08-2024"
+      },
+      {
+        "match_name": "pain-gaming-vs-falcons-esports-27-08-2024/vertigo",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-falcons-esports-27-08-2024/vertigo"
+      },
+      {
+        "match_name": "eternal-fire-vs-9-pandas-26-08-2024",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-9-pandas-26-08-2024"
+      },
+      {
+        "match_name": "aurora-gaming-vs-furia-26-08-2024",
+        "match_url": "https://bo3.gg/matches/aurora-gaming-vs-furia-26-08-2024"
+      },
+      {
+        "match_name": "falcons-esports-vs-9z-26-08-2024",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-9z-26-08-2024"
+      },
+      {
+        "match_name": "furia-vs-9-pandas-25-08-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-9-pandas-25-08-2024"
+      },
+      {
+        "match_name": "eternal-fire-vs-aurora-gaming-25-08-2024",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-aurora-gaming-25-08-2024"
+      },
+      {
+        "match_name": "9z-vs-pain-gaming-25-08-2024",
+        "match_url": "https://bo3.gg/matches/9z-vs-pain-gaming-25-08-2024"
+      },
+      {
+        "match_name": "falcons-esports-vs-betboom-team-25-08-2024",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-betboom-team-25-08-2024"
+      },
+      {
+        "match_name": "pain-gaming-vs-betboom-team-24-08-2024",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-betboom-team-24-08-2024"
+      },
+      {
+        "match_name": "falcons-esports-vs-9z-24-08-2024",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-9z-24-08-2024"
+      }
+    ]
+  },
+  "IEM Cologne 2024": {
+    "url": "https://bo3.gg/tournaments/iem-cologne-2024/results",
+    "matches": [
+      {
+        "match_name": "natus-vincere-vs-vitality-18-08-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-vitality-18-08-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-mousesports-17-08-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-mousesports-17-08-2024"
+      },
+      {
+        "match_name": "vitality-vs-saw-17-08-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-saw-17-08-2024"
+      },
+      {
+        "match_name": "mousesports-vs-g2-16-08-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-g2-16-08-2024"
+      },
+      {
+        "match_name": "saw-vs-faze-16-08-2024",
+        "match_url": "https://bo3.gg/matches/saw-vs-faze-16-08-2024"
+      },
+      {
+        "match_name": "mousesports-vs-vitality-13-08-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-vitality-13-08-2024"
+      },
+      {
+        "match_name": "faze-vs-liquid-13-08-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-liquid-13-08-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-saw-13-08-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-saw-13-08-2024"
+      },
+      {
+        "match_name": "g2-vs-pain-gaming-13-08-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-pain-gaming-13-08-2024"
+      },
+      {
+        "match_name": "complexity-vs-liquid-13-08-2024",
+        "match_url": "https://bo3.gg/matches/complexity-vs-liquid-13-08-2024"
+      },
+      {
+        "match_name": "faze-vs-falcons-esports-13-08-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-falcons-esports-13-08-2024"
+      },
+      {
+        "match_name": "astralis-vs-g2-12-08-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-g2-12-08-2024"
+      },
+      {
+        "match_name": "the-mongolz-vs-pain-gaming-12-08-2024",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-pain-gaming-12-08-2024"
+      },
+      {
+        "match_name": "mousesports-vs-complexity-12-08-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-complexity-12-08-2024"
+      },
+      {
+        "match_name": "faze-vs-vitality-12-08-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-vitality-12-08-2024"
+      },
+      {
+        "match_name": "falcons-esports-vs-virtus-pro-12-08-2024",
+        "match_url": "https://bo3.gg/matches/falcons-esports-vs-virtus-pro-12-08-2024"
+      },
+      {
+        "match_name": "liquid-vs-furia-12-08-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-furia-12-08-2024"
+      },
+      {
+        "match_name": "pain-gaming-vs-9z-11-08-2024",
+        "match_url": "https://bo3.gg/matches/pain-gaming-vs-9z-11-08-2024"
+      },
+      {
+        "match_name": "g2-vs-spirit-11-08-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-spirit-11-08-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-astralis-11-08-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-astralis-11-08-2024"
+      },
+      {
+        "match_name": "saw-vs-the-mongolz-11-08-2024",
+        "match_url": "https://bo3.gg/matches/saw-vs-the-mongolz-11-08-2024"
+      },
+      {
+        "match_name": "vitality-vs-furia-11-08-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-furia-11-08-2024"
+      },
+      {
+        "match_name": "mousesports-vs-falcons-esports-11-08-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-falcons-esports-11-08-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-pain-gaming-10-08-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-pain-gaming-10-08-2024"
+      },
+      {
+        "match_name": "spirit-vs-the-mongolz-10-08-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-the-mongolz-10-08-2024"
+      },
+      {
+        "match_name": "astralis-vs-9z-10-08-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-9z-10-08-2024"
+      },
+      {
+        "match_name": "g2-vs-saw-10-08-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-saw-10-08-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-complexity-10-08-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-complexity-10-08-2024"
+      },
+      {
+        "match_name": "faze-vs-liquid-10-08-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-liquid-10-08-2024"
+      }
+    ]
+  },
+  "BLAST Premier: Spring Final 2024": {
+    "url": "https://bo3.gg/tournaments/blast-premier-spring-final-2024/results",
+    "matches": [
+      {
+        "match_name": "spirit-vs-natus-vincere-16-06-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-natus-vincere-16-06-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-virtus-pro-15-06-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-virtus-pro-15-06-2024"
+      },
+      {
+        "match_name": "spirit-vs-vitality-15-06-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-vitality-15-06-2024"
+      },
+      {
+        "match_name": "astralis-vs-virtus-pro-14-06-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-virtus-pro-14-06-2024"
+      },
+      {
+        "match_name": "faze-vs-vitality-14-06-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-vitality-14-06-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-spirit-13-06-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-spirit-13-06-2024"
+      },
+      {
+        "match_name": "vitality-vs-g2-13-06-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-g2-13-06-2024"
+      },
+      {
+        "match_name": "faze-vs-natus-vincere-13-06-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-natus-vincere-13-06-2024"
+      },
+      {
+        "match_name": "saw-vs-astralis-13-06-2024",
+        "match_url": "https://bo3.gg/matches/saw-vs-astralis-13-06-2024"
+      },
+      {
+        "match_name": "spirit-vs-g2-12-06-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-g2-12-06-2024"
+      },
+      {
+        "match_name": "vitality-vs-virtus-pro-12-06-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-virtus-pro-12-06-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-astralis-12-06-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-astralis-12-06-2024"
+      },
+      {
+        "match_name": "faze-vs-saw-12-06-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-saw-12-06-2024"
+      }
+    ]
+  },
+  "YaLLa Compass 2024": {
+    "url": "https://bo3.gg/tournaments/yalla-compass-2024/results",
+    "matches": [
+      {
+        "match_name": "themongolz-vs-nip-09-06-2024",
+        "match_url": "https://bo3.gg/matches/themongolz-vs-nip-09-06-2024"
+      },
+      {
+        "match_name": "furia-vs-nip-08-06-2024",
+        "match_url": "https://bo3.gg/matches/furia-vs-nip-08-06-2024"
+      },
+      {
+        "match_name": "themongolz-vs-astralis-08-06-2024",
+        "match_url": "https://bo3.gg/matches/themongolz-vs-astralis-08-06-2024"
+      },
+      {
+        "match_name": "nip-vs-fnatic-07-06-2024",
+        "match_url": "https://bo3.gg/matches/nip-vs-fnatic-07-06-2024"
+      },
+      {
+        "match_name": "betboom-vs-astralis-07-06-2024",
+        "match_url": "https://bo3.gg/matches/betboom-vs-astralis-07-06-2024"
+      },
+      {
+        "match_name": "nip-vs-sashi-esport-06-06-2024/vertigo",
+        "match_url": "https://bo3.gg/matches/nip-vs-sashi-esport-06-06-2024/vertigo"
+      },
+      {
+        "match_name": "fnatic-vs-big-06-06-2024/inferno",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-big-06-06-2024/inferno"
+      },
+      {
+        "match_name": "complexity-vs-furia-06-06-2024/inferno",
+        "match_url": "https://bo3.gg/matches/complexity-vs-furia-06-06-2024/inferno"
+      },
+      {
+        "match_name": "astralis-vs-themongolz-06-06-2024/inferno",
+        "match_url": "https://bo3.gg/matches/astralis-vs-themongolz-06-06-2024/inferno"
+      },
+      {
+        "match_name": "eternal-fire-vs-betboom-06-06-2024/anubis",
+        "match_url": "https://bo3.gg/matches/eternal-fire-vs-betboom-06-06-2024/anubis"
+      },
+      {
+        "match_name": "heroic-vs-ence-06-06-2024/dust2",
+        "match_url": "https://bo3.gg/matches/heroic-vs-ence-06-06-2024/dust2"
+      },
+      {
+        "match_name": "fnatic-vs-furia-06-06-2024/dust2",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-furia-06-06-2024/dust2"
+      },
+      {
+        "match_name": "nip-vs-themongolz-06-06-2024/nuke",
+        "match_url": "https://bo3.gg/matches/nip-vs-themongolz-06-06-2024/nuke"
+      },
+      {
+        "match_name": "astralis-vs-ence-06-06-2024/mirage",
+        "match_url": "https://bo3.gg/matches/astralis-vs-ence-06-06-2024/mirage"
+      },
+      {
+        "match_name": "complexity-vs-betboom-06-06-2024/nuke",
+        "match_url": "https://bo3.gg/matches/complexity-vs-betboom-06-06-2024/nuke"
+      },
+      {
+        "match_name": "sashi-esport-vs-heroic-06-06-2024/anubis",
+        "match_url": "https://bo3.gg/matches/sashi-esport-vs-heroic-06-06-2024/anubis"
+      },
+      {
+        "match_name": "big-vs-eternal-fire-06-06-2024/anubis",
+        "match_url": "https://bo3.gg/matches/big-vs-eternal-fire-06-06-2024/anubis"
+      },
+      {
+        "match_name": "nip-vs-astralis-06-06-2024/ancient",
+        "match_url": "https://bo3.gg/matches/nip-vs-astralis-06-06-2024/ancient"
+      },
+      {
+        "match_name": "fnatic-vs-complexity-06-06-2024/inferno",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-complexity-06-06-2024/inferno"
+      },
+      {
+        "match_name": "themongolz-vs-heroic-06-06-2024/mirage",
+        "match_url": "https://bo3.gg/matches/themongolz-vs-heroic-06-06-2024/mirage"
+      },
+      {
+        "match_name": "furia-vs-eternal-fire-06-06-2024/inferno",
+        "match_url": "https://bo3.gg/matches/furia-vs-eternal-fire-06-06-2024/inferno"
+      },
+      {
+        "match_name": "big-vs-betboom-05-06-2024/ancient",
+        "match_url": "https://bo3.gg/matches/big-vs-betboom-05-06-2024/ancient"
+      },
+      {
+        "match_name": "sashi-esport-vs-ence-05-06-2024/mirage",
+        "match_url": "https://bo3.gg/matches/sashi-esport-vs-ence-05-06-2024/mirage"
+      },
+      {
+        "match_name": "fnatic-vs-eternal-fire-05-06-2024/inferno",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-eternal-fire-05-06-2024/inferno"
+      },
+      {
+        "match_name": "nip-vs-heroic-05-06-2024/ancient",
+        "match_url": "https://bo3.gg/matches/nip-vs-heroic-05-06-2024/ancient"
+      },
+      {
+        "match_name": "furia-vs-betboom-05-06-2024/nuke",
+        "match_url": "https://bo3.gg/matches/furia-vs-betboom-05-06-2024/nuke"
+      },
+      {
+        "match_name": "themongolz-vs-ence-05-06-2024/nuke",
+        "match_url": "https://bo3.gg/matches/themongolz-vs-ence-05-06-2024/nuke"
+      },
+      {
+        "match_name": "complexity-vs-big-05-06-2024/inferno",
+        "match_url": "https://bo3.gg/matches/complexity-vs-big-05-06-2024/inferno"
+      },
+      {
+        "match_name": "astralis-vs-sashi-esport-05-06-2024/nuke",
+        "match_url": "https://bo3.gg/matches/astralis-vs-sashi-esport-05-06-2024/nuke"
+      },
+      {
+        "match_name": "fnatic-vs-betboom-05-06-2024/ancient",
+        "match_url": "https://bo3.gg/matches/fnatic-vs-betboom-05-06-2024/ancient"
+      },
+      {
+        "match_name": "nip-vs-ence-05-06-2024/vertigo",
+        "match_url": "https://bo3.gg/matches/nip-vs-ence-05-06-2024/vertigo"
+      },
+      {
+        "match_name": "complexity-vs-eternal-fire-05-06-2024/anubis",
+        "match_url": "https://bo3.gg/matches/complexity-vs-eternal-fire-05-06-2024/anubis"
+      },
+      {
+        "match_name": "astralis-vs-heroic-05-06-2024/nuke",
+        "match_url": "https://bo3.gg/matches/astralis-vs-heroic-05-06-2024/nuke"
+      }
+    ]
+  },
+  "BLAST Premier: Spring Groups 2024": {
+    "url": "https://bo3.gg/tournaments/blast-premier-spring-groups-2024/results",
+    "matches": [
+      {
+        "match_name": "g2-vs-liquid-28-01-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-liquid-28-01-2024"
+      },
+      {
+        "match_name": "astralis-vs-big-28-01-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-big-28-01-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-big-27-01-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-big-27-01-2024"
+      },
+      {
+        "match_name": "liquid-vs-faze-27-01-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-faze-27-01-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-g2-27-01-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-g2-27-01-2024"
+      },
+      {
+        "match_name": "astralis-vs-vitality-27-01-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-vitality-27-01-2024"
+      },
+      {
+        "match_name": "cloud9-vs-big-26-01-2024",
+        "match_url": "https://bo3.gg/matches/cloud9-vs-big-26-01-2024"
+      },
+      {
+        "match_name": "gamerlegion-vs-faze-26-01-2024",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-faze-26-01-2024"
+      },
+      {
+        "match_name": "g2-vs-nip-26-01-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-nip-26-01-2024"
+      },
+      {
+        "match_name": "vitality-vs-falcons-esports-26-01-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-falcons-esports-26-01-2024"
+      },
+      {
+        "match_name": "big-vs-heroic-25-01-2024",
+        "match_url": "https://bo3.gg/matches/big-vs-heroic-25-01-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-cloud9-25-01-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-cloud9-25-01-2024"
+      },
+      {
+        "match_name": "faze-vs-spirit-25-01-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-spirit-25-01-2024"
+      },
+      {
+        "match_name": "gamerlegion-vs-liquid-25-01-2024",
+        "match_url": "https://bo3.gg/matches/gamerlegion-vs-liquid-25-01-2024"
+      },
+      {
+        "match_name": "cloud9-vs-heroic-24-01-2024",
+        "match_url": "https://bo3.gg/matches/cloud9-vs-heroic-24-01-2024"
+      },
+      {
+        "match_name": "virtus-pro-vs-big-24-01-2024",
+        "match_url": "https://bo3.gg/matches/virtus-pro-vs-big-24-01-2024"
+      },
+      {
+        "match_name": "spirit-vs-liquid-24-01-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-liquid-24-01-2024"
+      },
+      {
+        "match_name": "faze-vs-gamerlegion-24-01-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-gamerlegion-24-01-2024"
+      },
+      {
+        "match_name": "og-vs-falcons-esports-23-01-2024",
+        "match_url": "https://bo3.gg/matches/og-vs-falcons-esports-23-01-2024"
+      },
+      {
+        "match_name": "vitality-vs-astralis-23-01-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-astralis-23-01-2024"
+      },
+      {
+        "match_name": "nip-vs-complexity-23-01-2024",
+        "match_url": "https://bo3.gg/matches/nip-vs-complexity-23-01-2024"
+      },
+      {
+        "match_name": "g2-vs-natus-vincere-23-01-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-natus-vincere-23-01-2024"
+      },
+      {
+        "match_name": "astralis-vs-falcons-esports-22-01-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-falcons-esports-22-01-2024"
+      },
+      {
+        "match_name": "vitality-vs-og-22-01-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-og-22-01-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-complexity-22-01-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-complexity-22-01-2024"
+      },
+      {
+        "match_name": "g2-vs-nip-22-01-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-nip-22-01-2024"
+      }
+    ]
+  }
+}

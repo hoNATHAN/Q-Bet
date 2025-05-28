@@ -879,7 +879,7 @@
             "team_a": 5,
             "team_b": 3
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_2": {
@@ -899,7 +899,7 @@
             "team_a": 5,
             "team_b": 1
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_3": {
@@ -919,7 +919,7 @@
             "team_a": 3,
             "team_b": 5
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_4": {
@@ -939,7 +939,7 @@
             "team_a": 4,
             "team_b": 1
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_5": {
@@ -959,7 +959,7 @@
             "team_a": 2,
             "team_b": 2
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_6": {
@@ -979,7 +979,7 @@
             "team_a": 5,
             "team_b": 2
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_7": {
@@ -999,7 +999,7 @@
             "team_a": 5,
             "team_b": 3
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_8": {
@@ -1019,7 +1019,7 @@
             "team_a": 5,
             "team_b": 3
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_9": {
@@ -1039,7 +1039,7 @@
             "team_a": 3,
             "team_b": 5
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_10": {
@@ -1059,7 +1059,7 @@
             "team_a": 2,
             "team_b": 4
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_11": {
@@ -1079,7 +1079,7 @@
             "team_a": 5,
             "team_b": 3
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_12": {
@@ -1099,7 +1099,7 @@
             "team_a": 1,
             "team_b": 5
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_13": {
@@ -1119,7 +1119,7 @@
             "team_a": 4,
             "team_b": 4
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_14": {
@@ -1139,7 +1139,7 @@
             "team_a": 5,
             "team_b": 4
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_15": {
@@ -1159,7 +1159,7 @@
             "team_a": 5,
             "team_b": 4
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_16": {
@@ -1179,7 +1179,7 @@
             "team_a": 1,
             "team_b": 4
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_17": {
@@ -1199,7 +1199,7 @@
             "team_a": 1,
             "team_b": 5
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_18": {
@@ -1219,7 +1219,7 @@
             "team_a": 2,
             "team_b": 1
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_19": {
@@ -1239,7 +1239,7 @@
             "team_a": 5,
             "team_b": 1
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_20": {
@@ -1259,7 +1259,7 @@
             "team_a": 2,
             "team_b": 4
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_21": {
@@ -1279,7 +1279,7 @@
             "team_a": 5,
             "team_b": 2
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_22": {
@@ -1299,7 +1299,7 @@
             "team_a": 3,
             "team_b": 2
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         },
         "round_23": {
@@ -1319,7 +1319,7 @@
             "team_a": 4,
             "team_b": 4
           },
-          "team_a_odds": "--458.5",
+          "team_a_odds": "-458.5",
           "team_b_odds": "+296"
         }
       },
