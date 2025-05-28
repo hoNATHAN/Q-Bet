@@ -352,7 +352,7 @@
     },
     "round_11": {
       "initial_team_a_econ": 10200,
-      "initial_team_b_econ": 24000,
+      "initial_team_b_econ": 23500,
       "buy_team_a_econ": 2200,
       "buy_team_b_econ": 17500,
       "final_team_a_econ": 19600,

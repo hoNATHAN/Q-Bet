@@ -132,19 +132,13 @@ def get_match_data(url, output_path):
         games = soup.find_all('div', class_='c-nav-match-menu-item c-nav-match-menu-item--game c-nav-match-menu-item--finished')  
         match_data['game_count'] = len(games)  
 
-        menu_links = soup.find_all('a', class_='menu-link')
-        game_links = []
-        counter = 0
-        for l in menu_links:
-            if counter != 0:
-                game_links.append(l.get('href'))
-            counter += 1
-
-        for game_idx, game in enumerate(games, start=1):  
+        # navigate into each map page by reading its own menu-link
+        for game_idx, game in enumerate(games):  
             game_map = game.find('div', class_='map-name').text.lower().strip()
-            new_url = f"{base_url}{game_links[game_idx-1]}"  
-            print(new_url)
-            time.sleep(delay) # Randomly wait to make it seem like human behavior
+            href = game.find('a', class_='menu-link').get('href')  
+            new_url = f"{base_url}{href}"  
+            print(new_url)  
+            time.sleep(delay)  # Random wait to simulate human behavior
             page.goto(new_url, wait_until="networkidle")  
             match_data[f'game{game_idx}'] = {'rounds': None, 'map': game_map}  
             game_score = {'a': 0, 'b': 0}  
