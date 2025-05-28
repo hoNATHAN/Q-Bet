@@ -100,6 +100,8 @@ def get_odds_data(url, output_path):
             html_of_hovered_element = div.inner_html()
             soup = BeautifulSoup(html_of_hovered_element, "html.parser")
             divs = soup.find_all('div', class_="flex flex-col gap-1")
+            if len(divs) == 0:
+                break
             date_divs = divs[1].find_all('div', class_="text-[10px] font-normal")
             timestamps = []
             for d in date_divs:
@@ -123,7 +125,12 @@ def get_odds_data(url, output_path):
             if len(a_odds_by_time[key]) > 1:
                 total = 0
                 for string in a_odds_by_time[key]:
-                    total += int(string)
+                    if '-' in string:
+                        count = string.count('-')
+                        if count > 1:
+                            string = string[1:]
+                    f_num = float(string)
+                    total += int(f_num)
                 avg = total / len(a_odds_by_time[key])
                 sign = "+"
                 if avg < 0:
@@ -134,7 +141,12 @@ def get_odds_data(url, output_path):
             if len(b_odds_by_time[key]) > 1:
                 total = 0
                 for string in b_odds_by_time[key]:
-                    total += int(string)
+                    if '-' in string:
+                        count = string.count('-')
+                        if count > 1:
+                            string = string[1:]
+                    f_num = float(string)
+                    total += int(f_num)
                 avg = total / len(b_odds_by_time[key])
                 sign = "+"
                 if avg < 0:
