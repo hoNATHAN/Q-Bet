@@ -1,0 +1,22 @@
+{
+  "tournament": "ESL Pro League Season 21",
+  "team_a": "Falcons",
+  "team_b": "Eternal Fire",
+  "status": "Ended",
+  "start_time": "Mar 11, 11:15",
+  "link": "https://bo3.gg/matches/falcons-esports-vs-eternal-fire-11-03-2025/mirage/",
+  "match_id": "",
+  "game_count": 3,
+  "game1": {
+    "rounds": 21,
+    "map": "inferno"
+  },
+  "game2": {
+    "rounds": 24,
+    "map": "mirage"
+  },
+  "game3": {
+    "rounds": 22,
+    "map": "dust ii"
+  }
+}

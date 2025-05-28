@@ -1,4 +1,4 @@
-from bson import ObjectId
+from bson.objectid import ObjectId
 from fastapi import FastAPI, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
 from contextlib import asynccontextmanager
@@ -7,15 +7,14 @@ from models import Bet, BetOut, GameIn, GameOut, Round, RoundOut
 
 mongodb_uri = "mongodb://localhost:27017"
 
-#connects to mongo on startup and closes on shutdown
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    app.mongodb = AsyncIOMotorClient(mongodb_uri)["qbet_db"]
+    client = AsyncIOMotorClient(mongodb_uri)
+    app.state.mongodb = client["qbet_db"]
     yield
-    app.mongodb.client.close()
+    client.close()
 
 app = FastAPI(lifespan=lifespan)
-
 
 """
 Bet Endpoints ---------------------------------------------------------
@@ -23,12 +22,12 @@ Bet Endpoints ---------------------------------------------------------
 @app.post("/bet", response_model=BetOut)
 async def place_bet(bet: Bet):
     doc = bet.model_dump()
-    result = await app.mongodb["bets"].inest_one(doc)
+    result = await app.state.mongodb["bets"].inest_one(doc)
     return BetOut(**doc, id=str(result.inserted_id))
 
-@app.get("/bet/{bet_id}", response_class=BetOut)
+@app.get("/bet/{bet_id}", response_class=BetOut) # type: ignore
 async def get_bet(bet_id: str):
-    doc = await app.mongodb["bests"].find_one({"_id": ObjectId(bet_id)})
+    doc = await app.mongodb["bests"].find_one({"_id": ObjectId(bet_id)}) # type: ignore
     return BetOut(**doc, id=bet_id) if doc else None
 
 @app.get("/bets", response_model=list[BetOut])

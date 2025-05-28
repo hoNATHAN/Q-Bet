@@ -1,0 +1,96 @@
+{
+  "Thunderpick World Championship 2024": {
+    "url": "https://bo3.gg/tournaments/thunderpick-world-championship-2024/results",
+    "matches": [
+      {
+        "match_name": "heroic-vs-the-mongolz-03-11-2024",
+        "match_url": "https://bo3.gg/matches/heroic-vs-the-mongolz-03-11-2024"
+      },
+      {
+        "match_name": "og-vs-3dmax-03-11-2024",
+        "match_url": "https://bo3.gg/matches/og-vs-3dmax-03-11-2024"
+      },
+      {
+        "match_name": "the-mongolz-vs-3dmax-02-11-2024",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-3dmax-02-11-2024"
+      },
+      {
+        "match_name": "heroic-vs-og-02-11-2024",
+        "match_url": "https://bo3.gg/matches/heroic-vs-og-02-11-2024"
+      },
+      {
+        "match_name": "3dmax-vs-bestia-26-10-2024",
+        "match_url": "https://bo3.gg/matches/3dmax-vs-bestia-26-10-2024"
+      },
+      {
+        "match_name": "the-mongolz-vs-imperial-26-10-2024",
+        "match_url": "https://bo3.gg/matches/the-mongolz-vs-imperial-26-10-2024"
+      },
+      {
+        "match_name": "heroic-vs-fnatic-26-10-2024",
+        "match_url": "https://bo3.gg/matches/heroic-vs-fnatic-26-10-2024"
+      },
+      {
+        "match_name": "big-vs-og-26-10-2024",
+        "match_url": "https://bo3.gg/matches/big-vs-og-26-10-2024"
+      }
+    ]
+  },
+  "BLAST Premier: World Final 2024": {
+    "url": "https://bo3.gg/tournaments/blast-premier-world-final-2024/results",
+    "matches": [
+      {
+        "match_name": "spirit-vs-g2-03-11-2024",
+        "match_url": "https://bo3.gg/matches/spirit-vs-g2-03-11-2024"
+      },
+      {
+        "match_name": "astralis-vs-spirit-02-11-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-spirit-02-11-2024"
+      },
+      {
+        "match_name": "g2-vs-vitality-02-11-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-vitality-02-11-2024"
+      },
+      {
+        "match_name": "faze-vs-spirit-01-11-2024",
+        "match_url": "https://bo3.gg/matches/faze-vs-spirit-01-11-2024"
+      },
+      {
+        "match_name": "mousesports-vs-vitality-01-11-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-vitality-01-11-2024"
+      },
+      {
+        "match_name": "g2-vs-spirit-31-10-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-spirit-31-10-2024"
+      },
+      {
+        "match_name": "liquid-vs-vitality-31-10-2024",
+        "match_url": "https://bo3.gg/matches/liquid-vs-vitality-31-10-2024"
+      },
+      {
+        "match_name": "astralis-vs-mousesports-31-10-2024",
+        "match_url": "https://bo3.gg/matches/astralis-vs-mousesports-31-10-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-faze-31-10-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-faze-31-10-2024"
+      },
+      {
+        "match_name": "vitality-vs-spirit-30-10-2024",
+        "match_url": "https://bo3.gg/matches/vitality-vs-spirit-30-10-2024"
+      },
+      {
+        "match_name": "g2-vs-liquid-30-10-2024",
+        "match_url": "https://bo3.gg/matches/g2-vs-liquid-30-10-2024"
+      },
+      {
+        "match_name": "mousesports-vs-faze-30-10-2024",
+        "match_url": "https://bo3.gg/matches/mousesports-vs-faze-30-10-2024"
+      },
+      {
+        "match_name": "natus-vincere-vs-astralis-30-10-2024",
+        "match_url": "https://bo3.gg/matches/natus-vincere-vs-astralis-30-10-2024"
+      }
+    ]
+  }
+}
