@@ -19,18 +19,23 @@ def get_curr_odds(timestamp_list, team, team_curr_odds, curr_time, odds_data):
 #match_file = "match_astralis-vs-spirit-18-05-2025.json"
 
 def match_team(team, odds_teams):
-    print(odds_teams)
+    team = team.lower()
     best_team = None
     best_similarity = -1
 
     for odds_team in odds_teams:
         distance = jaro_winkler(team, odds_team)
-        if distance > best_similarity:
-            best_similarity = distance
+        in_name = 0
+        if team in odds_team:
+            in_name += 1
+
+        score = distance + in_name
+        if score > best_similarity:
+            best_similarity = score
             best_team = odds_team
 
     print(f"{team} {best_team}")
-    odds_teams.remove(best_team)
+    #odds_teams.remove(best_team)
     return best_team
 
 
@@ -50,7 +55,10 @@ def sync(odds_file, match_file, sync_path):
     year = 2025
     if "2024" in match_id:
         year = 2024
-    start_datetime = datetime.strptime(start_time, "%b %d, %H:%M").replace(year=year)
+    if "2024" in start_time or "2025" in start_time:
+        start_datetime = datetime.strptime(start_time, "%b %d, %Y %H:%M").replace(year=year)
+    else:
+        start_datetime = datetime.strptime(start_time, "%b %d, %H:%M").replace(year=year)
 
 
     '''Sort the odds timestamps for both teams'''
@@ -100,7 +108,8 @@ def find_odds_file(match_file, odds_path):
 
     for f in odds_files:
         distance = jaro_winkler(match_file, f)
-        if distance > best_similarity and distance > 0.9:
+        same_date = match_file[-14:] == f[-14:]
+        if distance > best_similarity and distance > 0.9 and same_date:
             best_similarity = distance
             best_file = f
 
