@@ -1,3 +1,4 @@
+# @title Feature Vector Util
 """
 Filename: feature_vector.py
 Author: Nathan Ho
@@ -10,101 +11,40 @@ Dependencies: json, torch, numpy, time
 """
 
 import json
+from numpy.typing import NDArray
 import torch
 import numpy as np
-import time
 
-sample_state_json = """
-{
-  "tournament": "PGL Astana 2025",
-  "team_a": "FURIA",
-  "team_b": "MIBR",
-  "status": "Ended",
-  "start_time": "May 12, 01:00",
-  "link": "https://bo3.gg/matches/furia-vs-mibr-12-05-2025",
-  "match_id": "furia-vs-mibr-12-05-2025",
-  "game_count": 3,
-  "game1": {
-    "round_num": 17,
-    "map": "train",
-    "rounds": {
-        "round_1": {
-            "initial_team_a_econ": 4000,
-            "initial_team_b_econ": 4000,
-            "buy_team_a_econ": 600,
-            "buy_team_b_econ": 600,
-            "final_team_a_econ": 18400,
-            "final_team_b_econ": 10600,
-            "winner": "Team A",
-            "win_type": "ace",
-            "duration": 122,
-            "team_a_buy_type": "Eco",
-            "team_b_buy_type": "Eco",
-            "score": "1-0",
-            "players_alive_end": {
-                "team_a": 0,
-                "team_b": 0
-            },
-            "kills_end": {
-                "team_a": 5,
-                "team_b": 2
-            },
-            "assists_end": {
-                "team_a": 0,
-                "team_b": 0
-            }
-        }
-    }
-  }
-}
-"""
-
-# TODO: include unknown maps
-MAPS = {
-    "train": 0,
-    "ancient": 1,
-    "anubis": 2,
-    "dust2": 3,
-    "inferno": 4,
-    "mirage": 5,
-    "nuke": 6,
-    "overpass": 7,
-    "office": 8,
-    "vertigo": 9,
-    "basalt": 10,
-    "edin": 11,
-    "italy": 12,
-}
-
-BUY_TYPES = {"Eco": 0, "Semi": 1, "Full": 2, "Force": 3}
-
-WIN_TYPES = {
-    "ace": 0,
-    "defuse": 1,
-    "planted": 2,
-}
+# # investigate
+# WIN_TYPES = {
+#     "ace": 0,
+#     "defuse": 1,
+#     "explode": 2,
+#     "timeout": 3,
+# }
 
 WINNER = {
-    "Team A": 0,
-    "Team B": 1,
+    "team a": 0,
+    "team b": 1,
 }
 
 
-# TODO: consider if this is needed
 MAX_ECON = 16000
-MAX_ROUNDS = 16  # maybe 24? or indefinite
 
-# includes buy + round + bomb
-MAX_ROUND_TIME = 155  # seconds
+# round time and rounds capped for 95th percentile of data
+MAX_ROUND_TIME = 300  # seconds
+MAX_ROUNDS = 24.0  # regulation rounds in CS2, first to 16 wins up to 30
+ROI_CAP = 24.0
 
-# should we have a different max for bomb wins timers ?
-MAX_ROUND_TIME_BOMB = 155  # seconds
-MAX_GAME_TIME = 2400  # seconds
 
 MAX_PLAYERS = 5.0
 
 
-def one_hot(value, categories):
+def safe_lower(val: str) -> str:
+    return str(val).strip().lower()
+
+
+def ohe(value: str, categories: dict) -> NDArray[np.float64]:
     """
     Converts a categorical string value into a one-hot encoded numpy array
     based on a provided category-to-index mapping.
@@ -118,14 +58,54 @@ def one_hot(value, categories):
     """
 
     ohe_vector = np.zeros(len(categories))
-    ohe_vector[categories[value]] = 1
+    try:
+        ohe_vector[categories[safe_lower(value)]] = 1
+    except:
+        raise ValueError("Caught an unknown type", value, categories)
 
     return ohe_vector
 
 
-# TODO: consider pandas json normalize
-# figure out what values need to be divided
-def append_game_features(d, features):
+def parse_american_odds(s: str) -> float:
+    """
+    Turn American odds string to a float.
+    "+150" -> 150
+    "-200" -> -200
+
+    Parameters:
+        s (str): The American odds string to convert.
+
+    Returns:
+        float: The converted float value.
+    """
+    s = str(s).strip().lstrip("+")
+    try:
+        return float(s)
+    except ValueError:
+        return 0.0
+
+
+def am_to_decimal(american_odds: float) -> float:
+    """
+    Convert American odds to decimal odds.
+
+    Parameters:
+        american_odds (float): The American odds to convert.
+
+    Returns:
+        float: The corresponding decimal odds.
+    """
+    if american_odds > 0:
+        return american_odds / 100.0 + 1.0
+    else:
+        return 1.0 - 100.0 / american_odds
+
+
+def signed_log_norm(x, cap=ROI_CAP):
+    return np.sign(x) * np.log1p(np.abs(x)) / (np.log1p(cap) + 1e-6)
+
+
+def append_game_features(d: dict, features: list) -> None:
     """
     Extracts and encodes features from a single game round dictionary,
     and appends them to the provided feature list.
@@ -140,37 +120,76 @@ def append_game_features(d, features):
         features (list): A list to which processed numerical features are appended.
     """
 
-    for key, value in d.items():
-        # Handles single string categorical data
-        if isinstance(value, str):
-            if key == "team_a_buy_type" or key == "team_b_buy_type":
-                features.extend(one_hot(value, BUY_TYPES))
-            elif key == "win_type":
-                features.extend(one_hot(value, WIN_TYPES))
-            elif key == "winner":
-                features.extend(one_hot(value, WINNER))
-            elif key == "score":
-                score = list(map(int, str(value).split("-")))
-                features.append(score[0] / MAX_ROUNDS)
-                features.append(score[1] / MAX_ROUNDS)
-        # Normalizes numerical input
-        elif isinstance(value, (int, float)):
-            if key == "initial_team_a_econ" or key == "initial_team_b_econ":
-                features.append(float(value) / MAX_ECON)
-            elif key == "buy_team_a_econ" or key == "buy_team_b_econ":
-                features.append(float(value) / MAX_ECON)
-            elif key == "final_team_a_econ" or key == "final_team_b_econ":
-                features.append(float(value) / MAX_ECON)
-            elif key == "duration":
-                features.append(float(value) / MAX_ROUND_TIME)
-        # Handles dictionary types like player stats
-        elif isinstance(value, dict):
-            if key == "players_alive_end" or key == "kills_end" or key == "assists_end":
-                for item in value.items():
-                    features.append(float(item[1]) / MAX_PLAYERS)
+    # pull econ stats for team a and b
+    init_a_econ, buy_a_econ, final_a_econ = (
+        float(d["initial_team_a_econ"]),
+        float(d["buy_team_a_econ"]),
+        float(d["final_team_a_econ"]),
+    )
+    init_b_econ, buy_b_econ, final_b_econ = (
+        float(d["initial_team_b_econ"]),
+        float(d["buy_team_b_econ"]),
+        float(d["final_team_b_econ"]),
+    )
+
+    delta_a_econ = (final_a_econ - init_a_econ) / MAX_ECON
+    delta_b_econ = (final_b_econ - init_b_econ) / MAX_ECON
+
+    # add delta econ for team a and b
+    features.extend([delta_a_econ, delta_b_econ])
+
+    # calculate ROI for a and b
+    # add epsilon to denominator to avoid divide by 0
+    roi_a = (final_a_econ - init_a_econ + buy_a_econ) / (buy_a_econ + 1e-6)
+    roi_b = (final_b_econ - init_b_econ + buy_b_econ) / (buy_b_econ + 1e-6)
+
+    norm_roi_a = signed_log_norm(roi_a)
+    norm_roi_b = signed_log_norm(roi_b)
+
+    # add ROI for team a and b
+    # normalize as 0, 1 if wanted
+    # features.extend([(norm_roi_a + 1) / 2.0, (norm_roi_b + 1) / 2.0])
+    features.extend([norm_roi_a, norm_roi_b])
+
+    # append player kills normalized
+    a_kills, b_kills = d["kills_end"]["team_a"], d["kills_end"]["team_b"]
+    features.extend([a_kills / MAX_PLAYERS, b_kills / MAX_PLAYERS])
+
+    # cost per kill
+    # divide by zero guard with epsilon
+    cpk_a = buy_a_econ / max(a_kills, 1)
+    cpk_b = buy_b_econ / max(b_kills, 1)
+    features.extend([cpk_a / MAX_ECON, cpk_b / MAX_ECON])
+
+    # odds features
+    raw_odds_a = parse_american_odds(d["team_a_odds"])
+    raw_odds_b = parse_american_odds(d["team_b_odds"])
+    raw_odds_a = raw_odds_a if abs(raw_odds_a) > 1e-6 else 1e-6
+    raw_odds_b = raw_odds_b if abs(raw_odds_b) > 1e-6 else 1e-6
+    odds_a, odds_b = am_to_decimal(raw_odds_a), am_to_decimal(raw_odds_b)
+    features.extend([min(odds_a, 10) / 10, min(odds_b, 10) / 10])
+
+    # implied probabilities
+    p_a, p_b = 1 / odds_a, 1 / odds_b
+    tot = p_a + p_b
+    features.extend([p_a / tot, p_b / tot])
+
+    # odds-ROI or profit fraction
+    features.extend([(odds_a - 1) / odds_a, (odds_b - 1) / odds_b])
+
+    # normalize and append duration
+    clipped_duration = min(float(d["duration"]), MAX_ROUND_TIME)
+    features.append(clipped_duration / MAX_ROUND_TIME)
+
+    # append winner
+    features.extend(ohe(d["winner"], WINNER))
+
+    # cumulative score
+    sa, sb = map(float, d["score"].split("-"))
+    features.extend([sa / MAX_ROUNDS, sb / MAX_ROUNDS])
 
 
-def process_state(json_str):
+def process_state(json_str: str) -> list:
     """
     Parses a game state JSON string, extracts round-level features from game1 round_1,
     applies normalization and encoding, and converts the result into a PyTorch tensor.
@@ -179,38 +198,72 @@ def process_state(json_str):
         json_str (str): A string containing JSON-formatted match data.
 
     Returns:
-        torch.Tensor: A 1D tensor containing the normalized feature vector.
+        list of torch.Tensor: A 1D tensor containing the normalized feature vector.
     """
+    try:
+        # load json data
+        data = json.loads(json_str)
 
-    # load json data
-    data = json.loads(json_str)
+        if not isinstance(data, dict):
+            raise ValueError("Top-level JSON is not an object")
 
-    game = data["game1"]
-    map = game["map"]
-    rounds = game["rounds"]
+        games = data["games"]
+        feature_states = []
 
-    # TODO: iterate and pull game state
-    round_data = rounds["round_1"]
+        # print("--- Game:", data.get("tournament", "Unknown Tournament"), "---\n")
 
-    feature_vector = []
+        for game_idx, (key, value) in enumerate(games.items()):
+            rounds = value["rounds"]
+            if not isinstance(rounds, dict):
+                raise ValueError("Missing or invalid 'rounds' field")
 
-    append_game_features(round_data, feature_vector)
-    feature_vector.extend(one_hot(map, MAPS))
+            for round_idx, (key, value) in enumerate(rounds.items()):
+                feature_vector = []
+                append_game_features(value, feature_vector)
 
-    print("Raw Feature Vector: \n", feature_vector, "\n")
+                final_feature_vector = torch.tensor(feature_vector, dtype=torch.float32)
+                feature_states.append(
+                    (data["match_id"], game_idx, final_feature_vector)
+                )
 
-    final_feature_vector = torch.tensor(feature_vector, dtype=torch.float32)
-    print("Final Feature Vector: \n", final_feature_vector, "\n")
+                #  or round_idx == len(rounds.items()) - 1
+                # if round_idx == 0:
+                #   print("\nRound:", round_idx + 1)
+                #   print("Cardinality:", len(feature_vector))
+                #   print(" Raw Feature Vector:\n", feature_vector, "\n")
+                #   print(" Final Feature Vector:\n", final_feature_vector, "\n\n")
 
-    # TODO: use as a return
-    return final_feature_vector
+        return feature_states
+
+    except (json.JSONDecodeError, ValueError, KeyError, TypeError) as e:
+        print(f"Error in process_state: {e}")
+        return []
 
 
-def main():
-    start_time = time.time()
-    process_state(sample_state_json)
-    print("--- Feature Vector Performance: %s seconds ---" % (time.time() - start_time))
+"""
+Final Feature Vector of Cardinality 19 dimensions
+
+Features Pulled:
+ - Δ-econ A, B (2d)
+ - ROI A, B (2d)
+ - Kills A, B (2d)
+ - Decimal odds A, B (2d)
+ - Implied-prob A, B (2d)
+ - Odds-ROI A, B (2d)
+ - Duration (1d)
+ - Winner flag A, B (2d)
+
+--- Game: Intel Extreme Masters Melbourne 2025 ---
 
 
-if __name__ == "__main__":
-    main()
+Round: 1
+Cardinality: 19
+ Raw Feature Vector:
+ [0.9, 0.41875, np.float64(1.0121845991223732), np.float64(0.7798450741608249), 1.0, 0.4, 0.0075, 0.0203125, 0.16993006993006993, 0.20400000000000001, 0.5455565529622981, 0.4544434470377019, 0.4115226337448559, 0.5098039215686274, 0.4266666666666667, np.float64(1.0), np.float64(0.0), 0.041666666666666664, 0.0] 
+
+ Final Feature Vector:
+ tensor([0.9000, 0.4187, 1.0122, 0.7798, 1.0000, 0.4000, 0.0075, 0.0203, 0.1699,
+        0.2040, 0.5456, 0.4544, 0.4115, 0.5098, 0.4267, 1.0000, 0.0000, 0.0417,
+        0.0000]) 
+
+"""
