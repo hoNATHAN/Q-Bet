@@ -1,0 +1,2402 @@
+{
+  "tournament": "BLAST Premier: Spring Groups 2024",
+  "team_a": "BIG",
+  "team_b": "HEROIC",
+  "status": "Ended",
+  "start_time": "Jan 25, 2024 13:59",
+  "link": "https://bo3.gg/matches/big-vs-heroic-25-01-2024",
+  "match_id": "big-vs-heroic-25-01-2024",
+  "game_count": 3,
+  "game1": {
+    "rounds": 24,
+    "map": "vertigo",
+    "round_1": {
+      "initial_team_a_econ": 4000,
+      "initial_team_b_econ": 4000,
+      "buy_team_a_econ": 4000,
+      "buy_team_b_econ": 4000,
+      "final_team_a_econ": 18700,
+      "final_team_b_econ": 9900,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 319,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Eco",
+      "score": "1-0",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 0
+      }
+    },
+    "round_2": {
+      "initial_team_a_econ": 18700,
+      "initial_team_b_econ": 9900,
+      "buy_team_a_econ": 800,
+      "buy_team_b_econ": 350,
+      "final_team_a_econ": 18600,
+      "final_team_b_econ": 12900,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 144,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Force",
+      "score": "2-0",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 0,
+        "team_b": 1
+      }
+    },
+    "round_3": {
+      "initial_team_a_econ": 18600,
+      "initial_team_b_econ": 12900,
+      "buy_team_a_econ": 9550,
+      "buy_team_b_econ": 11600,
+      "final_team_a_econ": 27600,
+      "final_team_b_econ": 26900,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 129,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Eco",
+      "score": "3-0",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 2
+      }
+    },
+    "round_4": {
+      "initial_team_a_econ": 27600,
+      "initial_team_b_econ": 26900,
+      "buy_team_a_econ": 16200,
+      "buy_team_b_econ": 1250,
+      "final_team_a_econ": 22300,
+      "final_team_b_econ": 18700,
+      "winner": "Team B",
+      "win_type": "timeout",
+      "duration": 149,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Full",
+      "score": "3-1",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 2,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 4
+      }
+    },
+    "round_5": {
+      "initial_team_a_econ": 22300,
+      "initial_team_b_econ": 18700,
+      "buy_team_a_econ": 2750,
+      "buy_team_b_econ": 4350,
+      "final_team_a_econ": 10700,
+      "final_team_b_econ": 21800,
+      "winner": "Team B",
+      "win_type": "timeout",
+      "duration": 148,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "3-2",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 3,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 4
+      }
+    },
+    "round_6": {
+      "initial_team_a_econ": 10700,
+      "initial_team_b_econ": 21800,
+      "buy_team_a_econ": 200,
+      "buy_team_b_econ": 11300,
+      "final_team_a_econ": 12500,
+      "final_team_b_econ": 29000,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 138,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "3-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 3,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 5
+      }
+    },
+    "round_7": {
+      "initial_team_a_econ": 12500,
+      "initial_team_b_econ": 29000,
+      "buy_team_a_econ": 9800,
+      "buy_team_b_econ": 18200,
+      "final_team_a_econ": 24900,
+      "final_team_b_econ": 36000,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 101,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "3-4",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 5
+      }
+    },
+    "round_8": {
+      "initial_team_a_econ": 24900,
+      "initial_team_b_econ": 36000,
+      "buy_team_a_econ": 24900,
+      "buy_team_b_econ": 21500,
+      "final_team_a_econ": 18100,
+      "final_team_b_econ": 37900,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 174,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "3-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_9": {
+      "initial_team_a_econ": 18100,
+      "initial_team_b_econ": 37900,
+      "buy_team_a_econ": 8700,
+      "buy_team_b_econ": 20200,
+      "final_team_a_econ": 26700,
+      "final_team_b_econ": 27600,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 152,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Semi",
+      "score": "4-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 3
+      }
+    },
+    "round_10": {
+      "initial_team_a_econ": 26700,
+      "initial_team_b_econ": 27600,
+      "buy_team_a_econ": 9900,
+      "buy_team_b_econ": 14250,
+      "final_team_a_econ": 26800,
+      "final_team_b_econ": 11400,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 223,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "5-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 4,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 3,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 0
+      }
+    },
+    "round_11": {
+      "initial_team_a_econ": 26800,
+      "initial_team_b_econ": 11400,
+      "buy_team_a_econ": 21300,
+      "buy_team_b_econ": 2750,
+      "final_team_a_econ": 33800,
+      "final_team_b_econ": 20400,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 123,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Force",
+      "score": "5-6",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_12": {
+      "initial_team_a_econ": 33800,
+      "initial_team_b_econ": 20400,
+      "buy_team_a_econ": 5900,
+      "buy_team_b_econ": 850,
+      "final_team_a_econ": 21300,
+      "final_team_b_econ": 18400,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 133,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "5-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_13": {
+      "initial_team_a_econ": 4000,
+      "initial_team_b_econ": 4000,
+      "buy_team_a_econ": 4000,
+      "buy_team_b_econ": 4000,
+      "final_team_a_econ": 19700,
+      "final_team_b_econ": 15200,
+      "winner": "Team A",
+      "win_type": "defuse",
+      "duration": 314,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Eco",
+      "score": "6-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 3
+      }
+    },
+    "round_14": {
+      "initial_team_a_econ": 19700,
+      "initial_team_b_econ": 15200,
+      "buy_team_a_econ": 300,
+      "buy_team_b_econ": 350,
+      "final_team_a_econ": 20600,
+      "final_team_b_econ": 17400,
+      "winner": "Team A",
+      "win_type": "defuse",
+      "duration": 167,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "7-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 3
+      }
+    },
+    "round_15": {
+      "initial_team_a_econ": 20600,
+      "initial_team_b_econ": 17400,
+      "buy_team_a_econ": 2450,
+      "buy_team_b_econ": 1650,
+      "final_team_a_econ": 20300,
+      "final_team_b_econ": 15900,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 185,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "8-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 2,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 2
+      }
+    },
+    "round_16": {
+      "initial_team_a_econ": 20300,
+      "initial_team_b_econ": 15900,
+      "buy_team_a_econ": 5200,
+      "buy_team_b_econ": 15900,
+      "final_team_a_econ": 22200,
+      "final_team_b_econ": 17600,
+      "winner": "Team A",
+      "win_type": "timeout",
+      "duration": 197,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Eco",
+      "score": "9-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 3
+      }
+    },
+    "round_17": {
+      "initial_team_a_econ": 22200,
+      "initial_team_b_econ": 17600,
+      "buy_team_a_econ": 5900,
+      "buy_team_b_econ": 1900,
+      "final_team_a_econ": 25200,
+      "final_team_b_econ": 24500,
+      "winner": "Team A",
+      "win_type": "defuse",
+      "duration": 164,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "10-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 4
+      }
+    },
+    "round_18": {
+      "initial_team_a_econ": 25200,
+      "initial_team_b_econ": 24500,
+      "buy_team_a_econ": 7850,
+      "buy_team_b_econ": 10750,
+      "final_team_a_econ": 11700,
+      "final_team_b_econ": 19700,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 183,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "10-8",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 3,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 4,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 1
+      }
+    },
+    "round_19": {
+      "initial_team_a_econ": 11700,
+      "initial_team_b_econ": 19700,
+      "buy_team_a_econ": 3250,
+      "buy_team_b_econ": 10600,
+      "final_team_a_econ": 14000,
+      "final_team_b_econ": 28700,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 168,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Force",
+      "score": "10-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_20": {
+      "initial_team_a_econ": 14000,
+      "initial_team_b_econ": 28700,
+      "buy_team_a_econ": 11600,
+      "buy_team_b_econ": 11250,
+      "final_team_a_econ": 23600,
+      "final_team_b_econ": 29500,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 161,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "10-10",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 5,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 0,
+        "team_b": 1
+      }
+    },
+    "round_21": {
+      "initial_team_a_econ": 23600,
+      "initial_team_b_econ": 29500,
+      "buy_team_a_econ": 500,
+      "buy_team_b_econ": 24000,
+      "final_team_a_econ": 15800,
+      "final_team_b_econ": 41800,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 141,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Force",
+      "score": "10-11",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 5
+      }
+    },
+    "round_22": {
+      "initial_team_a_econ": 15800,
+      "initial_team_b_econ": 41800,
+      "buy_team_a_econ": 8500,
+      "buy_team_b_econ": 20800,
+      "final_team_a_econ": 25900,
+      "final_team_b_econ": 39200,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 156,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Full",
+      "score": "10-12",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 3,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 2
+      }
+    },
+    "round_23": {
+      "initial_team_a_econ": 25900,
+      "initial_team_b_econ": 39200,
+      "buy_team_a_econ": 2700,
+      "buy_team_b_econ": 26800,
+      "final_team_a_econ": 20300,
+      "final_team_b_econ": 34800,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 119,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "11-12",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 3
+      }
+    },
+    "round_24": {
+      "initial_team_a_econ": 20300,
+      "initial_team_b_econ": 34800,
+      "buy_team_a_econ": 1650,
+      "buy_team_b_econ": 7850,
+      "final_team_a_econ": 20200,
+      "final_team_b_econ": 22900,
+      "winner": "Team A",
+      "win_type": "defuse",
+      "duration": 135,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Full",
+      "score": "12-12",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 4
+      }
+    }
+  },
+  "game2": {
+    "rounds": 22,
+    "map": "nuke",
+    "round_1": {
+      "initial_team_a_econ": 4000,
+      "initial_team_b_econ": 4000,
+      "buy_team_a_econ": 2050,
+      "buy_team_b_econ": 1200,
+      "final_team_a_econ": 20100,
+      "final_team_b_econ": 15000,
+      "winner": "Team A",
+      "win_type": "defuse",
+      "duration": 195,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Eco",
+      "score": "1-0",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 2
+      }
+    },
+    "round_2": {
+      "initial_team_a_econ": 20100,
+      "initial_team_b_econ": 15000,
+      "buy_team_a_econ": 200,
+      "buy_team_b_econ": 550,
+      "final_team_a_econ": 18100,
+      "final_team_b_econ": 13200,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 98,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "2-0",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 1
+      }
+    },
+    "round_3": {
+      "initial_team_a_econ": 18100,
+      "initial_team_b_econ": 13200,
+      "buy_team_a_econ": 11100,
+      "buy_team_b_econ": 11100,
+      "final_team_a_econ": 29000,
+      "final_team_b_econ": 25400,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 109,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Eco",
+      "score": "3-0",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 2
+      }
+    },
+    "round_4": {
+      "initial_team_a_econ": 29000,
+      "initial_team_b_econ": 25400,
+      "buy_team_a_econ": 14350,
+      "buy_team_b_econ": 1650,
+      "final_team_a_econ": 22200,
+      "final_team_b_econ": 20600,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 130,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Full",
+      "score": "3-1",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 4
+      }
+    },
+    "round_5": {
+      "initial_team_a_econ": 22200,
+      "initial_team_b_econ": 20600,
+      "buy_team_a_econ": 15200,
+      "buy_team_b_econ": 14950,
+      "final_team_a_econ": 11300,
+      "final_team_b_econ": 25000,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 147,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Force",
+      "score": "3-2",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 2
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 3
+      }
+    },
+    "round_6": {
+      "initial_team_a_econ": 11300,
+      "initial_team_b_econ": 25000,
+      "buy_team_a_econ": 8700,
+      "buy_team_b_econ": 11850,
+      "final_team_a_econ": 21500,
+      "final_team_b_econ": 30600,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 112,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "3-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 3
+      }
+    },
+    "round_7": {
+      "initial_team_a_econ": 21500,
+      "initial_team_b_econ": 30600,
+      "buy_team_a_econ": 4950,
+      "buy_team_b_econ": 18100,
+      "final_team_a_econ": 20000,
+      "final_team_b_econ": 36800,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 169,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "3-4",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 4
+      }
+    },
+    "round_8": {
+      "initial_team_a_econ": 20000,
+      "initial_team_b_econ": 36800,
+      "buy_team_a_econ": 8750,
+      "buy_team_b_econ": 23700,
+      "final_team_a_econ": 27100,
+      "final_team_b_econ": 41500,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 165,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "3-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_9": {
+      "initial_team_a_econ": 27100,
+      "initial_team_b_econ": 41500,
+      "buy_team_a_econ": 650,
+      "buy_team_b_econ": 25600,
+      "final_team_a_econ": 18300,
+      "final_team_b_econ": 33200,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 80,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "4-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 2
+      }
+    },
+    "round_10": {
+      "initial_team_a_econ": 18300,
+      "initial_team_b_econ": 33200,
+      "buy_team_a_econ": 8250,
+      "buy_team_b_econ": 14450,
+      "final_team_a_econ": 23300,
+      "final_team_b_econ": 19500,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 124,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "5-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 1
+      }
+    },
+    "round_11": {
+      "initial_team_a_econ": 23300,
+      "initial_team_b_econ": 19500,
+      "buy_team_a_econ": 13750,
+      "buy_team_b_econ": 2550,
+      "final_team_a_econ": 30800,
+      "final_team_b_econ": 10050,
+      "winner": "Team A",
+      "win_type": "timeout",
+      "duration": 148,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Semi",
+      "score": "6-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 1
+      }
+    },
+    "round_12": {
+      "initial_team_a_econ": 30800,
+      "initial_team_b_econ": 10050,
+      "buy_team_a_econ": 21000,
+      "buy_team_b_econ": 350,
+      "final_team_a_econ": 40000,
+      "final_team_b_econ": 20400,
+      "winner": "Team A",
+      "win_type": "defuse",
+      "duration": 131,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Force",
+      "score": "7-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 4
+      }
+    },
+    "round_13": {
+      "initial_team_a_econ": 4000,
+      "initial_team_b_econ": 4000,
+      "buy_team_a_econ": 3300,
+      "buy_team_b_econ": 3350,
+      "final_team_a_econ": 10300,
+      "final_team_b_econ": 18400,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 278,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Eco",
+      "score": "7-6",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 5
+      }
+    },
+    "round_14": {
+      "initial_team_a_econ": 10300,
+      "initial_team_b_econ": 18400,
+      "buy_team_a_econ": 6300,
+      "buy_team_b_econ": 2400,
+      "final_team_a_econ": 25100,
+      "final_team_b_econ": 11000,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 109,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "8-6",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 3
+      }
+    },
+    "round_15": {
+      "initial_team_a_econ": 25100,
+      "initial_team_b_econ": 11000,
+      "buy_team_a_econ": 4050,
+      "buy_team_b_econ": 2150,
+      "final_team_a_econ": 10300,
+      "final_team_b_econ": 20000,
+      "winner": "Team B",
+      "win_type": "timeout",
+      "duration": 147,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Force",
+      "score": "8-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 3,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 4
+      }
+    },
+    "round_16": {
+      "initial_team_a_econ": 10300,
+      "initial_team_b_econ": 20000,
+      "buy_team_a_econ": 5200,
+      "buy_team_b_econ": 6050,
+      "final_team_a_econ": 10300,
+      "final_team_b_econ": 23800,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 177,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Semi",
+      "score": "8-8",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 5
+      }
+    },
+    "round_17": {
+      "initial_team_a_econ": 10300,
+      "initial_team_b_econ": 23800,
+      "buy_team_a_econ": 9700,
+      "buy_team_b_econ": 11900,
+      "final_team_a_econ": 21700,
+      "final_team_b_econ": 30300,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 57,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "8-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 2,
+          "M4": 2,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 0,
+        "team_b": 5
+      }
+    },
+    "round_18": {
+      "initial_team_a_econ": 21700,
+      "initial_team_b_econ": 30300,
+      "buy_team_a_econ": 350,
+      "buy_team_b_econ": 25900,
+      "final_team_a_econ": 19100,
+      "final_team_b_econ": 34400,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 134,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Eco",
+      "score": "9-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 4
+      }
+    },
+    "round_19": {
+      "initial_team_a_econ": 19100,
+      "initial_team_b_econ": 34400,
+      "buy_team_a_econ": 500,
+      "buy_team_b_econ": 13300,
+      "final_team_a_econ": 18500,
+      "final_team_b_econ": 24100,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 128,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Full",
+      "score": "10-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 4
+      }
+    },
+    "round_20": {
+      "initial_team_a_econ": 18500,
+      "initial_team_b_econ": 24100,
+      "buy_team_a_econ": 8300,
+      "buy_team_b_econ": 8950,
+      "final_team_a_econ": 20100,
+      "final_team_b_econ": 13600,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 201,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "11-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 1
+      }
+    },
+    "round_21": {
+      "initial_team_a_econ": 19600,
+      "initial_team_b_econ": 13600,
+      "buy_team_a_econ": 11900,
+      "buy_team_b_econ": 9500,
+      "final_team_a_econ": 30700,
+      "final_team_b_econ": 24300,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 107,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Eco",
+      "score": "12-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 1
+      }
+    },
+    "round_22": {
+      "initial_team_a_econ": 30700,
+      "initial_team_b_econ": 24300,
+      "buy_team_a_econ": 22700,
+      "buy_team_b_econ": 300,
+      "final_team_a_econ": 24000,
+      "final_team_b_econ": 600,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 62,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Full",
+      "score": "13-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 1
+      }
+    }
+  },
+  "game3": {
+    "rounds": 24,
+    "map": "anubis",
+    "round_1": {
+      "initial_team_a_econ": 4000,
+      "initial_team_b_econ": 4000,
+      "buy_team_a_econ": 600,
+      "buy_team_b_econ": 1900,
+      "final_team_a_econ": 11300,
+      "final_team_b_econ": 18500,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 182,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Eco",
+      "score": "0-1",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 5
+      }
+    },
+    "round_2": {
+      "initial_team_a_econ": 11300,
+      "initial_team_b_econ": 18500,
+      "buy_team_a_econ": 9200,
+      "buy_team_b_econ": 450,
+      "final_team_a_econ": 21400,
+      "final_team_b_econ": 19300,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 106,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "0-2",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 0,
+        "team_b": 5
+      }
+    },
+    "round_3": {
+      "initial_team_a_econ": 21400,
+      "initial_team_b_econ": 19300,
+      "buy_team_a_econ": 10200,
+      "buy_team_b_econ": 14100,
+      "final_team_a_econ": 26300,
+      "final_team_b_econ": 33200,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 154,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Force",
+      "score": "0-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 4
+      }
+    },
+    "round_4": {
+      "initial_team_a_econ": 26300,
+      "initial_team_b_econ": 33200,
+      "buy_team_a_econ": 3800,
+      "buy_team_b_econ": 13950,
+      "final_team_a_econ": 21300,
+      "final_team_b_econ": 19900,
+      "winner": "Team A",
+      "win_type": "timeout",
+      "duration": 149,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "1-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 1
+      }
+    },
+    "round_5": {
+      "initial_team_a_econ": 21300,
+      "initial_team_b_econ": 19900,
+      "buy_team_a_econ": 10550,
+      "buy_team_b_econ": 19900,
+      "final_team_a_econ": 25500,
+      "final_team_b_econ": 11100,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 133,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Eco",
+      "score": "2-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 2,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 0
+      }
+    },
+    "round_6": {
+      "initial_team_a_econ": 25500,
+      "initial_team_b_econ": 11100,
+      "buy_team_a_econ": 20600,
+      "buy_team_b_econ": 9900,
+      "final_team_a_econ": 38000,
+      "final_team_b_econ": 22300,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 133,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Eco",
+      "score": "3-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 1
+      }
+    },
+    "round_7": {
+      "initial_team_a_econ": 38000,
+      "initial_team_b_econ": 22300,
+      "buy_team_a_econ": 29700,
+      "buy_team_b_econ": 7400,
+      "final_team_a_econ": 46700,
+      "final_team_b_econ": 15400,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 179,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Semi",
+      "score": "4-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 2
+      }
+    },
+    "round_8": {
+      "initial_team_a_econ": 46700,
+      "initial_team_b_econ": 15400,
+      "buy_team_a_econ": 31900,
+      "buy_team_b_econ": 6800,
+      "final_team_a_econ": 49700,
+      "final_team_b_econ": 23800,
+      "winner": "Team A",
+      "win_type": "ace",
+      "duration": 60,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Force",
+      "score": "5-3",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 2,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 0
+      }
+    },
+    "round_9": {
+      "initial_team_a_econ": 49100,
+      "initial_team_b_econ": 23800,
+      "buy_team_a_econ": 45600,
+      "buy_team_b_econ": 400,
+      "final_team_a_econ": 52900,
+      "final_team_b_econ": 19500,
+      "winner": "Team B",
+      "win_type": "explode",
+      "duration": 133,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Full",
+      "score": "5-4",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 4,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 4
+      }
+    },
+    "round_10": {
+      "initial_team_a_econ": 52900,
+      "initial_team_b_econ": 19500,
+      "buy_team_a_econ": 27600,
+      "buy_team_b_econ": 10750,
+      "final_team_a_econ": 37600,
+      "final_team_b_econ": 28300,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 107,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Force",
+      "score": "5-5",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_11": {
+      "initial_team_a_econ": 37600,
+      "initial_team_b_econ": 28300,
+      "buy_team_a_econ": 8350,
+      "buy_team_b_econ": 12200,
+      "final_team_a_econ": 21400,
+      "final_team_b_econ": 30100,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 116,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "5-6",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_12": {
+      "initial_team_a_econ": 21400,
+      "initial_team_b_econ": 30100,
+      "buy_team_a_econ": 250,
+      "buy_team_b_econ": 10200,
+      "final_team_a_econ": 19700,
+      "final_team_b_econ": 24400,
+      "winner": "Team A",
+      "win_type": "defuse",
+      "duration": 112,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "6-6",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 1,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 5,
+        "team_b": 2
+      }
+    },
+    "round_13": {
+      "initial_team_a_econ": 4000,
+      "initial_team_b_econ": 4000,
+      "buy_team_a_econ": 3350,
+      "buy_team_b_econ": 3350,
+      "final_team_a_econ": 10000,
+      "final_team_b_econ": 18500,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 265,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Eco",
+      "score": "6-7",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 0,
+        "team_b": 5
+      }
+    },
+    "round_14": {
+      "initial_team_a_econ": 10000,
+      "initial_team_b_econ": 18500,
+      "buy_team_a_econ": 6800,
+      "buy_team_b_econ": 250,
+      "final_team_a_econ": 19100,
+      "final_team_b_econ": 18100,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 96,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "6-8",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 3,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 1,
+        "team_b": 5
+      }
+    },
+    "round_15": {
+      "initial_team_a_econ": 19100,
+      "initial_team_b_econ": 18100,
+      "buy_team_a_econ": 10400,
+      "buy_team_b_econ": 8250,
+      "final_team_a_econ": 29100,
+      "final_team_b_econ": 15600,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 97,
+      "team_a_buy_type": "Force",
+      "team_b_buy_type": "Force",
+      "score": "7-8",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 1
+      }
+    },
+    "round_16": {
+      "initial_team_a_econ": 29100,
+      "initial_team_b_econ": 15600,
+      "buy_team_a_econ": 10900,
+      "buy_team_b_econ": 300,
+      "final_team_a_econ": 30000,
+      "final_team_b_econ": 10400,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 185,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "8-8",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 2
+      }
+    },
+    "round_17": {
+      "initial_team_a_econ": 30000,
+      "initial_team_b_econ": 10600,
+      "buy_team_a_econ": 13150,
+      "buy_team_b_econ": 9600,
+      "final_team_a_econ": 31500,
+      "final_team_b_econ": 21700,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 121,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Eco",
+      "score": "9-8",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 3,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 0
+      }
+    },
+    "round_18": {
+      "initial_team_a_econ": 31500,
+      "initial_team_b_econ": 21700,
+      "buy_team_a_econ": 27000,
+      "buy_team_b_econ": 1850,
+      "final_team_a_econ": 30300,
+      "final_team_b_econ": 19100,
+      "winner": "Team B",
+      "win_type": "timeout",
+      "duration": 148,
+      "team_a_buy_type": "Eco",
+      "team_b_buy_type": "Semi",
+      "score": "9-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 3,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 3
+      }
+    },
+    "round_19": {
+      "initial_team_a_econ": 30300,
+      "initial_team_b_econ": 19100,
+      "buy_team_a_econ": 13900,
+      "buy_team_b_econ": 4900,
+      "final_team_a_econ": 32700,
+      "final_team_b_econ": 15100,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 163,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "10-9",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 2,
+          "M4": 0,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 2,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 2
+      }
+    },
+    "round_20": {
+      "initial_team_a_econ": 32700,
+      "initial_team_b_econ": 15100,
+      "buy_team_a_econ": 20000,
+      "buy_team_b_econ": 15100,
+      "final_team_a_econ": 27300,
+      "final_team_b_econ": 28100,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 111,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Eco",
+      "score": "10-10",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_21": {
+      "initial_team_a_econ": 27300,
+      "initial_team_b_econ": 28100,
+      "buy_team_a_econ": 2250,
+      "buy_team_b_econ": 10350,
+      "final_team_a_econ": 21100,
+      "final_team_b_econ": 17500,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 164,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "11-10",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 2
+      }
+    },
+    "round_22": {
+      "initial_team_a_econ": 21100,
+      "initial_team_b_econ": 17500,
+      "buy_team_a_econ": 10200,
+      "buy_team_b_econ": 1050,
+      "final_team_a_econ": 28800,
+      "final_team_b_econ": 11200,
+      "winner": "Team A",
+      "win_type": "explode",
+      "duration": 138,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "12-10",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 1,
+          "M4": 1,
+          "AWP": 1
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 4,
+        "team_b": 2
+      }
+    },
+    "round_23": {
+      "initial_team_a_econ": 28800,
+      "initial_team_b_econ": 11200,
+      "buy_team_a_econ": 14600,
+      "buy_team_b_econ": 950,
+      "final_team_a_econ": 26800,
+      "final_team_b_econ": 20500,
+      "winner": "Team B",
+      "win_type": "defuse",
+      "duration": 117,
+      "team_a_buy_type": "Semi",
+      "team_b_buy_type": "Semi",
+      "score": "12-11",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 1,
+          "M4": 0,
+          "AWP": 1
+        }
+      },
+      "kills_end": {
+        "team_a": 3,
+        "team_b": 5
+      }
+    },
+    "round_24": {
+      "initial_team_a_econ": 26800,
+      "initial_team_b_econ": 20500,
+      "buy_team_a_econ": 1250,
+      "buy_team_b_econ": 1200,
+      "final_team_a_econ": 11300,
+      "final_team_b_econ": 18600,
+      "winner": "Team B",
+      "win_type": "ace",
+      "duration": 138,
+      "team_a_buy_type": "Full",
+      "team_b_buy_type": "Semi",
+      "score": "12-12",
+      "players_alive_end": {
+        "team_a": 0,
+        "team_b": 0
+      },
+      "weapons_end": {
+        "team_a": {
+          "AK": 0,
+          "M4": 0,
+          "AWP": 0
+        },
+        "team_b": {
+          "AK": 0,
+          "M4": 1,
+          "AWP": 0
+        }
+      },
+      "kills_end": {
+        "team_a": 2,
+        "team_b": 5
+      }
+    }
+  }
+}
