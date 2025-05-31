@@ -294,6 +294,43 @@ def testing(test_states):
     )
     test_running_reward = 0
 
+    for ep in range(1, total_test_episodes + 1):
+        ep_reward = 0
+        done = False
+
+        for idx, (match_id, game_idx, state) in enumerate(test_states):
+            if state.numel() == 0:
+                print("empty tensor found for", match_id, game_idx)
+                break
+
+            action = agent.select_action(state)
+            winner = lookup_winner(match_id, game_idx)
+            reward = compute_reward(int(action), winner)
+
+            ep_reward += reward
+
+            done = idx == len(test_states) - 1
+
+            if done:
+                break
+        agent.buffer.clear()
+
+        test_running_reward += ep_reward
+        print("Episode: {} \t\t Reward: {}".format(ep, round(ep_reward, 2)))
+        ep_reward = 0
+
+    print(
+        "============================================================================================"
+    )
+
+    avg_test_reward = test_running_reward / total_test_episodes
+    avg_test_reward = round(avg_test_reward, 2)
+    print("average test reward : " + str(avg_test_reward))
+
+    print(
+        "============================================================================================"
+    )
+
 
 if __name__ == "__main__":
     all_states = load_data()
@@ -305,5 +342,7 @@ if __name__ == "__main__":
         shuffle=True,
     )
 
-    training(train_states)
+    print(test_states)
+
+    # training(train_states)
     testing(test_states)
