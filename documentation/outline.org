@@ -1,0 +1,89 @@
+* Reinforcement Learning for Betting Decisions in Counter-Strike 2 Esports Matches Using PPO
+
+** Abstract
+  - Motivation and significance
+  - Brief summary of methods
+  - Highlight key findings (reward functions, discrete action spaces)
+
+** Introduction
+*** Background
+    - Overview of esports betting and Counter-Strike 2
+    - Challenges in betting predictions
+
+*** Motivation
+    - Limitations of traditional betting approaches
+    - Reinforcement Learning (RL) as a promising alternative
+
+*** Objectives
+    - Apply PPO algorithm to betting decisions
+    - Explore various discrete betting strategies (simple vs. complex action spaces)
+    - Investigate reward functions: correctness vs. expected value (EV) vs. Kelly criterion
+
+** Related Work / Literature Review
+  - RL and PPO foundational concepts
+    - [[https://arxiv.org/abs/1707.06347][Proximal Policy Optimization (Schulman et al., 2017)]]
+    - Reinforcement Learning overview: Sutton & Barto (2018)
+  - RL applications to sports/esports betting
+  - Key betting strategies: Expected Value and Kelly Criterion
+    - Kelly (1956), Thorp (1969)
+
+** Methodology
+*** Data Collection via Web Scraping
+- Techniques used:
+  - Python tools: requests, BeautifulSoup, Selenium
+- Ethical and practical considerations
+
+*** Feature Engineering
+- Processing JSON match data into normalized PyTorch tensors
+- Feature selection criteria
+
+*** PPO Model & Training Procedure
+- Overview of PPO algorithm
+- Network architecture and hyperparameters
+- Training details (epochs, batch size, device)
+
+*** Action Space Definitions
+- Simple discrete action space: [Abstain, Bet A, Bet B]
+- Extended action space with betting percentages: [0%, 5%, 10%, 25%, 50%, 100%]
+
+*** Reward Function Exploration
+- Binary correctness: +1 correct, -1 incorrect
+- Expected Value (EV)-based reward calculation
+- Kelly criterion-based reward optimization
+
+** Experiments and Results
+*** Experiment 1: Action Space Complexity
+- Performance comparison (accuracy, cumulative return)
+- Analysis of volatility and robustness
+
+*** Experiment 2: Reward Functions
+- Comparison between correctness, EV, and Kelly rewards
+- Impact on betting accuracy, returns, and agent learning behaviors
+
+*** Metrics for Evaluation
+- Betting accuracy (% correct)
+- Cumulative returns
+- Sharpe ratio (profitability relative to risk)
+
+** Discussion
+- Interpretation of experimental results
+  - Optimal action space and reward function insights
+  - Limitations of PPO in betting scenarios
+- Implications for real-world esports betting
+- Ethical considerations in gambling applications
+
+** Conclusion
+- Summary of key insights and findings
+- Contributions of the PPO-based approach
+- Recommendations for future research directions
+
+** References
+- Schulman et al. (2017). [[https://arxiv.org/abs/1707.06347][Proximal Policy Optimization Algorithms]]
+- Sutton & Barto (2018). Reinforcement Learning: An Introduction.
+- Kelly, J. (1956). "A New Interpretation of Information Rate".
+- Thorp, E. O. (1969). "Optimal Gambling Systems for Favorable Games".
+
+** Appendix (optional)
+- Example scraped data
+- Hyperparameter settings
+- Additional experimental graphs
