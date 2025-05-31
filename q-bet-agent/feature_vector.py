@@ -203,7 +203,7 @@ def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]
     Returns:
         list of torch.Tensor: A 1D tensor containing the normalized feature vector.
     """
-    temp = None
+    failed = None
     try:
         # load json data
         data = json.loads(json_str)
@@ -213,9 +213,7 @@ def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]
 
         games = data["games"]
         feature_states = []
-
-        print("--- Game:", data.get("tournament", "Unknown Tournament"), "---\n")
-        temp = data
+        failed = data
 
         for game_idx, (key, value) in enumerate(games.items()):
             rounds = value["rounds"]
@@ -243,7 +241,7 @@ def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]
 
     except (json.JSONDecodeError, ValueError, KeyError, TypeError) as e:
         print(f"Error in process_state: {e}")
-        print(temp)
+        print(failed)
         return None
 
 

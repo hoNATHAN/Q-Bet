@@ -26,5 +26,8 @@ def load_data():
     return tensor_states
 
 
+# path to matches json
 matches_path = "../data/v1"
+
+# path to winners json
 winners_path = "../data/winners/match_winners.json"
