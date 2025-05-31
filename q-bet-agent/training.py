@@ -298,26 +298,27 @@ def testing(test_states):
         ep_reward = 0
         done = False
 
-        for idx, (match_id, game_idx, state) in enumerate(test_states):
-            if state.numel() == 0:
-                print("empty tensor found for", match_id, game_idx)
-                break
+        for game_states in test_states:
+            for idx, (match_id, game_idx, state) in enumerate(game_states):
+                if state.numel() == 0:
+                    print("empty tensor found for", match_id, game_idx)
+                    break
 
-            action = agent.select_action(state)
-            winner = lookup_winner(match_id, game_idx)
-            reward = compute_reward(int(action), winner)
+                action = agent.select_action(state)
+                winner = lookup_winner(match_id, game_idx)
+                reward = compute_reward(int(action), winner)
 
-            ep_reward += reward
+                ep_reward += reward
 
-            done = idx == len(test_states) - 1
+                done = idx == len(test_states) - 1
 
-            if done:
-                break
-        agent.buffer.clear()
+                if done:
+                    break
+            agent.buffer.clear()
 
-        test_running_reward += ep_reward
-        print("Episode: {} \t\t Reward: {}".format(ep, round(ep_reward, 2)))
-        ep_reward = 0
+            test_running_reward += ep_reward
+            print("Episode: {} \t\t Reward: {}".format(ep, round(ep_reward, 2)))
+            ep_reward = 0
 
     print(
         "============================================================================================"
@@ -342,7 +343,7 @@ if __name__ == "__main__":
         shuffle=True,
     )
 
-    print(test_states)
+    # print(test_states)
 
     # training(train_states)
     testing(test_states)
