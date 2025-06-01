@@ -86,7 +86,7 @@ def training(batch_states):
     # ----------------------------
     # hyperparams
     # ----------------------------
-    max_ep_len = 10  # max timesteps taken in one episode
+    max_ep_len = 100  # max timesteps taken in one episode
     max_training_timesteps = int(
         3e6
     )  # break training if timesteps > max_training_timesteps
