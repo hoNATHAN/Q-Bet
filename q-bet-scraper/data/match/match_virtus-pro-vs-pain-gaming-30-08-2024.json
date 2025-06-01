@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/virtus-pro-vs-pain-gaming-30-08-2024",
   "match_id": "virtus-pro-vs-pain-gaming-30-08-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 23,
     "map": "mirage",
     "round_1": {
@@ -793,7 +793,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 23,
     "map": "vertigo",
     "round_1": {
@@ -1579,7 +1579,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 24,
     "map": "dust ii",
     "round_1": {

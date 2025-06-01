@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/eternal-fire-vs-natus-vincere-29-03-2024",
   "match_id": "eternal-fire-vs-natus-vincere-29-03-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 24,
     "map": "mirage",
     "round_1": {
@@ -827,7 +827,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 22,
     "map": "inferno",
     "round_1": {

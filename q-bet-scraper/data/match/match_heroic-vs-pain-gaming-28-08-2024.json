@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/heroic-vs-pain-gaming-28-08-2024",
   "match_id": "heroic-vs-pain-gaming-28-08-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 18,
     "map": "vertigo",
     "round_1": {
@@ -623,7 +623,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 24,
     "map": "dust ii",
     "round_1": {
@@ -1443,7 +1443,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 21,
     "map": "nuke",
     "round_1": {

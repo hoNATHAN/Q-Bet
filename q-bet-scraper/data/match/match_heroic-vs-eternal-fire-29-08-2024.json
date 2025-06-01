@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/heroic-vs-eternal-fire-29-08-2024",
   "match_id": "heroic-vs-eternal-fire-29-08-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 20,
     "map": "mirage",
     "round_1": {
@@ -691,7 +691,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 23,
     "map": "anubis",
     "round_1": {

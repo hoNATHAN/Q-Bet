@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/heroic-vs-furia-09-04-2024",
   "match_id": "heroic-vs-furia-09-04-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 19,
     "map": "ancient",
     "round_1": {
@@ -657,7 +657,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 19,
     "map": "nuke",
     "round_1": {
@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 24,
     "map": "overpass",
     "round_1": {

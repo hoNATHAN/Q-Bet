@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/eternal-fire-vs-virtus-pro-23-03-2024",
   "match_id": "eternal-fire-vs-virtus-pro-23-03-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 19,
     "map": "overpass",
     "round_1": {
@@ -657,7 +657,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 19,
     "map": "vertigo",
     "round_1": {
@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 12,
     "map": "inferno",
     "round_1": {

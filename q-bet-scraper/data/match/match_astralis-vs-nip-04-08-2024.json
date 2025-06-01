@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/astralis-vs-nip-04-08-2024",
   "match_id": "astralis-vs-nip-04-08-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 19,
     "map": "mirage",
     "round_1": {
@@ -657,7 +657,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 18,
     "map": "inferno",
     "round_1": {

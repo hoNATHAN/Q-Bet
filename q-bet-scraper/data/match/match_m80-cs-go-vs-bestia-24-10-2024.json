@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/m80-cs-go-vs-bestia-24-10-2024",
   "match_id": "m80-cs-go-vs-bestia-24-10-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 18,
     "map": "mirage",
     "round_1": {
@@ -623,7 +623,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 14,
     "map": "anubis",
     "round_1": {

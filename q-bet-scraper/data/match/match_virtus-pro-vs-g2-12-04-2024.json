@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/virtus-pro-vs-g2-12-04-2024",
   "match_id": "virtus-pro-vs-g2-12-04-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 19,
     "map": "anubis",
     "round_1": {
@@ -657,7 +657,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 23,
     "map": "overpass",
     "round_1": {

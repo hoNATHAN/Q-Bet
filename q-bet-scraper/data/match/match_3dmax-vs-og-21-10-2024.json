@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/3dmax-vs-og-21-10-2024",
   "match_id": "3dmax-vs-og-21-10-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 23,
     "map": "ancient",
     "round_1": {
@@ -793,7 +793,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 24,
     "map": "inferno",
     "round_1": {

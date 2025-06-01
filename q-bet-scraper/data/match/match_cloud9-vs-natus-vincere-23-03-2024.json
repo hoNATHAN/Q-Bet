@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/cloud9-vs-natus-vincere-23-03-2024",
   "match_id": "cloud9-vs-natus-vincere-23-03-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 23,
     "map": "mirage",
     "round_1": {
@@ -793,7 +793,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 19,
     "map": "ancient",
     "round_1": {
@@ -1443,7 +1443,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 15,
     "map": "overpass",
     "round_1": {

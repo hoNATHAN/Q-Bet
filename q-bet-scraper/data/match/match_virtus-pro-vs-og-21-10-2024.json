@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/virtus-pro-vs-og-21-10-2024",
   "match_id": "virtus-pro-vs-og-21-10-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 23,
     "map": "dust ii",
     "round_1": {
@@ -793,7 +793,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 24,
     "map": "ancient",
     "round_1": {
@@ -1613,7 +1613,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 18,
     "map": "anubis",
     "round_1": {

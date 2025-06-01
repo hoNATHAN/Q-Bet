@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/vitality-vs-faze-30-03-2024",
   "match_id": "vitality-vs-faze-30-03-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 20,
     "map": "nuke",
     "round_1": {
@@ -691,7 +691,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 18,
     "map": "vertigo",
     "round_1": {
@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 21,
     "map": "inferno",
     "round_1": {

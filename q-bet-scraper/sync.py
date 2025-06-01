@@ -41,73 +41,79 @@ def match_team(team, odds_teams):
 
 
 def sync(odds_file, match_file, sync_path):
-    time_after_game = 7
-    time_after_round = 5
-    #print(odds_file)
-    #print(match_file)
-
-    with open(odds_file, 'r') as f:
-        odds_data = json.load(f)
-
-    with open(match_file, 'r') as f:
-        match_data = json.load(f)
-
-    start_time = match_data["start_time"]
-    num_games = match_data["game_count"]
-    match_id = match_data["match_id"]
-    year = 2025
-    if "2024" in match_id:
-        year = 2024
-    if "2024" in start_time or "2025" in start_time:
-        start_datetime = datetime.strptime(start_time, "%b %d, %Y %H:%M").replace(year=year)
-    else:
-        start_datetime = datetime.strptime(start_time, "%b %d, %H:%M").replace(year=year)
-
-
-    '''Sort the odds timestamps for both teams'''
-    #team_a = "astralis"
-    #team_b = "team-spirit"
-    odds_teams = list(odds_data.keys())
-    team_a = match_team(match_data["team_a"], odds_teams)
-    team_b = match_team(match_data["team_b"], odds_teams)
-    team_a_keys = odds_data[team_a].keys()
-    team_a_datetime_keys = [datetime.strptime(k, "%Y-%m-%d %H:%M").replace(year=year) for k in team_a_keys]
-    team_a_sorted_datetime_keys = sorted(team_a_datetime_keys)
-
-    team_b_keys = odds_data[team_b].keys()
-    team_b_datetime_keys = [datetime.strptime(k, "%Y-%m-%d %H:%M").replace(year=year) for k in team_b_keys]
-    team_b_sorted_datetime_keys = sorted(team_b_datetime_keys)
-
-    '''Get the current odds closest to start time'''
     try:
-        team_a_curr_odds = get_curr_odds(team_a_sorted_datetime_keys, team_a, "", start_datetime, odds_data)
-        team_b_curr_odds = get_curr_odds(team_b_sorted_datetime_keys, team_b, "", start_datetime, odds_data)
-    except:
-        print(f"Error Syncing {match_file} and {odds_file}")
+        time_after_game = 7
+        time_after_round = 5
+        #print(odds_file)
+        #print(match_file)
+
+        with open(odds_file, 'r') as f:
+            odds_data = json.load(f)
+
+        with open(match_file, 'r') as f:
+            match_data = json.load(f)
+
+        start_time = match_data["start_time"]
+        num_games = match_data["game_count"]
+        match_id = match_data["match_id"]
+        year = 2025
+        if "2024" in match_id:
+            year = 2024
+        if "2024" in start_time or "2025" in start_time:
+            start_datetime = datetime.strptime(start_time, "%b %d, %Y %H:%M").replace(year=year)
+        else:
+            start_datetime = datetime.strptime(start_time, "%b %d, %H:%M").replace(year=year)
+
+
+        '''Sort the odds timestamps for both teams'''
+        #team_a = "astralis"
+        #team_b = "team-spirit"
+        odds_teams = list(odds_data.keys())
+        team_a = match_team(match_data["team_a"], odds_teams)
+        team_b = match_team(match_data["team_b"], odds_teams)
+        team_a_keys = odds_data[team_a].keys()
+        team_a_datetime_keys = [datetime.strptime(k, "%Y-%m-%d %H:%M").replace(year=year) for k in team_a_keys]
+        team_a_sorted_datetime_keys = sorted(team_a_datetime_keys)
+
+        team_b_keys = odds_data[team_b].keys()
+        team_b_datetime_keys = [datetime.strptime(k, "%Y-%m-%d %H:%M").replace(year=year) for k in team_b_keys]
+        team_b_sorted_datetime_keys = sorted(team_b_datetime_keys)
+
+        '''Get the current odds closest to start time'''
+        try:
+            team_a_curr_odds = get_curr_odds(team_a_sorted_datetime_keys, team_a, "", start_datetime, odds_data)
+            team_b_curr_odds = get_curr_odds(team_b_sorted_datetime_keys, team_b, "", start_datetime, odds_data)
+        except Exception as e:
+            print(f"Error Syncing {match_file} and {odds_file}: {e}")
+            return False
+
+
+        curr_time = start_datetime
+        for x in range(num_games):
+            game = match_data[f"game{x+1}"]
+            num_rounds = game["rounds"]
+            for y in range(num_rounds):
+                curr_round = game[f"round_{y+1}"]
+                duration = curr_round["duration"]
+                curr_time = curr_time + timedelta(seconds=duration)
+                team_a_curr_odds = get_curr_odds(team_a_sorted_datetime_keys, team_a, team_a_curr_odds, curr_time, odds_data)
+                team_b_curr_odds = get_curr_odds(team_b_sorted_datetime_keys, team_b, team_b_curr_odds, curr_time, odds_data)
+                curr_round["team_a_odds"] = team_a_curr_odds
+                curr_round["team_b_odds"] = team_b_curr_odds
+                curr_time = curr_time + timedelta(seconds=5) # Apparently there are 5 seconds in between rounds
+
+            curr_time = curr_time + timedelta(minutes=10) # Assume there are 10 minutes in between games
+
+        
+        filename = os.path.basename(match_file)
+        file_name = filename[6:]
+        with open(f'{sync_path}full_{file_name}', 'w') as f:  
+            json.dump(match_data, f, indent=2)  
+        return True
+    except Exception as e:
+        print(f"Error Syncing {match_file} and {odds_file}: {e}")
         return False
 
-
-    curr_time = start_datetime
-    for x in range(num_games):
-        game = match_data[f"game{x+1}"]
-        num_rounds = game["rounds"]
-        for y in range(num_rounds):
-            curr_round = game[f"round_{y+1}"]
-            duration = curr_round["duration"]
-            curr_time = curr_time + timedelta(seconds=duration)
-            team_a_curr_odds = get_curr_odds(team_a_sorted_datetime_keys, team_a, team_a_curr_odds, curr_time, odds_data)
-            team_b_curr_odds = get_curr_odds(team_b_sorted_datetime_keys, team_b, team_b_curr_odds, curr_time, odds_data)
-            curr_round["team_a_odds"] = team_a_curr_odds
-            curr_round["team_b_odds"] = team_b_curr_odds
-            curr_time = curr_time + timedelta(seconds=5) # Apparently there are 5 seconds in between rounds
-
-        curr_time = curr_time + timedelta(minutes=10) # Assume there are 10 minutes in between games
-
-    
-    filename = os.path.basename(match_file)
-    file_name = filename[6:]
-    with open(f'{sync_path}full_{file_name}', 'w') as f:  
-        json.dump(match_data, f, indent=2)  
 
 
 TEAM_MAP = {
@@ -274,22 +280,25 @@ if __name__ == "__main__":
     match_files = [f for f in os.listdir(match_path) if os.path.isfile(os.path.join(match_path, f))]
     odds_files = [f for f in os.listdir(odds_path) if os.path.isfile(os.path.join(odds_path, f))]
 
-    print(len(odds_files))
+    #print(len(odds_files))
     counter = 0
     for match_file in match_files:
         curr_match_file = match_file
         fixed_match_file = curr_match_file[6:]
         curr_odds_file = find_odds_file(fixed_match_file, odds_files)
         if curr_odds_file is None:
-            print(f"Failed Syncing {curr_match_file} and {curr_odds_file}")
+            #print(f"Failed Syncing {curr_match_file} and {curr_odds_file}: No Odds File")
+            counter += 1
+            continue
         else:
             odds_files.remove(curr_odds_file)
             #match_files.remove(curr_match_file)
             #print(f"Syncing {curr_match_file} and {curr_odds_file}")
-            sync(f"{odds_path}{curr_odds_file}", f"{match_path}{curr_match_file}", sync_path)
-            counter += 1
-    #print(counter)
-    print(len(odds_files))
+            test = sync(f"{odds_path}{curr_odds_file}", f"{match_path}{curr_match_file}", sync_path)
+            if not test:
+                counter += 1
+    print(counter)
+    #print(len(odds_files))
             
 
 

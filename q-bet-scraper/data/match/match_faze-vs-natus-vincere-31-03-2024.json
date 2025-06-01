@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/faze-vs-natus-vincere-31-03-2024",
   "match_id": "faze-vs-natus-vincere-31-03-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 22,
     "map": "ancient",
     "round_1": {
@@ -759,7 +759,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 15,
     "map": "mirage",
     "round_1": {
@@ -1273,7 +1273,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 16,
     "map": "inferno",
     "round_1": {

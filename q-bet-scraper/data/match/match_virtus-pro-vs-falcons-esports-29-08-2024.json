@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/virtus-pro-vs-falcons-esports-29-08-2024",
   "match_id": "virtus-pro-vs-falcons-esports-29-08-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 24,
     "map": "mirage",
     "round_1": {
@@ -827,7 +827,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 21,
     "map": "vertigo",
     "round_1": {
@@ -1545,7 +1545,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 22,
     "map": "ancient",
     "round_1": {

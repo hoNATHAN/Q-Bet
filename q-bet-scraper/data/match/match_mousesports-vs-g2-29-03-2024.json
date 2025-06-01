@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/mousesports-vs-g2-29-03-2024",
   "match_id": "mousesports-vs-g2-29-03-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 2,
     "map": "inferno",
     "round_1": {
@@ -79,7 +79,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 19,
     "map": "vertigo",
     "round_1": {

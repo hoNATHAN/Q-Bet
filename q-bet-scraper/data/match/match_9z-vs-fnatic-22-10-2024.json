@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/9z-vs-fnatic-22-10-2024",
   "match_id": "9z-vs-fnatic-22-10-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 17,
     "map": "ancient",
     "round_1": {
@@ -589,7 +589,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 21,
     "map": "inferno",
     "round_1": {
@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 23,
     "map": "dust ii",
     "round_1": {

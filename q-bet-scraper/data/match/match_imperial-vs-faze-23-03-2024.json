@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/imperial-vs-faze-23-03-2024",
   "match_id": "imperial-vs-faze-23-03-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 21,
     "map": "nuke",
     "round_1": {
@@ -725,7 +725,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 21,
     "map": "anubis",
     "round_1": {
@@ -1443,7 +1443,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 21,
     "map": "mirage",
     "round_1": {

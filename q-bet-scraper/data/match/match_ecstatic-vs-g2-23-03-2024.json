@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/ecstatic-vs-g2-23-03-2024",
   "match_id": "ecstatic-vs-g2-23-03-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 12,
     "map": "inferno",
     "round_1": {
@@ -419,7 +419,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 24,
     "map": "vertigo",
     "round_1": {
@@ -1239,7 +1239,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 21,
     "map": "anubis",
     "round_1": {

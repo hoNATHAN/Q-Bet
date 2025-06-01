@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/ecstatic-vs-furia-22-03-2024",
   "match_id": "ecstatic-vs-furia-22-03-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 20,
     "map": "overpass",
     "round_1": {
@@ -691,7 +691,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 24,
     "map": "inferno",
     "round_1": {
@@ -1511,7 +1511,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 20,
     "map": "ancient",
     "round_1": {

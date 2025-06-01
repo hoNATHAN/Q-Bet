@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/imperial-vs-nip-25-10-2024",
   "match_id": "imperial-vs-nip-25-10-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 15,
     "map": "dust ii",
     "round_1": {
@@ -521,7 +521,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 24,
     "map": "vertigo",
     "round_1": {

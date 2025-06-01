@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/falcons-esports-vs-3dmax-21-10-2024",
   "match_id": "falcons-esports-vs-3dmax-21-10-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 23,
     "map": "anubis",
     "round_1": {
@@ -793,7 +793,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 22,
     "map": "nuke",
     "round_1": {

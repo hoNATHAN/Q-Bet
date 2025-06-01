@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/cloud9-vs-vitality-28-03-2024",
   "match_id": "cloud9-vs-vitality-28-03-2024",
   "game_count": 2,
-  "game0": {
+  "game1": {
     "rounds": 21,
     "map": "inferno",
     "round_1": {
@@ -725,7 +725,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 15,
     "map": "anubis",
     "round_1": {

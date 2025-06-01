@@ -7,7 +7,7 @@
   "link": "https://bo3.gg/matches/mousesports-vs-spirit-30-08-2024",
   "match_id": "mousesports-vs-spirit-30-08-2024",
   "game_count": 3,
-  "game0": {
+  "game1": {
     "rounds": 22,
     "map": "nuke",
     "round_1": {
@@ -759,7 +759,7 @@
       }
     }
   },
-  "game1": {
+  "game2": {
     "rounds": 24,
     "map": "mirage",
     "round_1": {
@@ -1579,7 +1579,7 @@
       }
     }
   },
-  "game2": {
+  "game3": {
     "rounds": 24,
     "map": "ancient",
     "round_1": {
