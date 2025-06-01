@@ -108,7 +108,7 @@ def signed_log_norm(x, cap=ROI_CAP):
     return np.sign(x) * np.log1p(np.abs(x)) / (np.log1p(cap) + 1e-6)
 
 
-def append_game_features(d: dict, features: list):
+def append_game_features(d: dict, features: list, ev=False):
     """
     Extracts and encodes features from a single game round dictionary,
     and appends them to the provided feature list.
@@ -191,6 +191,17 @@ def append_game_features(d: dict, features: list):
     sa, sb = map(float, d["score"].split("-"))
     features.extend([sa / MAX_ROUNDS, sb / MAX_ROUNDS])
 
+    # two extra features are added if EV is set to true
+    # EV of teams
+    # Kelly Criterion for teams
+    if ev:
+        ev_a = p_a * (odds_a - 1) - (1 - p_a)
+        ev_b = p_b * (odds_b - 1) - (1 - p_b)
+
+        kelly_a = 0.0 if ev_a <= 0 else ev_a / (odds_a - 1)
+        kelly_b = 0.0 if ev_b <= 0 else ev_b / (odds_b - 1)
+        features.extend([ev_a, ev_b, kelly_a, kelly_b])
+
 
 def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]]:
     """
@@ -215,12 +226,12 @@ def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]
         feature_states = []
         failed = data
 
-        for game_idx, (key, value) in enumerate(games.items()):
+        for game_idx, (_, value) in enumerate(games.items()):
             rounds = value["rounds"]
             if not isinstance(rounds, dict):
                 raise ValueError("Missing or invalid 'rounds' field")
 
-            for round_idx, (key, value) in enumerate(rounds.items()):
+            for round_idx, (_, value) in enumerate(rounds.items()):
                 feature_vector = []
 
                 append_game_features(value, feature_vector)
