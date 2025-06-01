@@ -87,3 +87,33 @@
 - Example scraped data
 - Hyperparameter settings
 - Additional experimental graphs
+
+\lstdefinelanguage{json}{
+{
+  "match_id": "furia-vs-mibr-12-05-2025",
+  "tournament": "PGL Astana 2025",
+  "team_a": "FURIA",
+  "team_b": "MIBR",
+  "status": "Ended",
+  "game_count": 3,
+  "games": [
+    {
+      "game_index": 1,
+      "map": "train",
+      "rounds": [
+        {
+          "round_number": 1,
+          "initial_team_a_econ": 4000,
+          "initial_team_b_econ": 4000,
+          "buy_team_a": "eco",
+          "buy_team_b": "full",
+          "final_team_a_econ": 3600,
+          "final_team_b_econ": 4200,
+          "round_winner": "team_b"
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
