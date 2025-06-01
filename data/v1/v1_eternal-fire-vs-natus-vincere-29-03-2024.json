@@ -1,0 +1,944 @@
+{
+  "tournament": "PGL Major Copenhagen 2024",
+  "team_a": "Eternal Fire",
+  "team_b": "Natus Vincere",
+  "status": "Ended",
+  "start_time": "Mar 29, 2024 12:00",
+  "link": "https://bo3.gg/matches/eternal-fire-vs-natus-vincere-29-03-2024",
+  "match_id": "eternal-fire-vs-natus-vincere-29-03-2024",
+  "game_count": 2,
+  "games": {
+    "game1": {
+      "rounds": {
+        "round_1": {
+          "initial_team_a_econ": 4000,
+          "initial_team_b_econ": 4000,
+          "buy_team_a_econ": 600,
+          "buy_team_b_econ": 550,
+          "final_team_a_econ": 18400,
+          "final_team_b_econ": 10500,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 80,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Eco",
+          "score": "1-0",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_2": {
+          "initial_team_a_econ": 18400,
+          "initial_team_b_econ": 10500,
+          "buy_team_a_econ": 1450,
+          "buy_team_b_econ": 10000,
+          "final_team_a_econ": 20300,
+          "final_team_b_econ": 22600,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 124,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Eco",
+          "score": "2-0",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 1
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_3": {
+          "initial_team_a_econ": 20300,
+          "initial_team_b_econ": 22600,
+          "buy_team_a_econ": 8650,
+          "buy_team_b_econ": 250,
+          "final_team_a_econ": 16800,
+          "final_team_b_econ": 18800,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 109,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Full",
+          "score": "2-1",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_4": {
+          "initial_team_a_econ": 16800,
+          "initial_team_b_econ": 18800,
+          "buy_team_a_econ": 1250,
+          "buy_team_b_econ": 6050,
+          "final_team_a_econ": 11400,
+          "final_team_b_econ": 24900,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 161,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Semi",
+          "score": "2-2",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 4
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_5": {
+          "initial_team_a_econ": 11400,
+          "initial_team_b_econ": 24900,
+          "buy_team_a_econ": 10000,
+          "buy_team_b_econ": 7750,
+          "final_team_a_econ": 22000,
+          "final_team_b_econ": 25900,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 112,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Semi",
+          "score": "2-3",
+          "kills_end": {
+            "team_a": 0,
+            "team_b": 1
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_6": {
+          "initial_team_a_econ": 22000,
+          "initial_team_b_econ": 25900,
+          "buy_team_a_econ": 6100,
+          "buy_team_b_econ": 21300,
+          "final_team_a_econ": 19500,
+          "final_team_b_econ": 39800,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 210,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Eco",
+          "score": "2-4",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 4
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_7": {
+          "initial_team_a_econ": 19500,
+          "initial_team_b_econ": 39800,
+          "buy_team_a_econ": 11100,
+          "buy_team_b_econ": 22100,
+          "final_team_a_econ": 28100,
+          "final_team_b_econ": 40800,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 135,
+          "team_a_buy_type": "Force",
+          "team_b_buy_type": "Semi",
+          "score": "2-5",
+          "kills_end": {
+            "team_a": 0,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_8": {
+          "initial_team_a_econ": 28100,
+          "initial_team_b_econ": 40800,
+          "buy_team_a_econ": 3250,
+          "buy_team_b_econ": 36300,
+          "final_team_a_econ": 20400,
+          "final_team_b_econ": 53800,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 97,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Eco",
+          "score": "2-6",
+          "kills_end": {
+            "team_a": 1,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_9": {
+          "initial_team_a_econ": 20400,
+          "initial_team_b_econ": 53800,
+          "buy_team_a_econ": 20400,
+          "buy_team_b_econ": 44700,
+          "final_team_a_econ": 28800,
+          "final_team_b_econ": 62600,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 193,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Force",
+          "score": "2-7",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 4
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_10": {
+          "initial_team_a_econ": 28800,
+          "initial_team_b_econ": 62600,
+          "buy_team_a_econ": 3700,
+          "buy_team_b_econ": 45900,
+          "final_team_a_econ": 21500,
+          "final_team_b_econ": 61600,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 126,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "2-8",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 4
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_11": {
+          "initial_team_a_econ": 21500,
+          "initial_team_b_econ": 61600,
+          "buy_team_a_econ": 1700,
+          "buy_team_b_econ": 34200,
+          "final_team_a_econ": 19000,
+          "final_team_b_econ": 51600,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 145,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Full",
+          "score": "2-9",
+          "kills_end": {
+            "team_a": 1,
+            "team_b": 6
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_12": {
+          "initial_team_a_econ": 19000,
+          "initial_team_b_econ": 48000,
+          "buy_team_a_econ": 250,
+          "buy_team_b_econ": 34500,
+          "final_team_a_econ": 18600,
+          "final_team_b_econ": 41500,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 131,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Semi",
+          "score": "3-9",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_13": {
+          "initial_team_a_econ": 4000,
+          "initial_team_b_econ": 4000,
+          "buy_team_a_econ": 550,
+          "buy_team_b_econ": 1900,
+          "final_team_a_econ": 18700,
+          "final_team_b_econ": 10800,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 129,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Eco",
+          "score": "4-9",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_14": {
+          "initial_team_a_econ": 18700,
+          "initial_team_b_econ": 10800,
+          "buy_team_a_econ": 2000,
+          "buy_team_b_econ": 9800,
+          "final_team_a_econ": 20800,
+          "final_team_b_econ": 22400,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 152,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Eco",
+          "score": "5-9",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_15": {
+          "initial_team_a_econ": 20800,
+          "initial_team_b_econ": 22400,
+          "buy_team_a_econ": 8400,
+          "buy_team_b_econ": 2700,
+          "final_team_a_econ": 27400,
+          "final_team_b_econ": 17200,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 115,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Semi",
+          "score": "6-9",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 0
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_16": {
+          "initial_team_a_econ": 27400,
+          "initial_team_b_econ": 17200,
+          "buy_team_a_econ": 21400,
+          "buy_team_b_econ": 11600,
+          "final_team_a_econ": 39600,
+          "final_team_b_econ": 29100,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 141,
+          "team_a_buy_type": "Force",
+          "team_b_buy_type": "Force",
+          "score": "7-9",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 1
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_17": {
+          "initial_team_a_econ": 39600,
+          "initial_team_b_econ": 29100,
+          "buy_team_a_econ": 28400,
+          "buy_team_b_econ": 1650,
+          "final_team_a_econ": 36200,
+          "final_team_b_econ": 18600,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 182,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Full",
+          "score": "7-10",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_18": {
+          "initial_team_a_econ": 36200,
+          "initial_team_b_econ": 18600,
+          "buy_team_a_econ": 9850,
+          "buy_team_b_econ": 4650,
+          "final_team_a_econ": 28200,
+          "final_team_b_econ": 19500,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 129,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "8-10",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 1
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_19": {
+          "initial_team_a_econ": 28200,
+          "initial_team_b_econ": 19500,
+          "buy_team_a_econ": 19600,
+          "buy_team_b_econ": 5700,
+          "final_team_a_econ": 38300,
+          "final_team_b_econ": 23000,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 207,
+          "team_a_buy_type": "Force",
+          "team_b_buy_type": "Semi",
+          "score": "9-10",
+          "kills_end": {
+            "team_a": 4,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_20": {
+          "initial_team_a_econ": 34600,
+          "initial_team_b_econ": 23000,
+          "buy_team_a_econ": 21700,
+          "buy_team_b_econ": 1200,
+          "final_team_a_econ": 39800,
+          "final_team_b_econ": 18300,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 110,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Full",
+          "score": "10-10",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 1
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_21": {
+          "initial_team_a_econ": 39800,
+          "initial_team_b_econ": 18300,
+          "buy_team_a_econ": 30200,
+          "buy_team_b_econ": 8000,
+          "final_team_a_econ": 48900,
+          "final_team_b_econ": 26300,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 156,
+          "team_a_buy_type": "Force",
+          "team_b_buy_type": "Semi",
+          "score": "11-10",
+          "kills_end": {
+            "team_a": 4,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_22": {
+          "initial_team_a_econ": 48900,
+          "initial_team_b_econ": 26300,
+          "buy_team_a_econ": 22000,
+          "buy_team_b_econ": 9150,
+          "final_team_a_econ": 40300,
+          "final_team_b_econ": 21900,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 218,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "12-10",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 1
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_23": {
+          "initial_team_a_econ": 39300,
+          "initial_team_b_econ": 21900,
+          "buy_team_a_econ": 29900,
+          "buy_team_b_econ": 4800,
+          "final_team_a_econ": 42200,
+          "final_team_b_econ": 23900,
+          "winner": "Team B",
+          "win_type": "defuse",
+          "duration": 121,
+          "team_a_buy_type": "Force",
+          "team_b_buy_type": "Semi",
+          "score": "12-11",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_24": {
+          "initial_team_a_econ": 42200,
+          "initial_team_b_econ": 23900,
+          "buy_team_a_econ": 14700,
+          "buy_team_b_econ": 6150,
+          "final_team_a_econ": 24100,
+          "final_team_b_econ": 23000,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 178,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "12-12",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        }
+      },
+      "map": "mirage",
+      "total_rounds": 24
+    },
+    "game2": {
+      "rounds": {
+        "round_1": {
+          "initial_team_a_econ": 4000,
+          "initial_team_b_econ": 4000,
+          "buy_team_a_econ": 650,
+          "buy_team_b_econ": 550,
+          "final_team_a_econ": 11200,
+          "final_team_b_econ": 18300,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 146,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Eco",
+          "score": "0-1",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_2": {
+          "initial_team_a_econ": 11200,
+          "initial_team_b_econ": 18300,
+          "buy_team_a_econ": 300,
+          "buy_team_b_econ": 300,
+          "final_team_a_econ": 18200,
+          "final_team_b_econ": 20500,
+          "winner": "Team B",
+          "win_type": "defuse",
+          "duration": 170,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Semi",
+          "score": "0-2",
+          "kills_end": {
+            "team_a": 4,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_3": {
+          "initial_team_a_econ": 18200,
+          "initial_team_b_econ": 20500,
+          "buy_team_a_econ": 2300,
+          "buy_team_b_econ": 2150,
+          "final_team_a_econ": 20700,
+          "final_team_b_econ": 9800,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 181,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Semi",
+          "score": "1-2",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_4": {
+          "initial_team_a_econ": 20700,
+          "initial_team_b_econ": 9800,
+          "buy_team_a_econ": 8100,
+          "buy_team_b_econ": 200,
+          "final_team_a_econ": 26300,
+          "final_team_b_econ": 10700,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 133,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Force",
+          "score": "2-2",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_5": {
+          "initial_team_a_econ": 26300,
+          "initial_team_b_econ": 10700,
+          "buy_team_a_econ": 12700,
+          "buy_team_b_econ": 10300,
+          "final_team_a_econ": 30900,
+          "final_team_b_econ": 22300,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 134,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Eco",
+          "score": "3-2",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 1
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_6": {
+          "initial_team_a_econ": 30900,
+          "initial_team_b_econ": 22300,
+          "buy_team_a_econ": 21700,
+          "buy_team_b_econ": 4650,
+          "final_team_a_econ": 29400,
+          "final_team_b_econ": 18800,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 157,
+          "team_a_buy_type": "Force",
+          "team_b_buy_type": "Semi",
+          "score": "3-3",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_7": {
+          "initial_team_a_econ": 29400,
+          "initial_team_b_econ": 18800,
+          "buy_team_a_econ": 5600,
+          "buy_team_b_econ": 3700,
+          "final_team_a_econ": 23500,
+          "final_team_b_econ": 14000,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 146,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "4-3",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_8": {
+          "initial_team_a_econ": 23500,
+          "initial_team_b_econ": 14000,
+          "buy_team_a_econ": 5950,
+          "buy_team_b_econ": 12300,
+          "final_team_a_econ": 25000,
+          "final_team_b_econ": 24200,
+          "winner": "Team A",
+          "win_type": "explode",
+          "duration": 120,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Eco",
+          "score": "5-3",
+          "kills_end": {
+            "team_a": 4,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_9": {
+          "initial_team_a_econ": 25000,
+          "initial_team_b_econ": 24200,
+          "buy_team_a_econ": 10700,
+          "buy_team_b_econ": 650,
+          "final_team_a_econ": 17100,
+          "final_team_b_econ": 18100,
+          "winner": "Team B",
+          "win_type": "timeout",
+          "duration": 150,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Full",
+          "score": "5-4",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_10": {
+          "initial_team_a_econ": 17100,
+          "initial_team_b_econ": 18100,
+          "buy_team_a_econ": 16100,
+          "buy_team_b_econ": 2750,
+          "final_team_a_econ": 21300,
+          "final_team_b_econ": 19800,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 162,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Semi",
+          "score": "5-5",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_11": {
+          "initial_team_a_econ": 21300,
+          "initial_team_b_econ": 19800,
+          "buy_team_a_econ": 350,
+          "buy_team_b_econ": 4850,
+          "final_team_a_econ": 18500,
+          "final_team_b_econ": 12500,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 144,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "6-5",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_12": {
+          "initial_team_a_econ": 18500,
+          "initial_team_b_econ": 12500,
+          "buy_team_a_econ": 2700,
+          "buy_team_b_econ": 400,
+          "final_team_a_econ": 6400,
+          "final_team_b_econ": 17800,
+          "winner": "Team B",
+          "win_type": "timeout",
+          "duration": 151,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Semi",
+          "score": "6-6",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_13": {
+          "initial_team_a_econ": 4000,
+          "initial_team_b_econ": 4000,
+          "buy_team_a_econ": 600,
+          "buy_team_b_econ": 650,
+          "final_team_a_econ": 11200,
+          "final_team_b_econ": 18700,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 150,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Eco",
+          "score": "6-7",
+          "kills_end": {
+            "team_a": 4,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_14": {
+          "initial_team_a_econ": 11200,
+          "initial_team_b_econ": 18700,
+          "buy_team_a_econ": 400,
+          "buy_team_b_econ": 450,
+          "final_team_a_econ": 13200,
+          "final_team_b_econ": 18800,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 146,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Semi",
+          "score": "6-8",
+          "kills_end": {
+            "team_a": 2,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_15": {
+          "initial_team_a_econ": 13200,
+          "initial_team_b_econ": 18800,
+          "buy_team_a_econ": 12100,
+          "buy_team_b_econ": 6000,
+          "final_team_a_econ": 27500,
+          "final_team_b_econ": 24400,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 117,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Semi",
+          "score": "6-9",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_16": {
+          "initial_team_a_econ": 27500,
+          "initial_team_b_econ": 24400,
+          "buy_team_a_econ": 1050,
+          "buy_team_b_econ": 7800,
+          "final_team_a_econ": 19100,
+          "final_team_b_econ": 25800,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 158,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "6-10",
+          "kills_end": {
+            "team_a": 4,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_17": {
+          "initial_team_a_econ": 19100,
+          "initial_team_b_econ": 25800,
+          "buy_team_a_econ": 19100,
+          "buy_team_b_econ": 6300,
+          "final_team_a_econ": 27500,
+          "final_team_b_econ": 13900,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 181,
+          "team_a_buy_type": "Eco",
+          "team_b_buy_type": "Semi",
+          "score": "7-10",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_18": {
+          "initial_team_a_econ": 27500,
+          "initial_team_b_econ": 13900,
+          "buy_team_a_econ": 9000,
+          "buy_team_b_econ": 8700,
+          "final_team_a_econ": 26400,
+          "final_team_b_econ": 18200,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 87,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Force",
+          "score": "8-10",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 0
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_19": {
+          "initial_team_a_econ": 26400,
+          "initial_team_b_econ": 18200,
+          "buy_team_a_econ": 20100,
+          "buy_team_b_econ": 550,
+          "final_team_a_econ": 32100,
+          "final_team_b_econ": 19600,
+          "winner": "Team B",
+          "win_type": "explode",
+          "duration": 111,
+          "team_a_buy_type": "Force",
+          "team_b_buy_type": "Semi",
+          "score": "8-11",
+          "kills_end": {
+            "team_a": 0,
+            "team_b": 3
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_20": {
+          "initial_team_a_econ": 32100,
+          "initial_team_b_econ": 19600,
+          "buy_team_a_econ": 19200,
+          "buy_team_b_econ": 14700,
+          "final_team_a_econ": 31200,
+          "final_team_b_econ": 22100,
+          "winner": "Team A",
+          "win_type": "ace",
+          "duration": 171,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Eco",
+          "score": "9-11",
+          "kills_end": {
+            "team_a": 5,
+            "team_b": 2
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_21": {
+          "initial_team_a_econ": 31200,
+          "initial_team_b_econ": 22100,
+          "buy_team_a_econ": 16800,
+          "buy_team_b_econ": 17150,
+          "final_team_a_econ": 27000,
+          "final_team_b_econ": 18800,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 166,
+          "team_a_buy_type": "Semi",
+          "team_b_buy_type": "Eco",
+          "score": "9-12",
+          "kills_end": {
+            "team_a": 4,
+            "team_b": 5
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        },
+        "round_22": {
+          "initial_team_a_econ": 27000,
+          "initial_team_b_econ": 18800,
+          "buy_team_a_econ": 2100,
+          "buy_team_b_econ": 2200,
+          "final_team_a_econ": 2600,
+          "final_team_b_econ": 4350,
+          "winner": "Team B",
+          "win_type": "ace",
+          "duration": 159,
+          "team_a_buy_type": "Full",
+          "team_b_buy_type": "Semi",
+          "score": "9-13",
+          "kills_end": {
+            "team_a": 3,
+            "team_b": 4
+          },
+          "team_a_odds": "-108.0",
+          "team_b_odds": "-114.0"
+        }
+      },
+      "map": "inferno",
+      "total_rounds": 22
+    }
+  }
+}
