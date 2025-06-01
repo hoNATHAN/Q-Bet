@@ -151,8 +151,10 @@ class PPO:
         eps_clip,
         has_continuous_action_space,
         action_std_init=0.6,
+        device: torch.device = device
     ):
         self.has_continuous_action_space = has_continuous_action_space
+        self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         if has_continuous_action_space:
             self.action_std = action_std_init
@@ -165,7 +167,7 @@ class PPO:
 
         self.policy = ActorCritic(
             state_dim, action_dim, has_continuous_action_space, action_std_init
-        ).to(device)
+        ).to(self.device)
         self.optimizer = torch.optim.Adam(
             [
                 {"params": self.policy.actor.parameters(), "lr": lr_actor},
@@ -175,7 +177,7 @@ class PPO:
 
         self.policy_old = ActorCritic(
             state_dim, action_dim, has_continuous_action_space, action_std_init
-        ).to(device)
+        ).to(self.device)
         self.policy_old.load_state_dict(self.policy.state_dict())
 
         self.MseLoss = nn.MSELoss()
@@ -224,7 +226,10 @@ class PPO:
     def select_action(self, state):
         if self.has_continuous_action_space:
             with torch.no_grad():
-                state = torch.FloatTensor(state).to(device)
+                if isinstance(state, torch.Tensor):
+                    state = state.to(self.device)
+                else:
+                    state = torch.FloatTensor(state).to(self.device)
                 action, action_logprob, state_val = self.policy_old.act(state)
 
             self.buffer.states.append(state)
@@ -235,7 +240,10 @@ class PPO:
             return action.detach().cpu().numpy().flatten()
         else:
             with torch.no_grad():
-                state = torch.FloatTensor(state).to(device)
+                if isinstance(state, torch.Tensor):
+                    state = state.to(self.device)
+                else:
+                    state = torch.FloatTensor(state).to(self.device)
                 action, action_logprob, state_val = self.policy_old.act(state)
 
             self.buffer.states.append(state)
@@ -258,18 +266,25 @@ class PPO:
             rewards.insert(0, discounted_reward)
 
         # Normalizing the rewards
-        rewards = torch.tensor(rewards, dtype=torch.float32).to(device)
-        rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-7)
-
+        rewards = torch.tensor(rewards, dtype=torch.float32).to(self.device)
+        if rewards.numel() > 1:
+            rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-7)
+        else:
+            rewards = rewards - rewards.mean()
         # convert list to tensor
+
+        if len(self.buffer.states) < 2:
+            self.buffer.clear()
+            return
+        
         old_states = (
-            torch.squeeze(torch.stack(self.buffer.states, dim=0)).detach().to(device)
+            torch.squeeze(torch.stack(self.buffer.states, dim=0)).detach().to(self.device)
         )
         old_actions = (
-            torch.squeeze(torch.stack(self.buffer.actions, dim=0)).detach().to(device)
+            torch.squeeze(torch.stack(self.buffer.actions, dim=0)).detach().to(self.device)
         )
         old_logprobs = (
-            torch.squeeze(torch.stack(self.buffer.logprobs, dim=0)).detach().to(device)
+            torch.squeeze(torch.stack(self.buffer.logprobs, dim=0)).detach().to(self.device)
         )
         old_state_values = (
             torch.squeeze(torch.stack(self.buffer.state_values, dim=0))

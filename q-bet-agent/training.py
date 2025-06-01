@@ -7,6 +7,7 @@ from datetime import datetime
 from agent_utils import load_data, winners_path
 from sklearn.model_selection import train_test_split
 
+import torch
 _WINNER_LOOKUP = None
 
 
@@ -79,6 +80,7 @@ def training(batch_states):
         eps_clip=0.2,
         has_continuous_action_space=False,
         action_std_init=0.6,
+        device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),
     )
 
     # ----------------------------
@@ -274,6 +276,7 @@ def testing(test_states):
         eps_clip=0.2,
         has_continuous_action_space=False,
         action_std_init=0.6,
+        device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     )
     total_test_episodes = len(test_states)
     run_num_pretrained = 0  #### set this to load a particular checkpoint num

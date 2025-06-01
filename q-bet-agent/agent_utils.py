@@ -1,6 +1,7 @@
 # @title Json File Parse
 import os
 from feature_vector import process_state
+import json
 
 
 def load_match_json(file):
@@ -25,6 +26,16 @@ def load_data():
             tensor_states.append(load_match_json(file))
     return tensor_states
 
+
+def load_raw_matches():
+    raw = {}
+    for fn in os.listdir(matches_path):
+        if fn.endswith(".json"):
+            path = os.path.join(matches_path, fn)
+            j = json.load(open(path, "r"))
+            mid = j["match_id"]
+            raw[mid] = j
+    return raw
 
 # path to matches json
 matches_path = "../data/v1"
