@@ -370,10 +370,6 @@
     "game2": "Team A",
     "game3": "Team B"
   },
-  "heroic-vs-fnatic-26-10-2024": {
-    "game1": null,
-    "game2": null
-  },
   "g2-vs-virtus-pro-11-04-2025": {
     "game1": "Team A",
     "game2": "Team A"
@@ -1037,3 +1033,4 @@
     "game3": "Team B"
   }
 }
+
