@@ -767,10 +767,6 @@
     "game2": "Team A",
     "game3": "Team B"
   },
-  "heroic-vs-fnatic-26-10-2024": {
-    "game1": null,
-    "game2": null
-  },
   "spirit-vs-faze-28-03-2024": {
     "game1": "Team B",
     "game2": "Team B",
@@ -995,11 +991,6 @@
   "the-mongolz-vs-3dmax-28-07-2024": {
     "game1": "Team A",
     "game2": "Team A"
-  },
-  "heroic-vs-legacy-br-23-10-2024": {
-    "game1": "Team A",
-    "game2": null,
-    "game3": "Team A"
   },
   "furia-vs-pain-gaming-07-12-2024": {
     "game1": "Team B",
@@ -2069,3 +2060,4 @@
     "game3": "Team B"
   }
 }
+
