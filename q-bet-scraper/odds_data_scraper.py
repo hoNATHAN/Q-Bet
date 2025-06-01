@@ -4,6 +4,7 @@ import time
 import random
 import json
 from datetime import datetime
+import os
 
 test_url = "https://www.oddsportal.com/pl/esports/counter-strike/counter-strike-pgl-astana/astralis-counter-strike-team-spirit-counter-strike-z3MtGpbS/"
 a_odds_by_time = {}
@@ -94,9 +95,10 @@ def get_odds_data(url, output_path):
         final_year = dt.year
 
         a = True
+        odd_container_divs = page.query_selector_all('[data-testid="odd-container"]')
         for div in odd_container_divs:
             div.hover()
-            time.sleep(0.05)  # let DOM update
+            time.sleep(0.05)
             html_of_hovered_element = div.inner_html()
             soup = BeautifulSoup(html_of_hovered_element, "html.parser")
             divs = soup.find_all('div', class_="flex flex-col gap-1")

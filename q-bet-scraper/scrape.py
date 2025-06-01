@@ -13,12 +13,18 @@ match_file = "full_matt_match.json"
 odds_path = "./data/odds/"
 match_path = "./data/match/"
 
-if __name__ == "__main__":
-    with open(odds_file, 'r') as f:
-        odds_data = json.load(f)
+# ── UTIL ───────────────────────────────────
+def shard_filter(idx): 
+    return idx % args.shards == args.shard
 
-    with open(match_file, 'r') as f:
-        match_data = json.load(f)
+# ── MAIN ───────────────────────────────────
+if __name__ == "__main__":
+    os.makedirs(match_path, exist_ok=True)
+    os.makedirs(odds_path,  exist_ok=True)
+
+    # load your JSON files
+    with open(match_file) as f: match_data = json.load(f)
+    with open(odds_file)  as f: odds_data  = json.load(f)
 
     '''Scrape Match Data'''
     print("Scraping Match Data")
@@ -41,7 +47,10 @@ if __name__ == "__main__":
                 print(f"Retrying {match_url}: {retry_count}")
                 success = get_match_data(match_url, match_path)
 
-    print("Done Scraping Match Data")
+    print(f"→ running shard {args.shard}/{args.shards} over {len(match_tasks)} matches")
+    for idx, (tourney, name, url) in enumerate(match_tasks):
+        if not shard_filter(idx):
+            continue
 
     '''Scrape Odds Data'''
     print("Scraping Odds Data")
@@ -63,4 +72,35 @@ if __name__ == "__main__":
                 success = get_odds_data(odds_url, odds_path)
     print("Done Scraping Odds Data")
 
+        print(f"[{idx}] {tourney} → {name}")
+        time.sleep(delay())
+        success = get_match_data(url, match_path)
+        retries = 0
+        while not success and retries < 3:
+            retries += 1
+            print(f"  retry {retries}")
+            success = get_match_data(url, match_path)
 
+    # ══ ODDS TASKS ════════════════════════════
+    #odds_tasks = []
+    #for tourney, data in odds_data.items():
+     #   if args.tournaments and tourney not in args.tournaments:
+      #      continue
+       # for m in data.get("matches", []):
+        #    url = m.get("match_url") or m.get("url") if isinstance(m, dict) else m
+         #   odds_tasks.append((tourney, url))
+
+    #print(f"→ running shard {args.shard}/{args.shards} over {len(odds_tasks)} odds URLs")
+    #for idx, (tourney, url) in enumerate(odds_tasks):
+     #   if not shard_filter(idx): 
+      #      continue
+       # print(f"[{idx}] {tourney} → {url}")
+        #time.sleep(delay())
+        #success = get_odds_data(url, odds_path)
+        #retries = 0
+        #while not success and retries < 3:
+        #    retries += 1
+         #   print(f"  retry {retries}")
+          #  success = get_odds_data(url, odds_path)
+
+    print("✅ Done")
