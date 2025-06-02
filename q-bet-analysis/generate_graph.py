@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 from sklearn.calibration import calibration_curve
 import argparse
 
+os.makedirs("graphs", exist_ok=True)
+
 def cumulative_reward_graph(csv_file, agent_type):
     """
     Creates a graph that shows Cumulative Rewards over time
@@ -36,7 +38,8 @@ def cumulative_reward_graph(csv_file, agent_type):
     plt.ylabel("Cumulative Reward")
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"graphs/cumulative_reward_{agent_type}.png")
+    plt.close()
 
 def policy_value_loss_graph(csv_file, agent_type):
     """
@@ -57,7 +60,8 @@ def policy_value_loss_graph(csv_file, agent_type):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"graphs/policy_value_loss_{agent_type}.png")
+    plt.close()
 
 def return_distribution_graph(csv_file, agent_type):
     """
@@ -76,7 +80,8 @@ def return_distribution_graph(csv_file, agent_type):
     plt.ylabel("Frequency")
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"graphs/return_distribution_{agent_type}.png")
+    plt.close()
 
 def bankroll_graph(csv_file, agent_type):
     """
@@ -95,7 +100,8 @@ def bankroll_graph(csv_file, agent_type):
     plt.ylabel("Balance")
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"graphs/bankroll_{agent_type}.png")
+    plt.close()
 
 def prob_calibration_graph(csv_file, agent_type):
     """
@@ -121,7 +127,8 @@ def prob_calibration_graph(csv_file, agent_type):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"graphs/probability_distribution_{agent_type}.png")
+    plt.close()
 
 
 if __name__ == ("__main__"):
