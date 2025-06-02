@@ -6,6 +6,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: references.bib
+Warning--I didn't find a database entry for "schulman2017ppo"
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--no key, author in cs2competitivewiki
 Warning--no author, editor, organization, or key in cs2competitivewiki
@@ -28,45 +29,45 @@ Warning--empty author in cs2moneywiki
 Warning--no journal in schulman2017proximalpolicyoptimizationalgorithms
 Warning--no number and no volume in schulman2017proximalpolicyoptimizationalgorithms
 Warning--page numbers missing in both pages and numpages fields in schulman2017proximalpolicyoptimizationalgorithms
-You've used 5 entries,
+You've used 8 entries,
             6056 wiz_defined-function locations,
-            1513 strings with 18620 characters,
-and the built_in function-call counts, 4237 in all, are:
-= -- 496
-> -- 81
+            1533 strings with 19133 characters,
+and the built_in function-call counts, 7430 in all, are:
+= -- 997
+> -- 146
 < -- 0
-+ -- 29
-- -- 29
-* -- 281
-:= -- 371
-add.period$ -- 26
-call.type$ -- 5
-change.case$ -- 28
-chr.to.int$ -- 4
-cite$ -- 28
-duplicate$ -- 408
-empty$ -- 298
-format.name$ -- 33
-if$ -- 995
++ -- 48
+- -- 57
+* -- 467
+:= -- 659
+add.period$ -- 42
+call.type$ -- 8
+change.case$ -- 44
+chr.to.int$ -- 7
+cite$ -- 31
+duplicate$ -- 687
+empty$ -- 495
+format.name$ -- 65
+if$ -- 1813
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 8
-newline$ -- 91
-num.names$ -- 21
-pop$ -- 167
+missing$ -- 16
+newline$ -- 119
+num.names$ -- 42
+pop$ -- 248
 preamble$ -- 1
-purify$ -- 65
+purify$ -- 105
 quote$ -- 0
-skip$ -- 138
+skip$ -- 242
 stack$ -- 0
-substring$ -- 312
-swap$ -- 27
+substring$ -- 590
+swap$ -- 57
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 116
+type$ -- 178
 warning$ -- 16
-while$ -- 20
+while$ -- 47
 width$ -- 0
-write$ -- 139
-(There were 16 warnings)
+write$ -- 199
+(There were 17 warnings)

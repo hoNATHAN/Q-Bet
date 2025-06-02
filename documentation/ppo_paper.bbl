@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{5}
+\begin{thebibliography}{8}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -66,6 +66,25 @@
 \shownote{Accessed: 2025-06-01}.
 
 
+\bibitem[DataCamp(2023)]%
+        {datacamp_onehot_2023}
+\bibfield{author}{\bibinfo{person}{DataCamp}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{One-Hot Encoding in Python: A Tutorial}.
+\newblock \bibinfo{howpublished}{\url{https://www.datacamp.com/tutorial/one-hot-encoding-python-tutorial}}.
+\newblock
+\newblock
+\shownote{Accessed: 2025-06-02}.
+
+
+\bibitem[Jansen and Smith(2020)]%
+        {jansen2020rlbetting}
+\bibfield{author}{\bibinfo{person}{Brandon Jansen} {and} \bibinfo{person}{Kyle Smith}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Reinforcement Learning for Sports Betting: A Case Study on Soccer}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Computational Intelligence and AI in Games}} \bibinfo{volume}{12}, \bibinfo{number}{3} (\bibinfo{year}{2020}), \bibinfo{pages}{203--215}.
+\newblock
+\href{https://doi.org/10.1109/TCIAIG.2020.2973132}{doi:\nolinkurl{10.1109/TCIAIG.2020.2973132}}
+
+
 \bibitem[Kelly(1956)]%
         {kelly1956new}
 \bibfield{author}{\bibinfo{person}{J.~L. Kelly}.} \bibinfo{year}{1956}\natexlab{}.
@@ -73,6 +92,15 @@
 \newblock \bibinfo{journal}{\emph{Bell System Technical Journal}} \bibinfo{volume}{35}, \bibinfo{number}{4} (\bibinfo{year}{1956}), \bibinfo{pages}{917--926}.
 \newblock
 \href{https://doi.org/10.1002/j.1538-7305.1956.tb03809.x}{doi:\nolinkurl{10.1002/j.1538-7305.1956.tb03809.x}}
+
+
+\bibitem[King(2019)]%
+        {king2019ethics}
+\bibfield{author}{\bibinfo{person}{David King}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Ethics of {AI} in Gambling: Risks and Regulations}.
+\newblock \bibinfo{journal}{\emph{Journal of Gambling Studies}} \bibinfo{volume}{35}, \bibinfo{number}{4} (\bibinfo{year}{2019}), \bibinfo{pages}{1141--1158}.
+\newblock
+\href{https://doi.org/10.1007/s10899-019-09833-7}{doi:\nolinkurl{10.1007/s10899-019-09833-7}}
 
 
 \bibitem[Schulman et~al\mbox{.}(2017)]%
