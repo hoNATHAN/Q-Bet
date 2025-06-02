@@ -150,3 +150,4 @@ Our project aims to evaluate multiple agent configurations by varying reward fun
   With two different reward functions and action spaces, our project compares the perfomance of three different agents using various combinations. These three agents are defined as so: 
 
 
+* Normalization

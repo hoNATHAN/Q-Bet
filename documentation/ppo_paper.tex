@@ -2,6 +2,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{url}
+\usepackage{graphicx} 
 
 \usepackage{amssymb}
 \usepackage{pifont}
@@ -164,56 +165,81 @@ The raw JSON match data is preprocessed to serve as a state input for the PPO mo
 
 \textbf{Delta Econ for Both Teams} - Captures the absolute economic change between the starting and ending bankroll of a team within a round:
 \begin{equation}
-\Delta\text{Econ} = \text{Final Economic Value} - \text{Initial Economic Value}
+  \Delta\text{Econ}_{T} = \text{Final Economy}_{T} - \text{Initial Economy}_{T}, \quad T \in \{\text{A}, \text{B}\}
+\end{equation}\noindent where \( T \in \{\text{A}, \text{B}\} \) denotes the team.
+
+\bigskip
+
+\textbf{ROI based on Team Econ} - Measures the relative financial gain or loss by comparing final economic status to initial investment:
+\begin{equation}
+  \text{ROI}_{T} = \frac{\text{Final Economy}_{T} - \text{Initial Economy}_{T}}{\text{Initial Economic Value}_{T}}, \quad T \in \{\text{A}, \text{B}\}
 \end{equation}
 
 \bigskip
 
-\textbf{ROI based on Team Econ} - Measures the relative financial gain or loss by comparing final economic status to initial investment. This is calculated for both teams:
+\textbf{Odds-Based Return on Investment (Odds ROI)} – Estimates the expected return based on bookmaker odds, defined for each team as:
 \begin{equation}
-  \text{ROI} = \frac{\text{Final Economic Value} - \text{Initial Economic Value}}{\text{Initial Economic Value}}
+  \text{Odds ROI}_T = (\text{DecimalOdds}_T \times \text{WinProb}_T) - 1, \quad T \in \{\text{A}, \text{B}\}
 \end{equation}
 
 \bigskip
 
-\textbf{ROI based on Odds (Odds ROI)} - Evaluates the expected profitability relative to bookmaker odds, calculated for both teams:
+\textbf{Implied Probability from Odds} – Represents the bookmaker's implicit estimation of each team's chance of winning, computed as:
 \begin{equation}
-\text{Odds ROI} = (\text{Decimal Odds} \times \text{Win Probability}) - 1
-\end{equation}
-
-\bigskip
-
-The \textbf{Implied Probability from Odds} - Represents bookmakers' implicit estimation of event outcomes, calculated for both teams:
-\begin{equation}
-\text{Implied Probability} = \frac{1}{\text{Decimal Odds}}
+  \text{ImpliedProb}_T = \frac{1}{\text{DecimalOdds}_T}, \quad T \in \{\text{A}, \text{B}\}
 \end{equation}
 
 \bigskip
 
 \textbf{Cost Per Kill (CPK)} - Quantifies a team's economic efficiency regarding combat effectiveness:
 \begin{equation}
-\text{CPK} = \frac{\text{Economic Investment per Round}}{\text{Number of Kills per Round}}
+  \text{CPK}_{T} = \frac{\text{Economic Investment per Round}_{T}}{\text{Number of Kills per Round}_{T}}, \quad T \in \{\text{A}, \text{B}\}
 \end{equation}
+\noindent where \text{Economic Investment per Round} denotes the team's purchase amount during buy phase.
 
 \bigskip
 
-\textbf{Expected Value (EV) for a Bet} - Average amount agent can expect to win or lose per bet over time, calculated based on the probability of winning and the potential profit or loss.
+\textbf{Expected Value (EV) for a Bet} – Represents the average outcome an agent can expect over time, based on the probability of winning and associated gains/losses:
 \begin{equation}
-\text{EV} = (P \times \text{Profit}) + ((1 - P) \times \text{Loss})
+  \text{EV} = P \cdot \text{Profit} + (1 - P) \cdot \text{Loss}
 \end{equation}
+\noindent where \( P \) is the estimated probability of winning the bet, and \(\text{Profit}\) and \(\text{Loss}\) are the respective monetary outcomes.
 
 \bigskip
 
-\textbf{Kelly Criterion} - Calculates the optimal fraction of bankroll to wager \cite{kelly1956new} :
+\textbf{Kelly Criterion} – A formula introduced by J.L. Kelly \cite{kelly1956new}, used to determine the optimal fraction of an agent’s bankroll to wager in order to maximize long-term growth:
 \begin{equation}
 f^* = \frac{bp - q}{b}
 \end{equation}
+\noindent where \( f^* \) is the optimal bet fraction, \( b \) is the net odds in decimal form (i.e., \( \text{odds} - 1 \)), \( p \) is the estimated probability of winning, and \( q = 1 - p \) is the probability of losing.
 
 \bigskip
 
 The raw JSON match data obtained required preprocessing to serve as input for the Proximal Policy Optimization (PPO) model. Each round in a game was transformed into normalized PyTorch tensors, ensuring efficient and stable model training. Numerical features, such as team economic status, round outcomes, and individual player performance statistics, were normalized using min-max scaling or standardization to ensure consistency across varying scales.
 
 Features were selected based on their predictive value regarding match outcomes and their ability to encapsulate meaningful temporal and economic context. Specifically, selected features included team bankroll, Return on Investment (ROI), implied probability derived from betting odds, ROI based on odds, and Cost Per Kill (CPK). This targeted selection aimed to reduce dimensionality, improve signal-to-noise ratios, and enhance the model's capacity to generalize from historical data to future betting scenarios.
+
+\subsection{Normalization of Features}
+
+An important process before sending states to our PPO input model is to normalize our findings. Feature normalization is the process of transforming input features to a common scale or range. This ensures that data with large numerical ranges do not dominate smaller ranges during training. This preprocess helps models converge faster and learn more stable representation.
+
+Finding maximum values was easy for certain game stats, as \textit{Counter-Strike 2} is heavily documented with wikis and blogs. The maximum amount of players per team in a professional match is five players \cite{cs2competitivewiki}. 
+
+Normalizing player elimination is as follows:
+
+\begin{equation}
+  \text{Kills}_{T,\,\text{norm}} = \frac{\text{Kills}_T}{5}, \quad T \in \{\text{A}, \text{B}\}
+\end{equation}
+
+The maximum amount a player can hold is \$16{,}000 \cite{cs2moneywiki}. Thus, for five players, that equates to a max of \$80{,}000 per team. 
+
+Normalization of delta economic value is as follows:
+
+\begin{equation}
+  \Delta\text{Econ}_{T,\text{norm}} = \frac{\Delta\text{Econ}_{T}}{80{,}000}, \quad T \in \{\text{A}, \text{B}\}
+\end{equation}
+
+Not all features have clearly defined or bounded maximum values, particularly those representing continuous variables such as round duration, rounds in a match, or ROI. As a result, we could not rely solely on predefined constants for normalization. Instead, we analyzed each feature’s distribution — the way values are spread across the dataset — to better understand its central tendency and variance. Examining the distribution allowed us to identify appropriate clipping thresholds (e.g., using the 95th or 99th percentile), detect outliers, and select scaling methods such as log transformations or z-score normalization that preserved the integrity of the data while improving model stability.
 
 \section{PPO Model Overview}
 
@@ -272,7 +298,7 @@ r_{\text{complex}} =
 
 \subsection{Action Space Definitions}
 
-A basic action space is defined as a discrete space of three actions: abstaining, betting on team A, or betting on team B. 
+A basic action space is defined as a discrete space of three actions: abstaining, betting on team A, or betting on team B.
 
 \begin{equation}
 \mathcal{A}_{\text{basic}} = \{\text{abstain}, \text{bet A}, \text{bet B} \}
@@ -314,6 +340,7 @@ With two different reward functions and action spaces, our project compares the 
   \end{tabular}
 \end{table}
 
+\bigskip
 \section{Experiments and Results}
 
 
