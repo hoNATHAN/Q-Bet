@@ -1,0 +1,160 @@
+* Reinforcement Learning for Betting Decisions in Counter-Strike 2 Esports Matches Using PPO
+
+** Abstract
+  - Motivation and significance
+  - Brief summary of methods
+  - Highlight key findings (reward functions, discrete action spaces)
+
+** Introduction
+*** Background
+    - Overview of esports betting and Counter-Strike 2
+    - Challenges in betting predictions
+
+*** Motivation
+    - Limitations of traditional betting approaches
+    - Reinforcement Learning (RL) as a promising alternative
+
+*** Objectives
+    - Apply PPO algorithm to betting decisions
+    - Explore various discrete betting strategies (simple vs. complex action spaces)
+    - Investigate reward functions: correctness vs. expected value (EV) vs. Kelly criterion
+
+** Related Work / Literature Review
+  - RL and PPO foundational concepts
+    - [[https://arxiv.org/abs/1707.06347][Proximal Policy Optimization (Schulman et al., 2017)]]
+    - Reinforcement Learning overview: Sutton & Barto (2018)
+  - RL applications to sports/esports betting
+  - Key betting strategies: Expected Value and Kelly Criterion
+    - Kelly (1956), Thorp (1969)
+
+** Methodology
+*** Data Collection via Web Scraping
+    - Techniques used:
+      - Python tools: requests, BeautifulSoup, Selenium
+    - Ethical and practical considerations
+
+*** Feature Engineering
+    - Processing JSON match data into normalized PyTorch tensors
+    - Feature selection criteria
+
+*** PPO Model & Training Procedure
+    - Overview of PPO algorithm
+    - Network architecture and hyperparameters
+    - Training details (epochs, batch size, device)
+
+*** Action Space Definitions
+    - Simple discrete action space: [Abstain, Bet A, Bet B]
+    - Extended action space with betting percentages: [0%, 5%, 10%, 25%, 50%, 100%]
+
+*** Reward Function Exploration
+  - Binary correctness: +1 correct, -1 incorrect
+  - Expected Value (EV)-based reward calculation
+  - Kelly criterion-based reward optimization
+
+** Experiments and Results
+*** Experiment 1: Action Space Complexity
+    - Performance comparison (accuracy, cumulative return)
+    - Analysis of volatility and robustness
+
+*** Experiment 2: Reward Functions
+    - Comparison between correctness, EV, and Kelly rewards
+    - Impact on betting accuracy, returns, and agent learning behaviors
+
+*** Metrics for Evaluation
+    - Betting accuracy (% correct)
+    - Cumulative returns
+    - Sharpe ratio (profitability relative to risk)
+
+** Discussion
+  - Interpretation of experimental results
+    - Optimal action space and reward function insights
+    - Limitations of PPO in betting scenarios
+  - Implications for real-world esports betting
+  - Ethical considerations in gambling applications
+
+** Conclusion
+  - Summary of key insights and findings
+  - Contributions of the PPO-based approach
+  - Recommendations for future research directions
+
+** References
+  - Schulman et al. (2017). [[https://arxiv.org/abs/1707.06347][Proximal Policy Optimization Algorithms]]
+  - Sutton & Barto (2018). Reinforcement Learning: An Introduction.
+  - Kelly, J. (1956). "A New Interpretation of Information Rate".
+  - Thorp, E. O. (1969). "Optimal Gambling Systems for Favorable Games".
+
+** Appendix (optional)
+  - Example scraped data
+  - Hyperparameter settings
+  - Additional experimental graphs
+
+\lstdefinelanguage{json}{
+{
+  "match_id": "furia-vs-mibr-12-05-2025",
+  "tournament": "PGL Astana 2025",
+  "team_a": "FURIA",
+  "team_b": "MIBR",
+  "status": "Ended",
+  "game_count": 3,
+  "games": [
+    {
+      "game_index": 1,
+      "map": "train",
+      "rounds": [
+        {
+          "round_number": 1,
+          "initial_team_a_econ": 4000,
+          "initial_team_b_econ": 4000,
+          "buy_team_a": "eco",
+          "buy_team_b": "full",
+          "final_team_a_econ": 3600,
+          "final_team_b_econ": 4200,
+          "round_winner": "team_b"
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+
+
+* PPO
+
+PPO is a policy gradient reinforcement learning algorithm. PPO is inteneded to optimize the policy performance while maintaining training stability. This algorithm was developed by researchers at Open AI, introduced in 2017 by Schulman et al. as a simpler alternative to Trust Region Policy Optimization (TRPO). Unlike TRPO, which relied on complex second-order optimization, PPO uses a clipped surrogate objective that restricts policy updates to stay within a safe range. The clipping mechanism helps stabilize learning by preventing excessive policy shifts, which risk training stability. PPO is favored for its ease of implementation and sample efficiency. PPO is also noted for strong empirical performance across continuous and discrete action space.
+
+Our project employs PPO to train a betting agent that makes decisions based on game features described above. While using strong market financial signals, we aimed to evaluate perfomance comparing against agents using various reward and action spaces.
+
+For our PPO structure, we used a popular model found on \textit{GitHub} developed by Nikhil Barhate []. In their implementation, the actor-critic use a shared network structure. Initial layers of the unified neural network process input states and then split into two separate heads: one for the actor and another for the critic. This allows for both the policy and value function to share common layers, reducing redundancy and computation overhead.
+
+To guide policy and value function updates, the advantage function is estimated using Monte Carlor returns. For each time step in an episode, the agent computes the cumulative discounted reward based on the full trajectory. This serves as an estimate for how favorable a given state-action pair was compared to the baseline value function. While this method introduces higher variance compared to bootstrapped alternatives like Generalized Advantage Estimation (GAE), this advantage estimation provides a straightforward way to compute advantages from complete episode data. 
+
+\subsection{Hyperparameters}
+Learning Rates: 
+Discount Factor:
+Clipping Parameter:
+  Batch Size:
+  Epochs:
+
+\subsection{Training}
+
+
+
+Our project aims to evaluate multiple agent configurations by varying reward functions and action spaces. The choice of reward function plays a critical role in shaping agent behavior, as poorly designed rewards can hinder effective learning. While betting naturally lends itself to a continuous action space, allowing for flexible wager sizes, we constrain the action space to a discrete set of options for training simplicity and stability.
+
+A basic action space is defined as a discrete space of three actions: abstaining, betting on team A, or betting on team B.
+
+A complex action space is defined as a discrete space of nine actions: abstaining, betting $\{5, 10, 25, 50\}$ percent of agent's bankroll on either team A or B
+
+With two different reward functions and action spaces, our project compares the perfomance of three different agents using various combinations. These three agents are defined as so: 
+
+
+* Normalization
+
+An important process before sending states to our PPO input model is to normalize our findings. Feature normalization is the process of transforming input features to a common scale or range. This ensures that data with large numerical ranges do not dominate smaller ranges during training. This preprocess helps models converge faster and learn more stable representation.
+
+Finding maximum values was easy for certain game stats, as \textit{Counter-Strike 2} is heavily documented with wikis and blogs. The maximum amount of players per team in a professional match is five players \cite{cs2competitivewiki}
+
+The maximum amount a player can hold is \$16{,}000 \cite{cs2moneywiki}. 
+
+

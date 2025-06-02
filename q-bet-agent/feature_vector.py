@@ -15,7 +15,7 @@ from typing import List, Optional, Tuple
 import torch
 import numpy as np
 
-BUY_TYPES = {"eco": 0, "semi": 1, "full": 2, "force": 3}
+BUY_TYPES = {"eco": 0, "semi": 1, "full": 2, "force": 3, "unknown": 4}
 
 # investigate
 WIN_TYPES = {
@@ -31,7 +31,9 @@ WINNER = {
 }
 
 
-MAX_ECON = 16000
+# max econ a person can hold is 16,000
+# per 5 players on a team = 80,000
+MAX_ECON = 80000
 
 
 # round time and rounds capped for 95th percentile of data
@@ -61,10 +63,12 @@ def ohe(value, categories):
     """
 
     ohe_vector = np.zeros(len(categories))
-    try:
+    value = safe_lower(value)
+
+    if safe_lower(value) in categories:
         ohe_vector[categories[safe_lower(value)]] = 1
-    except ValueError:
-        raise ValueError("Caught an unknown type", value, categories)
+    else:
+        ohe_vector[categories["unknown"]] = 1
 
     return ohe_vector
 
@@ -108,7 +112,7 @@ def signed_log_norm(x, cap=ROI_CAP):
     return np.sign(x) * np.log1p(np.abs(x)) / (np.log1p(cap) + 1e-6)
 
 
-def append_game_features(d: dict, features: list, ev=False):
+def append_game_features(d: dict, features: list, ev=False) -> None:
     """
     Extracts and encodes features from a single game round dictionary,
     and appends them to the provided feature list.
@@ -191,19 +195,86 @@ def append_game_features(d: dict, features: list, ev=False):
     sa, sb = map(float, d["score"].split("-"))
     features.extend([sa / MAX_ROUNDS, sb / MAX_ROUNDS])
 
-    # two extra features are added if EV is set to true
     # EV of teams
+    ev_a = p_a * (odds_a - 1) - (1 - p_a)
+    ev_b = p_b * (odds_b - 1) - (1 - p_b)
+
     # Kelly Criterion for teams
-    if ev:
-        ev_a = p_a * (odds_a - 1) - (1 - p_a)
-        ev_b = p_b * (odds_b - 1) - (1 - p_b)
-
-        kelly_a = 0.0 if ev_a <= 0 else ev_a / (odds_a - 1)
-        kelly_b = 0.0 if ev_b <= 0 else ev_b / (odds_b - 1)
-        features.extend([ev_a, ev_b, kelly_a, kelly_b])
+    kelly_a = 0.0 if ev_a <= 0 else ev_a / (odds_a - 1)
+    kelly_b = 0.0 if ev_b <= 0 else ev_b / (odds_b - 1)
+    features.extend([ev_a, ev_b, kelly_a, kelly_b])
 
 
-def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]]:
+def append_raw_features(d: dict, features: list) -> None:
+    """
+    Extracts and encodes features from a single game round dictionary,
+    and appends them to the provided feature list. This function uses raw
+    data and no market signals.
+
+    Handles:
+        - Categorical string values via one-hot encoding.
+        - Numerical values via normalization.
+        - Dictionary-type values (like player stats) via normalization of subfields.
+
+    Parameters:
+        d (dict): A dictionary containing game round data.
+        features (list): A list to which processed numerical features are appended.
+    """
+
+    # pull econ stats for team a and b
+    init_a_econ, buy_a_econ, final_a_econ = (
+        float(d["initial_team_a_econ"]),
+        float(d["buy_team_a_econ"]),
+        float(d["final_team_a_econ"]),
+    )
+    init_b_econ, buy_b_econ, final_b_econ = (
+        float(d["initial_team_b_econ"]),
+        float(d["buy_team_b_econ"]),
+        float(d["final_team_b_econ"]),
+    )
+
+    features.extend(
+        [
+            init_a_econ / MAX_ECON,
+            buy_a_econ / MAX_ECON,
+            final_a_econ / MAX_ECON,
+            init_b_econ / MAX_ECON,
+            buy_b_econ / MAX_ECON,
+            final_b_econ / MAX_ECON,
+        ]
+    )
+
+    # append player kills normalized
+    a_kills, b_kills = d["kills_end"]["team_a"], d["kills_end"]["team_b"]
+    features.extend([a_kills / MAX_PLAYERS, b_kills / MAX_PLAYERS])
+
+    # odds features
+    raw_odds_a = parse_american_odds(d["team_a_odds"])
+    raw_odds_b = parse_american_odds(d["team_b_odds"])
+    raw_odds_a = raw_odds_a if abs(raw_odds_a) > 1e-6 else 1e-6
+    raw_odds_b = raw_odds_b if abs(raw_odds_b) > 1e-6 else 1e-6
+    odds_a, odds_b = am_to_decimal(raw_odds_a), am_to_decimal(raw_odds_b)
+    features.extend([min(odds_a, 10) / 10, min(odds_b, 10) / 10])
+
+    # normalize and append duration
+    clipped_duration = min(float(d["duration"]), MAX_ROUND_TIME)
+    features.append(clipped_duration / MAX_ROUND_TIME)
+
+    # append winner
+    features.extend(ohe(d["winner"], WINNER))
+
+    # cumulative score
+    sa, sb = map(float, d["score"].split("-"))
+    features.extend([sa / MAX_ROUNDS, sb / MAX_ROUNDS])
+
+    buy_type_a, buy_type_b = d["team_a_buy_type"], d["team_b_buy_type"]
+    features.extend(ohe(buy_type_a, BUY_TYPES))
+    features.extend(ohe(buy_type_b, BUY_TYPES))
+
+
+def process_state(
+    json_str: str, raw: bool = True
+) -> Optional[List[Tuple[str, int, torch.Tensor]]]:
     """
     Parses a game state JSON string, extracts round-level features from game1 round_1,
     applies normalization and encoding, and converts the result into a PyTorch tensor.
@@ -234,7 +305,10 @@ def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]
             for round_idx, (_, value) in enumerate(rounds.items()):
                 feature_vector = []
 
-                append_game_features(value, feature_vector)
+                if raw:
+                    append_raw_features(value, feature_vector)
+                else:
+                    append_game_features(value, feature_vector)
 
                 final_feature_vector = torch.tensor(feature_vector, dtype=torch.float32)
                 feature_states.append(
@@ -242,11 +316,11 @@ def process_state(json_str: str) -> Optional[List[Tuple[str, int, torch.Tensor]]
                 )
 
                 #  or round_idx == len(rounds.items()) - 1
-                # if round_idx == 0:
-                #     print("\nRound:", round_idx + 1)
-                #     print("Cardinality:", len(feature_vector))
-                #     print(" Raw Feature Vector:\n", feature_vector, "\n")
-                #     print(" Final Feature Vector:\n", final_feature_vector, "\n\n")
+                if round_idx == 0:
+                    print("\nRound:", round_idx + 1)
+                    print("Cardinality:", len(feature_vector))
+                    print(" Raw Feature Vector:\n", feature_vector, "\n")
+                    print(" Final Feature Vector:\n", final_feature_vector, "\n\n")
 
         return feature_states
 
@@ -268,12 +342,15 @@ Features Pulled:
  - Odds-ROI A, B (2d)
  - Duration (1d)
  - Winner flag A, B (2d)
+ - Score A, B
+ - EV
+ - Kelly Criterion
 
 --- Game: Intel Extreme Masters Melbourne 2025 ---
 
 
 Round: 1
-Cardinality: 19
+Cardinality: 23
  Raw Feature Vector:
  [0.9, 0.41875, np.float64(1.0121845991223732), np.float64(0.7798450741608249), 1.0, 0.4, 0.0075, 0.0203125, 0.16993006993006993, 0.20400000000000001, 0.5455565529622981, 0.4544434470377019, 0.4115226337448559, 0.5098039215686274, 0.4266666666666667, np.float64(1.0), np.float64(0.0), 0.041666666666666664, 0.0] 
 
@@ -281,5 +358,30 @@ Cardinality: 19
  tensor([0.9000, 0.4187, 1.0122, 0.7798, 1.0000, 0.4000, 0.0075, 0.0203, 0.1699,
         0.2040, 0.5456, 0.4544, 0.4115, 0.5098, 0.4267, 1.0000, 0.0000, 0.0417,
         0.0000]) 
+
+
+Raw Feature Vector of Cardinality 25 dimensions
+
+Features Pulled:
+ - Raw econ A, B (2d)
+ - Kills A, B (2d)
+ - Decimal odds A, B (2d)
+ - Duration (1d)
+ - Winner flag A, B (2d)
+ - Score A, B
+
+--- Game: Intel Extreme Masters Melbourne 2025 ---
+
+
+Round: 1
+Cardinality: 25
+ Raw Feature Vector:
+ [0.05, 0.005625, 0.2275, 0.05, 0.0075, 0.1325, 1.0, 0.4, 0.24, 0.15, 0.23, np.float64(1.0), np.float64(0.0), 0.041666666666666664, 0.0, np.float64(1.0), np.float64(0.0), np.float64(0.0), np
+.float64(0.0), np.float64(0.0), np.float64(1.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)] 
+
+ Final Feature Vector:
+ tensor([0.0500, 0.0056, 0.2275, 0.0500, 0.0075, 0.1325, 1.0000, 0.4000, 0.2400,
+        0.1500, 0.2300, 1.0000, 0.0000, 0.0417, 0.0000, 1.0000, 0.0000, 0.0000,
+        0.0000, 0.0000, 1.0000, 0.0000, 0.0000, 0.0000, 0.0000]) 
 
 """
