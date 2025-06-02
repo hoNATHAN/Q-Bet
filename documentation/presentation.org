@@ -1,0 +1,32 @@
+* PRESENTATION NOTES
+** How to Evaluate States?
+   - betting is novel in quantitative finance field
+   - lots of games have various states, state explosion inbound
+   - what if there was a game that heavily centered around econ performance?
+     * Counter Strike 2 is our answer
+
+** Our novel idea to experiment
+   - what if we treat a team in Counter Strike 2 as a market asset?
+   - ML is popular for trading
+   - stock prices and assets are known to be tracked and computed to give advantage for trading
+     * why not do the same for sports betting ?
+
+** Signal to Noise ratio
+   - our main goal was to experiment and see if sophisticated market signals improve agent performance
+   - raw game states can be inherrently noisy
+     * if i told you to make a prediction with just money, money spent, and who won...
+     * that would be hard
+   - utilized a few market signals
+     * delta econ - market swings
+     * ROI of team
+     * CPK - are teams actually using money efficient
+   - lets compare performances 
+
+** Agent specific experiments
+   - basic reward (binary, if agent guesses correct)
+   - complex reward (actual return on investments based on odds)
+   - basic action (just pick or abstain)
+   - complex action (bigger discrete space, add % to the mix)
+  
+** Our findings
+** Code walkthrough
