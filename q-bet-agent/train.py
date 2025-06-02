@@ -35,23 +35,28 @@ def main():
         '--initial-balance', type=float, default=1000.0,
         help='Initial bankroll balance to start with'
     )
+    parser.add_argument(
+        '--feature-type', choices=['crafted', 'raw'], default='crafted',
+        help='Feature vector type: crafted (engineered) or raw (full raw features)'
+    )
     args = parser.parse_args()
     #states which options were selected
-    print(f"Using reward scheme: {args.reward_scheme}, action space: {args.action_space}")
+    print(f"Using reward scheme: {args.reward_scheme}, action space: {args.action_space}, feature type: {args.feature_type}")
     # make per-config model and log dirs
-    model_dir = f"models/{args.reward_scheme}_{args.action_space}"
+    model_dir = f"models/{args.reward_scheme}_{args.action_space}_{args.feature_type}"
     os.makedirs(model_dir, exist_ok=True)
-    log_dir = f"logs/{args.reward_scheme}_{args.action_space}"
+    log_dir = f"logs/{args.reward_scheme}_{args.action_space}_{args.feature_type}"
     os.makedirs(log_dir, exist_ok=True)
 
     #selects cuda if its present
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    #loads all the match data 
-    all_states = load_data()
+    # select feature vector and load match-level data
+    use_raw = (args.feature_type == 'raw')
+    all_matches = load_data(raw=use_raw)   # now returns List[List[(mid,game_idx,feat)]]
     train_states, test_states = train_test_split(
-        all_states, test_size=0.2, random_state=42, shuffle=True
+        all_matches, test_size=0.2, random_state=42, shuffle=True
     )
 
     #builds the environment with the selected states and action space
@@ -130,7 +135,7 @@ def main():
     random.shuffle(match_indices)
 
     #establish the number of episodes, the save frequency, and the time step that we start at 
-    n_episodes   = 1000
+    n_episodes   = 3000
     save_freq    = 1000
     time_step    = 0
 
