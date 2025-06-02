@@ -1,0 +1,328 @@
+\documentclass[sigconf]{acmart}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+
+\usepackage{amssymb}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}  % checkmark
+
+\definecolor{background}{rgb}{0.933, 0.933, 0.933}
+\definecolor{punct}{rgb}{0.8,0.1,0.1}
+\definecolor{delim}{rgb}{0.078,0.411,0.69}
+\definecolor{numb}{rgb}{0.6,0,0.6}
+
+\lstdefinelanguage{json}{
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  numbersep=8pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{background},
+  literate=
+   *{0}{{{\color{numb}0}}}{1}
+    {1}{{{\color{numb}1}}}{1}
+    {2}{{{\color{numb}2}}}{1}
+    {3}{{{\color{numb}3}}}{1}
+    {4}{{{\color{numb}4}}}{1}
+    {5}{{{\color{numb}5}}}{1}
+    {6}{{{\color{numb}6}}}{1}
+    {7}{{{\color{numb}7}}}{1}
+    {8}{{{\color{numb}8}}}{1}
+    {9}{{{\color{numb}9}}}{1}
+    {:}{{{\color{punct}{:}}}}{1}
+    {,}{{{\color{punct}{,}}}}{1}
+    {\{}{{{\color{delim}{\{}}}}{1}
+    {\}}{{{\color{delim}{\}}}}}{1}
+    {[}{{{\color{delim}{[}}}}{1}
+    {]}{{{\color{delim}{]}}}}{1},
+}
+
+\acmConference[Preprint]{Drexel Research Project}{June 2025}{Philadelphia, PA}
+\acmYear{2025}
+\acmMonth{6}
+
+\title{Reinforcement Learning with Proximal Policy Optimization for Strategic Betting in Counter-Strike 2 Esports}
+
+\author{Nathan Ho}
+\affiliation{%
+  \institution{Drexel University}
+  \city{Philadelphia}
+  \state{PA}
+  \country{USA}
+}
+\email{nlh55@drexel.edu} % replace with actual
+
+
+\author{Alexey Kuraev}
+\affiliation{%
+  \institution{Drexel University}
+  \city{Philadelphia}
+  \state{PA}
+  \country{USA}
+}
+\email{ak4249@drexel.edu} % replace with actual
+
+\author{Matthew Protacio}
+\affiliation{%
+  \institution{Drexel University}
+  \city{Philadelphia}
+  \state{PA}
+  \country{USA}
+}
+\email{mp3634@drexel.edu} % replace with actual
+
+
+\begin{document}
+\settopmatter{printacmref=true}
+
+\begin{abstract}
+This project explores the application of Proximal Policy Optimization (PPO), a reinforcement learning algorithm, to develop an intelligent betting agent for esports matches. We evaluated the agent's performance and decision making in a simulated betting environment using historical match data.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+Sports betting is a widely practiced recreational activity in which individuals place bets on specific outcomes of sporting events. The types of bets range broadly, including predicting specific events during a game or determining the ultimate winner of a match. This paper specifically explores moneyline bets, where the bets are placed solely on the final result of a contest.
+
+Despite its popularity, sports betting remains underrepresented as a quantitative research domain, partly due to its association with gambling, which contributes to limited academic inquiry and systematic study. Predicting winners accurately poses considerable challenges, as match outcomes are inherently stochastic due to significant variability in team performance and individual player dynamics.
+
+Effective betting strategies often hinge on identifying edges, which involve detecting discrepancies between bookmaker odds and bettors' valuations. Precisely computing match odds from fundamental analyses demands extensive computational resources. However, by considering established bookmakers' odds as a reliable proxy for the market's perceived fair value, we circumvent extensive calculations while still gaining actionable insights.
+
+Applying these concepts to professional esports introduces unique complexities. State representation in video games can lead to state explosion due to numerous exogenous variables. Moreover, continual game updates and modifications create unstable environments where strategies effective in one period may become obsolete in the next.
+
+However, the esports title \textit{Counter-Strike 2 (CS2)} offers specific advantages for quantitative modeling. Economic management significantly influences game-play outcomes, with the team's budget serving as a critical predictive indicator. Within \textit{CS2}, team economics is determined by several well-defined factors, including purchases of weapons and equipment, the income from the wins and the earnings from the elimination of opponents. Matches typically span best-of-13 rounds, allowing for temporal economic analysis across discrete intervals.
+
+
+This paper applies reinforcement learning, specifically, Proximal Policy Optimization (PPO), to leverage these economic indicators for betting decisions. We further explore reward function formulations beyond simple correctness, investigating the impact on rewarding expected returns based on betting odds. In doing so, we examine the limitations of traditional betting methodologies, exploring whether integrating financial and probabilistic principles yields improved betting outcomes in esports scenarios.
+
+\section{Methodology}
+
+\subsection{Data Collection via Web Scraping}
+The dataset used to train the PPO agent was constructed by scraping esports match data from two primary sources: \textit{https://bo3.gg} for detailed Counter-Strike 2 (CS2) match data and \textit{https://www.oddsportal.com} for corresponding betting odds. The scraping process was implemented using Python scripts utilizing the libraries \textit{Playwright} and \textit{BeautifulSoup}.
+
+\bigskip
+
+\textbf{Match Data (bo3.gg):}
+Utilized \textit{Playwright} for automated browser control to navigate and load dynamically-rendered web pages, ensuring complete data retrieval.
+Extracted JSON data containing round-level statistics, including economic state, round results, map data, player statistics, and team performance metrics.
+
+\bigskip
+
+\textbf{Betting Odds Data (oddsportal.com):}
+Leveraged \textit{Playwright} to handle interactive and dynamically updated odds information, which required simulating user interaction to reveal hidden or paginated odds. Employed \textit{BeautifulSoup} to parse HTML content efficiently, extracting structured odds including opening, closing, and intermediate odds offered by various bookmakers.
+
+\bigskip
+
+The scraping scripts were developed with careful adherence to ethical web-scraping practices, employing randomized delays and respectful request frequencies to avoid overwhelming the servers. Additionally, extracted data was systematically stored in JSON files for ease of processing and reproducibility. The final compiled dataset provided a comprehensive representation of match states and betting odds, enabling robust feature extraction for the PPO model training pipeline. Scraped data was later analyzed for feature distribution and building a dictionary of winners for all games found.
+
+\subsection{Feature Engineering}
+
+After web scraping, a large collection of JSON formatted match rounds is accumulated. While raw economic indicators provide foundational insight, their direct application can suffer from excessive noise and limited predictive value.
+
+To enhance signal strength, we compute more sophisticated financial metrics. By modeling a team as a dynamic market asset, we can track and aggregate performance indicators over time, offering temporal context that enhances the predictive power of our features.
+
+An example of the raw JSON match data structure is shown below:
+
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "match_id": "furia-vs-mibr-12-05-2025",
+  "tournament": "PGL Astana 2025",
+  "team_a": "FURIA",
+  "team_b": "MIBR",
+  "status": "Ended",
+  "game_count": 3,
+  "games": [
+    {
+      "game_index": 1,
+      "map": "train",
+      "rounds": [
+        {
+          "round_number": 1,
+          "initial_team_a_econ": 4000,
+          "initial_team_b_econ": 4000,
+          "buy_team_a": "eco",
+          "buy_team_b": "full",
+          "final_team_a_econ": 3600,
+          "final_team_b_econ": 4200,
+          "round_winner": "team_b"
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+\end{lstlisting}
+
+The raw JSON match data is preprocessed to serve as a state input for the PPO model. Each round in a game is transformed into a normalized \textit{PyTorch} tensor. This ensures efficient and stable model training. As mentioned above, we aimed to convert raw team economic status into meaningful signals. These economic metrics help to capture team performance dynamics. These are defined as follows:
+
+\bigskip
+
+\textbf{Delta Econ for Both Teams} - Captures the absolute economic change between the starting and ending bankroll of a team within a round:
+\begin{equation}
+\Delta\text{Econ} = \text{Final Economic Value} - \text{Initial Economic Value}
+\end{equation}
+
+\bigskip
+
+\textbf{ROI based on Team Econ} - Measures the relative financial gain or loss by comparing final economic status to initial investment. This is calculated for both teams:
+\begin{equation}
+  \text{ROI} = \frac{\text{Final Economic Value} - \text{Initial Economic Value}}{\text{Initial Economic Value}}
+\end{equation}
+
+\bigskip
+
+\textbf{ROI based on Odds (Odds ROI)} - Evaluates the expected profitability relative to bookmaker odds, calculated for both teams:
+\begin{equation}
+\text{Odds ROI} = (\text{Decimal Odds} \times \text{Win Probability}) - 1
+\end{equation}
+
+\bigskip
+
+The \textbf{Implied Probability from Odds} - Represents bookmakers' implicit estimation of event outcomes, calculated for both teams:
+\begin{equation}
+\text{Implied Probability} = \frac{1}{\text{Decimal Odds}}
+\end{equation}
+
+\bigskip
+
+\textbf{Cost Per Kill (CPK)} - Quantifies a team's economic efficiency regarding combat effectiveness:
+\begin{equation}
+\text{CPK} = \frac{\text{Economic Investment per Round}}{\text{Number of Kills per Round}}
+\end{equation}
+
+\bigskip
+
+\textbf{Expected Value (EV) for a Bet} - Average amount agent can expect to win or lose per bet over time, calculated based on the probability of winning and the potential profit or loss.
+\begin{equation}
+\text{EV} = (P \times \text{Profit}) + ((1 - P) \times \text{Loss})
+\end{equation}
+
+\bigskip
+
+\textbf{Kelly Criterion} - Calculates the optimal fraction of bankroll to wager \cite{kelly1956new} :
+\begin{equation}
+f^* = \frac{bp - q}{b}
+\end{equation}
+
+\bigskip
+
+The raw JSON match data obtained required preprocessing to serve as input for the Proximal Policy Optimization (PPO) model. Each round in a game was transformed into normalized PyTorch tensors, ensuring efficient and stable model training. Numerical features, such as team economic status, round outcomes, and individual player performance statistics, were normalized using min-max scaling or standardization to ensure consistency across varying scales.
+
+Features were selected based on their predictive value regarding match outcomes and their ability to encapsulate meaningful temporal and economic context. Specifically, selected features included team bankroll, Return on Investment (ROI), implied probability derived from betting odds, ROI based on odds, and Cost Per Kill (CPK). This targeted selection aimed to reduce dimensionality, improve signal-to-noise ratios, and enhance the model's capacity to generalize from historical data to future betting scenarios.
+
+\section{PPO Model Overview}
+
+PPO is a policy gradient reinforcement learning algorithm. PPO is inteneded to optimize the policy performance while maintaining training stability. This algorithm was developed by researchers at Open AI, introduced in 2017 by Schulman et al \cite{schulman2017proximalpolicyoptimizationalgorithms}. This was a simpler alternative to Trust Region Policy Optimization (TRPO).
+
+Unlike TRPO, which relied on complex second-order optimization, PPO uses a clipped surrogate objective that restricts policy updates to stay within a safe range. The clipping mechanism helps stabilize learning by preventing excessive policy shifts, which risk training stability. PPO is favored for its ease of implementation and sample efficiency. PPO is also noted for strong empirical performance across continuous and discrete action space \cite{schulman2017proximalpolicyoptimizationalgorithms}.
+
+Our project employs PPO to train a betting agent that makes decisions based on game features described above. While using strong market financial signals, we aimed to evaluate perfomance comparing against agents using various reward and action spaces.
+
+\subsection{Model Choice}
+   For our PPO structure, we used a popular model found on \textit{GitHub} developed by Nikhil Barhate \cite{barhate2020ppo}. In their implementation, the actor-critic use a shared network structure. Initial layers of the unified neural network process input states and then split into two separate heads: one for the actor and another for the critic. This allows for both the policy and value function to share common layers, reducing redundancy and computation overhead.
+
+   To guide policy and value function updates, the advantage function is estimated using Monte Carlor returns. For each time step in an episode, the agent computes the cumulative discounted reward based on the full trajectory. This serves as an estimate for how favorable a given state-action pair was compared to the baseline value function. While this method introduces higher variance compared to bootstrapped alternatives like Generalized Advantage Estimation (GAE), this advantage estimation provides a straightforward way to compute advantages from complete episode data. 
+
+\subsection{Hyperparameters}
+Learning Rates: 
+Discount Factor:
+Clipping Parameter:
+  Batch Size:
+  Epochs:
+
+\section{Training Procedure}
+
+Our project aims to evaluate multiple agent configurations by varying reward functions and action spaces. The choice of reward function plays a critical role in shaping agent behavior, as poorly designed rewards can hinder effective learning.
+
+While betting naturally lends itself to a continuous action space, allowing for flexible wager sizes, we constrain the action space to a discrete set of options for training simplicity and stability.
+
+\subsection{Reward Function Exploration}
+
+Reward function is calculated as:
+\[
+r: (\text{action},\ \text{outcome}) \rightarrow \mathbb{R}
+\]
+
+Our basic reward function is defined as:
+
+\begin{equation}
+r_{\text{basic}} =
+\begin{cases}
++1, & \text{if bet is correct} \\
+-1, & \text{if bet is incorrect} \\
+\phantom{+}0, & \text{if no bet is placed}
+\end{cases}
+\end{equation}
+
+Our complex reward function is defined as:
+
+\begin{equation}
+r_{\text{complex}} =
+\begin{cases}
+\text{Stake} \times (\text{Odds} - 1), & \text{if bet is correct} \\
+-\text{Stake}, & \text{if bet is incorrect} \\
+\text{0}, & \text{if no bet is placed}
+\end{cases}
+\end{equation}
+
+\subsection{Action Space Definitions}
+
+A basic action space is defined as a discrete space of three actions: abstaining, betting on team A, or betting on team B. 
+
+\begin{equation}
+\mathcal{A}_{\text{basic}} = \{\text{abstain}, \text{bet A}, \text{bet B} \}
+\end{equation}
+
+A complex action space is defined as a discrete space of nine actions: abstaining, betting $\{5, 10, 25, 50\}$ percent of agent's bankroll on either team A or B
+
+\begin{equation}
+\mathcal{A}_{\text{complex}} = \{\text{abstain}\} \cup \{(t, p) \mid t \in \{\text{A}, \text{B}\},\ p \in \{5\%, 10\%, 25\%, 50\%\} \}
+\end{equation}
+
+With two different reward functions and action spaces, our project compares the perfomance of three different agents using various combinations. These three agents are defined as so: 
+
+\begin{table}[h]
+  \caption{Agent Comparison Across Reward Functions}
+  \label{tab:agent_benchmarks}
+  \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Agent} & \textbf{Basic Reward} & \textbf{Complex Reward} \\
+    \midrule
+    Agent 1 (no bankroll)  & \cmark  &        \\
+    Agent 2 (with bankroll)   &         & \cmark \\
+    Agent 3 (with bankroll)   &         & \cmark \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \caption{Agent Comparison Across Action Spaces}
+  \label{tab:agent_benchmarks}
+  \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Agent} & \textbf{Basic Actions} & \textbf{Complex Actions} \\
+    \midrule
+    Agent 1 (no bankroll)  & \cmark  &         \\
+    Agent 2 (with bankroll)   & \cmark  &         \\
+    Agent 3 (with bankroll)   &         & \cmark  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Experiments and Results}
+
+
+\section{Discussion}
+\section{Conclusion}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\keywords{Reinforcement Learning, Proximal Policy Optimization, Esports, Betting, Machine Learning}
+
+\end{document}

@@ -1,0 +1,70 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{3}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Barhate(2020)]%
+        {barhate2020ppo}
+\bibfield{author}{\bibinfo{person}{Nikhil Barhate}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{PPO-PyTorch}.
+\newblock \bibinfo{howpublished}{\url{https://github.com/nikhilbarhate99/PPO-PyTorch}}.
+\newblock
+\newblock
+\shownote{Accessed: 2025-06-01}.
+
+
+\bibitem[Kelly(1956)]%
+        {kelly1956new}
+\bibfield{author}{\bibinfo{person}{J.~L. Kelly}.} \bibinfo{year}{1956}\natexlab{}.
+\newblock \showarticletitle{A New Interpretation of Information Rate}.
+\newblock \bibinfo{journal}{\emph{Bell System Technical Journal}} \bibinfo{volume}{35}, \bibinfo{number}{4} (\bibinfo{year}{1956}), \bibinfo{pages}{917--926}.
+\newblock
+\href{https://doi.org/10.1002/j.1538-7305.1956.tb03809.x}{doi:\nolinkurl{10.1002/j.1538-7305.1956.tb03809.x}}
+
+
+\bibitem[Schulman et~al\mbox{.}(2017)]%
+        {schulman2017proximalpolicyoptimizationalgorithms}
+\bibfield{author}{\bibinfo{person}{John Schulman}, \bibinfo{person}{Filip Wolski}, \bibinfo{person}{Prafulla Dhariwal}, \bibinfo{person}{Alec Radford}, {and} \bibinfo{person}{Oleg Klimov}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{Proximal Policy Optimization Algorithms}.
+\newblock
+\showeprint[arxiv]{1707.06347}~[cs.LG]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/1707.06347}
+\showURL{%
+\tempurl}
+
+
+\end{thebibliography}
