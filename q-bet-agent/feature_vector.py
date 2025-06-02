@@ -15,7 +15,7 @@ from typing import List, Optional, Tuple
 import torch
 import numpy as np
 
-BUY_TYPES = {"eco": 0, "semi": 1, "full": 2, "force": 3}
+BUY_TYPES = {"eco": 0, "semi": 1, "full": 2, "force": 3, "unknown": 4}
 
 # investigate
 WIN_TYPES = {
@@ -63,10 +63,12 @@ def ohe(value, categories):
     """
 
     ohe_vector = np.zeros(len(categories))
-    try:
+    value = safe_lower(value)
+
+    if safe_lower(value) in categories:
         ohe_vector[categories[safe_lower(value)]] = 1
-    except ValueError:
-        raise ValueError("Caught an unknown type", value, categories)
+    else:
+        ohe_vector[categories["unknown"]] = 1
 
     return ohe_vector
 
@@ -265,9 +267,13 @@ def append_raw_features(d: dict, features: list) -> None:
     sa, sb = map(float, d["score"].split("-"))
     features.extend([sa / MAX_ROUNDS, sb / MAX_ROUNDS])
 
+    buy_type_a, buy_type_b = d["team_a_buy_type"], d["team_b_buy_type"]
+    features.extend(ohe(buy_type_a, BUY_TYPES))
+    features.extend(ohe(buy_type_b, BUY_TYPES))
+
 
 def process_state(
-    json_str: str, raw: bool = False
+    json_str: str, raw: bool = True
 ) -> Optional[List[Tuple[str, int, torch.Tensor]]]:
     """
     Parses a game state JSON string, extracts round-level features from game1 round_1,
@@ -353,9 +359,8 @@ Cardinality: 23
         0.2040, 0.5456, 0.4544, 0.4115, 0.5098, 0.4267, 1.0000, 0.0000, 0.0417,
         0.0000]) 
 
-"""
-"""
-Raw Feature Vector of Cardinality 14 dimensions
+
+Raw Feature Vector of Cardinality 25 dimensions
 
 Features Pulled:
  - Raw econ A, B (2d)
@@ -369,13 +374,14 @@ Features Pulled:
 
 
 Round: 1
-Cardinality: 15
+Cardinality: 25
  Raw Feature Vector:
- [0.9, 0.41875, np.float64(1.0121845991223732), np.float64(0.7798450741608249), 1.0, 0.4, 0.0075, 0.0203125, 0.16993006993006993, 0.20400000000000001, 0.5455565529622981, 0.4544434470377019, 0.4115226337448559, 0.5098039215686274, 0.4266666666666667, np.float64(1.0), np.float64(0.0), 0.041666666666666664, 0.0] 
+ [0.05, 0.005625, 0.2275, 0.05, 0.0075, 0.1325, 1.0, 0.4, 0.24, 0.15, 0.23, np.float64(1.0), np.float64(0.0), 0.041666666666666664, 0.0, np.float64(1.0), np.float64(0.0), np.float64(0.0), np
+.float64(0.0), np.float64(0.0), np.float64(1.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)] 
 
  Final Feature Vector:
- tensor([0.9000, 0.4187, 1.0122, 0.7798, 1.0000, 0.4000, 0.0075, 0.0203, 0.1699,
-        0.2040, 0.5456, 0.4544, 0.4115, 0.5098, 0.4267, 1.0000, 0.0000, 0.0417,
-        0.0000]) 
+ tensor([0.0500, 0.0056, 0.2275, 0.0500, 0.0075, 0.1325, 1.0000, 0.4000, 0.2400,
+        0.1500, 0.2300, 1.0000, 0.0000, 0.0417, 0.0000, 1.0000, 0.0000, 0.0000,
+        0.0000, 0.0000, 1.0000, 0.0000, 0.0000, 0.0000, 0.0000]) 
 
 """
