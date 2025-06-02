@@ -46,10 +46,8 @@ class ActorCritic(nn.Module):
 
         self.has_continuous_action_space = has_continuous_action_space
 
-        # ──────────────────────────────────────────────────────────────────────────
         # Flag to detect "complex_discrete" vs "basic" discrete vs continuous
         self.is_complex_discrete = False
-        # ──────────────────────────────────────────────────────────────────────────
 
         if has_continuous_action_space:
             # Continuous action: output a vector of length action_dim, each ∈ [0,1]
@@ -124,7 +122,7 @@ class ActorCritic(nn.Module):
 
     def act(self, state):
         if self.has_continuous_action_space:
-            # Continuous branch: Gaussian N(μ, Σ)
+            # Continuous branch: Gaussian 
             action_mean = self.actor(state)
             action_mean = torch.nan_to_num(action_mean, nan=0.0, posinf=0.0, neginf=0.0)
             cov_mat = torch.diag(self.action_var)  # use shape (D, D)
@@ -137,7 +135,7 @@ class ActorCritic(nn.Module):
         else:
             # Discrete branch
             if not self.is_complex_discrete:
-                # Basic discrete: single Softmax over 3
+                # Basic discrete: single Softmax over epsilon
                 action_probs = self.actor(state)
                 action_probs = torch.nan_to_num(action_probs, nan=1e-8, posinf=1e-8, neginf=1e-8)
                 dist = Categorical(action_probs)
@@ -164,7 +162,6 @@ class ActorCritic(nn.Module):
                 action_logprob = lp_side + lp_stake
                 state_val = self.critic(state)
 
-                # REVERTED to original: stack as float→long as before
                 action = torch.stack([side_idx.float(), stake_idx.float()]).long()
                 return action.detach(), action_logprob.detach(), state_val.detach()
 
@@ -241,7 +238,8 @@ class PPO:
         self.policy = ActorCritic(
             state_dim, action_dim, has_continuous_action_space, action_std_init
         ).to(self.device)
-        # ─────────────────────────────────────────────────────────────────────────
+
+
         if hasattr(self.policy, "is_complex_discrete") and self.policy.is_complex_discrete:
             actor_params = list(self.policy.side_head.parameters()) + list(self.policy.stake_head.parameters())
         else:
