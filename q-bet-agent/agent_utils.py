@@ -4,14 +4,14 @@ from feature_vector import process_state
 import json
 
 
-def load_match_json(file):
+def load_match_json(file, raw=False):
     tensor_states_for_one_match = []
     if file.endswith(".json"):
         file_path = os.path.join(matches_path, file)
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 match_data = f.read()
-                state = process_state(match_data)
+                state = process_state(match_data, raw=raw)
                 if state is not None:  # check to avoid breakage
                     tensor_states_for_one_match.extend(state)
         except Exception as e:
@@ -19,11 +19,13 @@ def load_match_json(file):
     return tensor_states_for_one_match
 
 
-def load_data():
+def load_data(raw: bool = False):
     tensor_states = []
-    for root, _, files in os.walk(matches_path):
-        for file in files:
-            tensor_states.append(load_match_json(file))
+    # iterate over each JSON match file and collect its round-tuples
+    for file in os.listdir(matches_path):
+        if file.endswith(".json"):
+            states = load_match_json(file, raw=raw)
+            tensor_states.extend(states)
     return tensor_states
 
 

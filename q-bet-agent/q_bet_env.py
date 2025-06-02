@@ -19,7 +19,17 @@ class QBetEnv(gym.Env):
     def __init__(self, states=None, reward_scheme='basic', action_space_type='basic', basic_fraction=1.0, initial_balance=1000.0):
         super().__init__()
 
-        self.matches = states if states is not None else load_data()
+        # If `states` is already a list of matches (each match is a list of (mid,game_idx,state)), use it directly.
+        if states is not None and states and isinstance(states[0], list):
+            self.matches = states
+        else:
+            # group flat list of (match_id, game_idx, state) tuples into per-match episodes
+            raw_states = states if states is not None else load_data()
+            match_dict = {}
+            for mid, game_idx, st in raw_states:
+                match_dict.setdefault(mid, []).append((mid, game_idx, st))
+            self.matches = list(match_dict.values())
+
         self.raw_json = load_raw_matches()
         self.match_idx = 0
         self.round_idx = 0
@@ -32,10 +42,15 @@ class QBetEnv(gym.Env):
         # initial bankroll balance
         self.initial_balance = initial_balance
 
-        #define discrete stakes for complex_discrete, i capped them at 50 percent just for the sake of simplicity
+        #define discrete stakes for complex_discrete, capped at 50% of bankroll
         self.discrete_stakes = [0.10, 0.20, 0.30, 0.40, 0.50]
+        # dynamically infer observation_space from first round's feature vector
+        if not self.matches or not self.matches[0]:
+            raise RuntimeError("Cannot infer observation_space: no state vectors provided")
+        _, _, sample_state = self.matches[0][0]
+        feat_dim = sample_state.shape[0]
         self.observation_space = spaces.Box(
-            low=-np.inf, high=np.inf, shape=(19,), dtype=np.float32
+            low=-np.inf, high=np.inf, shape=(feat_dim,), dtype=np.float32
         )
 
         #action space setup: basic, complex_discrete, complex_continuous

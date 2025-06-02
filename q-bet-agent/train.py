@@ -35,23 +35,34 @@ def main():
         '--initial-balance', type=float, default=1000.0,
         help='Initial bankroll balance to start with'
     )
+    parser.add_argument(
+        '--feature-type', choices=['crafted', 'raw'], default='crafted',
+        help='Feature type: crafted (hand-engineered 19-dim) or raw (full 25-dim)'
+    )
     args = parser.parse_args()
     #states which options were selected
-    print(f"Using reward scheme: {args.reward_scheme}, action space: {args.action_space}")
+    print(f"Using reward scheme: {args.reward_scheme}, action space: {args.action_space}, feature type: {args.feature_type}")
     # make per-config model and log dirs
-    model_dir = f"models/{args.reward_scheme}_{args.action_space}"
+    model_dir = f"models/{args.reward_scheme}_{args.action_space}_{args.feature_type}"
     os.makedirs(model_dir, exist_ok=True)
-    log_dir = f"logs/{args.reward_scheme}_{args.action_space}"
+    log_dir = f"logs/{args.reward_scheme}_{args.action_space}_{args.feature_type}"
     os.makedirs(log_dir, exist_ok=True)
 
     #selects cuda if its present
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    #loads all the match data 
-    all_states = load_data()
+    # select feature vector type and load flat round data
+    use_raw = (args.feature_type == 'raw')
+    flat_states = load_data(raw=use_raw)  # list of (match_id, game_idx, state)
+    # group flat rounds into matches (each is a list of round-tuples)
+    match_dict = {}
+    for mid, game_idx, st in flat_states:
+        match_dict.setdefault(mid, []).append((mid, game_idx, st))
+    all_matches = list(match_dict.values())
+    # split full matches into train and test episodes
     train_states, test_states = train_test_split(
-        all_states, test_size=0.2, random_state=42, shuffle=True
+        all_matches, test_size=0.2, random_state=42, shuffle=True
     )
 
     #builds the environment with the selected states and action space
@@ -62,6 +73,8 @@ def main():
         initial_balance=args.initial_balance
     )
     print(f"Environment initialized with {len(train_states)} training states and {len(test_states)} test states.")
+    # sanity: show observation dimension and feature type
+    print(f"Using feature_type={args.feature_type}, observation dimension = {env.observation_space.shape[0]}")
 
 
     #selects the appropriate action space and state dimensions
@@ -130,7 +143,7 @@ def main():
     random.shuffle(match_indices)
 
     #establish the number of episodes, the save frequency, and the time step that we start at 
-    n_episodes   = 1000
+    n_episodes   = 3000
     save_freq    = 1000
     time_step    = 0
 
