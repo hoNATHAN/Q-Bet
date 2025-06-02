@@ -29,64 +29,64 @@
 
 ** Methodology
 *** Data Collection via Web Scraping
-- Techniques used:
-  - Python tools: requests, BeautifulSoup, Selenium
-- Ethical and practical considerations
+    - Techniques used:
+      - Python tools: requests, BeautifulSoup, Selenium
+    - Ethical and practical considerations
 
 *** Feature Engineering
-- Processing JSON match data into normalized PyTorch tensors
-- Feature selection criteria
+    - Processing JSON match data into normalized PyTorch tensors
+    - Feature selection criteria
 
 *** PPO Model & Training Procedure
-- Overview of PPO algorithm
-- Network architecture and hyperparameters
-- Training details (epochs, batch size, device)
+    - Overview of PPO algorithm
+    - Network architecture and hyperparameters
+    - Training details (epochs, batch size, device)
 
 *** Action Space Definitions
-- Simple discrete action space: [Abstain, Bet A, Bet B]
-- Extended action space with betting percentages: [0%, 5%, 10%, 25%, 50%, 100%]
+    - Simple discrete action space: [Abstain, Bet A, Bet B]
+    - Extended action space with betting percentages: [0%, 5%, 10%, 25%, 50%, 100%]
 
 *** Reward Function Exploration
-- Binary correctness: +1 correct, -1 incorrect
-- Expected Value (EV)-based reward calculation
-- Kelly criterion-based reward optimization
+  - Binary correctness: +1 correct, -1 incorrect
+  - Expected Value (EV)-based reward calculation
+  - Kelly criterion-based reward optimization
 
 ** Experiments and Results
 *** Experiment 1: Action Space Complexity
-- Performance comparison (accuracy, cumulative return)
-- Analysis of volatility and robustness
+    - Performance comparison (accuracy, cumulative return)
+    - Analysis of volatility and robustness
 
 *** Experiment 2: Reward Functions
-- Comparison between correctness, EV, and Kelly rewards
-- Impact on betting accuracy, returns, and agent learning behaviors
+    - Comparison between correctness, EV, and Kelly rewards
+    - Impact on betting accuracy, returns, and agent learning behaviors
 
 *** Metrics for Evaluation
-- Betting accuracy (% correct)
-- Cumulative returns
-- Sharpe ratio (profitability relative to risk)
+    - Betting accuracy (% correct)
+    - Cumulative returns
+    - Sharpe ratio (profitability relative to risk)
 
 ** Discussion
-- Interpretation of experimental results
-  - Optimal action space and reward function insights
-  - Limitations of PPO in betting scenarios
-- Implications for real-world esports betting
-- Ethical considerations in gambling applications
+  - Interpretation of experimental results
+    - Optimal action space and reward function insights
+    - Limitations of PPO in betting scenarios
+  - Implications for real-world esports betting
+  - Ethical considerations in gambling applications
 
 ** Conclusion
-- Summary of key insights and findings
-- Contributions of the PPO-based approach
-- Recommendations for future research directions
+  - Summary of key insights and findings
+  - Contributions of the PPO-based approach
+  - Recommendations for future research directions
 
 ** References
-- Schulman et al. (2017). [[https://arxiv.org/abs/1707.06347][Proximal Policy Optimization Algorithms]]
-- Sutton & Barto (2018). Reinforcement Learning: An Introduction.
-- Kelly, J. (1956). "A New Interpretation of Information Rate".
-- Thorp, E. O. (1969). "Optimal Gambling Systems for Favorable Games".
+  - Schulman et al. (2017). [[https://arxiv.org/abs/1707.06347][Proximal Policy Optimization Algorithms]]
+  - Sutton & Barto (2018). Reinforcement Learning: An Introduction.
+  - Kelly, J. (1956). "A New Interpretation of Information Rate".
+  - Thorp, E. O. (1969). "Optimal Gambling Systems for Favorable Games".
 
 ** Appendix (optional)
-- Example scraped data
-- Hyperparameter settings
-- Additional experimental graphs
+  - Example scraped data
+  - Hyperparameter settings
+  - Additional experimental graphs
 
 \lstdefinelanguage{json}{
 {
@@ -123,12 +123,11 @@
 
 PPO is a policy gradient reinforcement learning algorithm. PPO is inteneded to optimize the policy performance while maintaining training stability. This algorithm was developed by researchers at Open AI, introduced in 2017 by Schulman et al. as a simpler alternative to Trust Region Policy Optimization (TRPO). Unlike TRPO, which relied on complex second-order optimization, PPO uses a clipped surrogate objective that restricts policy updates to stay within a safe range. The clipping mechanism helps stabilize learning by preventing excessive policy shifts, which risk training stability. PPO is favored for its ease of implementation and sample efficiency. PPO is also noted for strong empirical performance across continuous and discrete action space.
 
-   Our project employs PPO to train a betting agent that makes decisions based on game features described above. While using strong market financial signals, we aimed to evaluate perfomance comparing against agents using various reward and action spaces.
+Our project employs PPO to train a betting agent that makes decisions based on game features described above. While using strong market financial signals, we aimed to evaluate perfomance comparing against agents using various reward and action spaces.
 
-\subsection{Model Choice}
-   For our PPO structure, we used a popular model found on \textit{GitHub} developed by Nikhil Barhate []. In their implementation, the actor-critic use a shared network structure. Initial layers of the unified neural network process input states and then split into two separate heads: one for the actor and another for the critic. This allows for both the policy and value function to share common layers, reducing redundancy and computation overhead.
+For our PPO structure, we used a popular model found on \textit{GitHub} developed by Nikhil Barhate []. In their implementation, the actor-critic use a shared network structure. Initial layers of the unified neural network process input states and then split into two separate heads: one for the actor and another for the critic. This allows for both the policy and value function to share common layers, reducing redundancy and computation overhead.
 
-   To guide policy and value function updates, the advantage function is estimated using Monte Carlor returns. For each time step in an episode, the agent computes the cumulative discounted reward based on the full trajectory. This serves as an estimate for how favorable a given state-action pair was compared to the baseline value function. While this method introduces higher variance compared to bootstrapped alternatives like Generalized Advantage Estimation (GAE), this advantage estimation provides a straightforward way to compute advantages from complete episode data. 
+To guide policy and value function updates, the advantage function is estimated using Monte Carlor returns. For each time step in an episode, the agent computes the cumulative discounted reward based on the full trajectory. This serves as an estimate for how favorable a given state-action pair was compared to the baseline value function. While this method introduces higher variance compared to bootstrapped alternatives like Generalized Advantage Estimation (GAE), this advantage estimation provides a straightforward way to compute advantages from complete episode data. 
 
 \subsection{Hyperparameters}
 Learning Rates: 
@@ -143,11 +142,11 @@ Clipping Parameter:
 
 Our project aims to evaluate multiple agent configurations by varying reward functions and action spaces. The choice of reward function plays a critical role in shaping agent behavior, as poorly designed rewards can hinder effective learning. While betting naturally lends itself to a continuous action space, allowing for flexible wager sizes, we constrain the action space to a discrete set of options for training simplicity and stability.
 
-  A basic action space is defined as a discrete space of three actions: abstaining, betting on team A, or betting on team B.
+A basic action space is defined as a discrete space of three actions: abstaining, betting on team A, or betting on team B.
 
-  A complex action space is defined as a discrete space of nine actions: abstaining, betting $\{5, 10, 25, 50\}$ percent of agent's bankroll on either team A or B
+A complex action space is defined as a discrete space of nine actions: abstaining, betting $\{5, 10, 25, 50\}$ percent of agent's bankroll on either team A or B
 
-  With two different reward functions and action spaces, our project compares the perfomance of three different agents using various combinations. These three agents are defined as so: 
+With two different reward functions and action spaces, our project compares the perfomance of three different agents using various combinations. These three agents are defined as so: 
 
 
 * Normalization
