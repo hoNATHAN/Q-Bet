@@ -151,3 +151,11 @@ Our project aims to evaluate multiple agent configurations by varying reward fun
 
 
 * Normalization
+
+An important process before sending states to our PPO input model is to normalize our findings. Feature normalization is the process of transforming input features to a common scale or range. This ensures that data with large numerical ranges do not dominate smaller ranges during training. This preprocess helps models converge faster and learn more stable representation.
+
+Finding maximum values was easy for certain game stats, as \textit{Counter-Strike 2} is heavily documented with wikis and blogs. The maximum amount of players per team in a professional match is five players \cite{cs2competitivewiki}
+
+The maximum amount a player can hold is \$16{,}000 \cite{cs2moneywiki}. 
+
+
