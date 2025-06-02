@@ -27,9 +27,22 @@ def main():
         '--action-space', choices=['basic', 'complex_discrete', 'complex_continuous'], default='basic',
         help='Action space: basic, complex_discrete (fixed fractions), or complex_continuous (any fraction in [0,1])'
     )
+    parser.add_argument(
+        '--resume', action='store_true',
+        help='If set, load the latest checkpoint from the per-config model directory before training'
+    )
+    parser.add_argument(
+        '--initial-balance', type=float, default=1000.0,
+        help='Initial bankroll balance to start with'
+    )
     args = parser.parse_args()
     #states which options were selected
     print(f"Using reward scheme: {args.reward_scheme}, action space: {args.action_space}")
+    # make per-config model and log dirs
+    model_dir = f"models/{args.reward_scheme}_{args.action_space}"
+    os.makedirs(model_dir, exist_ok=True)
+    log_dir = f"logs/{args.reward_scheme}_{args.action_space}"
+    os.makedirs(log_dir, exist_ok=True)
 
     #selects cuda if its present
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -45,7 +58,8 @@ def main():
     env = QBetEnv(
         states=train_states,
         reward_scheme=args.reward_scheme,
-        action_space_type=args.action_space
+        action_space_type=args.action_space,
+        initial_balance=args.initial_balance
     )
     print(f"Environment initialized with {len(train_states)} training states and {len(test_states)} test states.")
 
@@ -78,16 +92,20 @@ def main():
         device=device
     )
 
-    #load the pretrained model it it exists
+    #optionally resume from latest checkpoint
     agent.policy_old.to(device)
     agent.policy.to(device)
+    if args.resume:
+        resume_path = os.path.join(model_dir, 'ppo_latest.pth')
+        if os.path.isfile(resume_path):
+            agent.load(resume_path)
+            print(f"Resuming training from checkpoint: {resume_path}")
+        else:
+            print(f"No checkpoint found at {resume_path}, starting fresh.")
 
-    #make dirs for the models and the logs
-    os.makedirs("models", exist_ok=True)
-    os.makedirs("logs", exist_ok=True)
 
     #we log each step: time_step, episode, reward, cumulative_reward, balance, stake_a, stake_b, p_chosen, correct
-    stepF = open("logs/step_log.csv", "w", newline="")
+    stepF = open(f"{log_dir}/step_log.csv", "w", newline="")
     stepW = csv.writer(stepF)
     stepW.writerow([
         "time_step", "episode", "reward", "cumulative_reward",
@@ -95,7 +113,7 @@ def main():
     ])
 
     #we log each update: episode, return_mean, return_std, policy_loss, value_loss, entropy
-    updF = open("logs/update_log.csv", "w", newline="")
+    updF = open(f"{log_dir}/update_log.csv", "w", newline="")
     updW = csv.writer(updF)
     updW.writerow([
         "episode", "return_mean", "return_std",
@@ -103,7 +121,7 @@ def main():
     ])
 
     #we log each episode: episode, final_balance, cum_reward
-    epiF = open("logs/episode_log.csv", "w", newline="")
+    epiF = open(f"{log_dir}/episode_log.csv", "w", newline="")
     epiW = csv.writer(epiF)
     epiW.writerow(["episode", "final_balance", "cum_reward"])
 
@@ -112,7 +130,7 @@ def main():
     random.shuffle(match_indices)
 
     #establish the number of episodes, the save frequency, and the time step that we start at 
-    n_episodes   = 5000
+    n_episodes   = 1000
     save_freq    = 1000
     time_step    = 0
 
@@ -157,7 +175,7 @@ def main():
             ])
 
             if time_step % save_freq == 0:
-                ckpt = f"models/ppo_{time_step}.pth"
+                ckpt = f"{model_dir}/ppo_{time_step}.pth"
                 agent.save(ckpt)
                 print(f"Model saved at {ckpt}")
 
@@ -186,14 +204,16 @@ def main():
 
     agent.save("models/ppo_latest.pth")
     print("Training done")
-
-    testing(agent, test_states, device, args.reward_scheme, args.action_space)
+    # save final model per config
+    agent.save(f"{model_dir}/ppo_latest.pth")
+    
+    testing(agent, test_states, device, args.reward_scheme, args.action_space, args.initial_balance)
 
     print("\n=== Baseline Random Agent Testing ===")
     random_agent_test(test_states, device)
 
 
-def testing(agent, test_states, device, reward_scheme, action_space_type):
+def testing(agent, test_states, device, reward_scheme, action_space_type, initial_balance):
     """
     Runs the trained `agent` on each match in `test_states`,
     prints per-episode reward+balance, and overall average reward.
@@ -204,7 +224,8 @@ def testing(agent, test_states, device, reward_scheme, action_space_type):
     test_env = QBetEnv(
         states=test_states,
         reward_scheme=reward_scheme,
-        action_space_type=action_space_type
+        action_space_type=action_space_type,
+        initial_balance=initial_balance
     )
     agent.policy_old.to(device)
     total_reward = 0.0

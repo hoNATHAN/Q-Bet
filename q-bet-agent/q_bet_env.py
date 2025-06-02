@@ -16,7 +16,7 @@ class QBetEnv(gym.Env):
     """
 
     metadata = {'render.modes': []}
-    def __init__(self, states=None, reward_scheme='basic', action_space_type='basic'):
+    def __init__(self, states=None, reward_scheme='basic', action_space_type='basic', basic_fraction=1.0, initial_balance=1000.0):
         super().__init__()
 
         self.matches = states if states is not None else load_data()
@@ -27,6 +27,10 @@ class QBetEnv(gym.Env):
         #configuration flags
         self.reward_scheme = reward_scheme
         self.action_space_type = action_space_type
+        # fraction of bankroll to bet when using basic action space
+        self.basic_fraction = basic_fraction
+        # initial bankroll balance
+        self.initial_balance = initial_balance
 
         #define discrete stakes for complex_discrete, i capped them at 50 percent just for the sake of simplicity
         self.discrete_stakes = [0.10, 0.20, 0.30, 0.40, 0.50]
@@ -48,7 +52,7 @@ class QBetEnv(gym.Env):
                 low=0.0, high=1.0, shape=(2,), dtype=np.float32
             )
 
-        self.current_balance = 1000.0
+        self.current_balance = self.initial_balance
 
     def _decode_action(self, action):
         """
@@ -59,10 +63,11 @@ class QBetEnv(gym.Env):
         - If action_space_type == 'complex_continuous', `action` is a length-2 float array: [frac_a, frac_b].
         """
         if self.action_space_type == 'basic':
+            # bet a fixed fraction of bankroll on one side or abstain
             if action == 0:
-                return 1.0, 0.0   #bet all on Team A
+                return self.basic_fraction, 0.0   #bet fraction on Team A
             elif action == 1:
-                return 0.0, 1.0   #bet all on Team B
+                return 0.0, self.basic_fraction   #bet fraction on Team B
             else:
                 return 0.0, 0.0   #abstain
 
@@ -84,7 +89,7 @@ class QBetEnv(gym.Env):
         frac_a, frac_b = action
         return float(frac_a), float(frac_b)
 
-    def _basic_reward(self, action: int, outcome: int,
+    def _basic_reward(self, action: int, outcome: int, #makes no sense dont pass basic for reward
                       a_odds: float, b_odds: float) -> float:
         """
         BASIC: 
@@ -142,7 +147,7 @@ class QBetEnv(gym.Env):
             return -total_stake
 
     def reset(self, *, match_idx: int = 0):
-        self.current_balance = 1000.0
+        self.current_balance = self.initial_balance
         self.match_idx = match_idx
         self.round_idx = 0
         return self.matches[self.match_idx][0][2].cpu().numpy()
@@ -160,7 +165,7 @@ class QBetEnv(gym.Env):
 
         #lookup the winner of the game
         winner = lookup_winner(match_id, game_idx)
-
+#------------------------------------------------------------------------------------------------can be a function 
         #get the match json and round info
         mj = self.raw_json[match_id]["games"][f"game{game_idx + 1}"]
         match_rounds = self.matches[self.match_idx]
@@ -182,7 +187,7 @@ class QBetEnv(gym.Env):
                 return float(val)
             except (ValueError, TypeError):
                 return 1.0
-
+#------------------------------------------------------------------------------------------------
         #calculate the odds for team A and team B
         a_odds = _get_odds("team_a_odds")
         b_odds = _get_odds("team_b_odds")
