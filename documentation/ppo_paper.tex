@@ -6,7 +6,7 @@
 
 \usepackage{amssymb}
 \usepackage{pifont}
-\newcommand{\cmark}{\ding{51}}  % checkmark
+\newcommand{\cmark}{\ding{51}}
 
 \definecolor{background}{rgb}{0.933, 0.933, 0.933}
 \definecolor{punct}{rgb}{0.8,0.1,0.1}
@@ -55,7 +55,7 @@
   \state{PA}
   \country{USA}
 }
-\email{nlh55@drexel.edu} % replace with actual
+\email{nlh55@drexel.edu}
 
 
 \author{Alexey Kuraev}
@@ -65,7 +65,7 @@
   \state{PA}
   \country{USA}
 }
-\email{ak4249@drexel.edu} % replace with actual
+\email{ak4249@drexel.edu}
 
 \author{Matthew Protacio}
 \affiliation{%
@@ -74,7 +74,7 @@
   \state{PA}
   \country{USA}
 }
-\email{mp3634@drexel.edu} % replace with actual
+\email{mp3634@drexel.edu}
 
 
 \begin{document}
@@ -331,7 +331,7 @@ We also examined the distribution of a team's round level ROI. To visualize the 
 
 As seen in Figure 3, the distribution is highly skewed, with a small number of rounds producing extreme positive or negative values. To stabilize this feature for training, we cap ROI at the 99th percentile with an absolute value of 24.0 and apply a signed log transformation. This preserves information while compressing extreme magnitudes, improving stability and preventing outlier dominance during learning.
 
-Lasty, in order to encode the match outcome, we apply one-hot encoding to the winner label, resulting in a two-dimensional binary vector indicating whether Team A or Team B won \cite{datacamp_onehot_2023}. This representation avoids introducing ordinal bias into the model and ensures compatibility with neural network inputs."
+Lastly, in order to encode the match outcome, we apply one-hot encoding to the winner label, resulting in a two-dimensional binary vector indicating whether Team A or Team B won \cite{datacamp_onehot_2023}. This representation avoids introducing ordinal bias into the model and ensures compatibility with neural network inputs."
 
 \begin{align*}
 \text{Team A win} &\rightarrow [1,\ 0] \\
@@ -365,11 +365,11 @@ We include an additional \textit{unknown} flag to account for instances where a 
 
 \section{PPO Model Overview}
 
-PPO is a policy gradient reinforcement learning algorithm. PPO is inteneded to optimize the policy performance while maintaining training stability. This algorithm was developed by researchers at Open AI, introduced in 2017 by Schulman et al \cite{schulman2017proximalpolicyoptimizationalgorithms}. This was a simpler alternative to Trust Region Policy Optimization (TRPO).
+PPO is a policy gradient reinforcement learning algorithm. PPO is intended to optimize the policy performance while maintaining training stability. This algorithm was developed by researchers at Open AI, introduced in 2017 by Schulman et al \cite{schulman2017proximalpolicyoptimizationalgorithms}. This was a simpler alternative to Trust Region Policy Optimization (TRPO).
 
 Unlike TRPO, which relied on complex second-order optimization, PPO uses a clipped surrogate objective that restricts policy updates to stay within a safe range. The clipping mechanism helps stabilize learning by preventing excessive policy shifts, which risk training stability. PPO is favored for its ease of implementation and sample efficiency. PPO is also noted for strong empirical performance across continuous and discrete action space \cite{schulman2017proximalpolicyoptimizationalgorithms}.
 
-Our project employs PPO to train a betting agent that makes decisions based on game features described above. While using strong market financial signals, we aimed to evaluate perfomance comparing against agents using various reward and action spaces.
+Our project employs PPO to train a betting agent that makes decisions based on game features described above. While using strong market financial signals, we aimed to evaluate perfomance compared against agents using various reward and action spaces.
 
 \subsection{Model Choice}
 
@@ -528,11 +528,33 @@ We also benchmarked an agent that used a complex reward function and used a cont
 \bigskip
 \section{Experiments and Results}
 
-To evaluate the training progress and behavior of our reinforcement learning agent, we log and visualize several key metrics throughout the training process. Figure~\ref{fig:training_metrics} summarizes these insights.
+To evaluate the training progress and behavior of our reinforcement learning agent, we log and visualize several key metrics throughout the training process.
 
 \bigskip
 
-The \textbf{Cumulative Reward} graph illustrates the total reward accumulated by the agent over time, providing a high-level view of learning progression. 
+For the following graphs, we denote the agents as such:
+
+\begin{table}[h]
+  \centering
+  \caption{Agent Legend Mapping}
+  \begin{tabular}{cl}
+    \toprule
+    \textbf{Agent} & \textbf{Legend Label} \\
+    \midrule
+    Agent\,0 & Binary Basic (Raw) \\
+    Agent\,1 & Binary Basic (Crafted) \\
+    Agent\,2 & Complex Discrete (Raw) \\
+    Agent\,3 & Complex Discrete (Crafted) \\
+    Agent\,4 & Complex Continuous (Crafted) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\bigskip
+
+\bigskip
+
+The \textbf{Cumulative Reward} graph illustrates the total reward accumulated by the agent over time, providing a high-level view of learning progression.
 
 \begin{figure*}[t]
   \centering
@@ -550,7 +572,7 @@ Early in training (up to roughly 20,000 steps), all agents begin near zero; the 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{cumulative_reward_all_testing.pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Cumulative reward during the testing phase (all agents).}
   \label{fig:cumulative_reward_all_testing}
 \end{figure*}
 
@@ -610,41 +632,39 @@ The return‐distribution histograms show that agents with crafted features have
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{return_distribution_Binary Basic (Raw).pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Distribution of episode returns for the Binary Basic (Raw) agent.}
   \label{fig:return_distribution_Binary Basic (Raw)}
 \end{figure*}
 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{return_distribution_Binary Basic (Crafted).pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Distribution of episode returns for the Binary Basic (Crafted) agent.}
   \label{fig:return_distribution_Binary Basic (Crafted)}
 \end{figure*}
-
 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{return_distribution_Complex Continuous (Crafted).pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Distribution of episode returns for the Complex Continuous (Crafted) agent.}
   \label{fig:return_distribution_Complex Continuous (Crafted)}
 \end{figure*}
-
 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{return_distribution_Complex Discrete (Crafted).pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Distribution of episode returns for the Complex Discrete (Crafted) agent.}
   \label{fig:return_distribution_Complex Discrete (Crafted)}
 \end{figure*}
 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{return_distribution_Complex Discrete (Raw).pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Distribution of episode returns for the Complex Discrete (Raw) agent.}
   \label{fig:return_distribution_Complex Discrete (Raw)}
 \end{figure*}
 
-The \textbf{Bankroll} graph models the agent's financial trajectory over time, analogous to profit/loss curves in real-world trading or betting scenarios. A sustained upward trend indicates successful policy learning. 
+The \textbf{Bankroll} graph models the agent's financial trajectory over time, analogous to profit/loss curves in real-world trading or betting scenarios. A sustained upward trend indicates successful policy learning. Training is Figure~\ref{bankroll_all_training} and testing is Figure~\ref{bankroll_all_testing}.
 
 \bigskip
 
@@ -655,36 +675,38 @@ Agents using crafted features exhibit steadier and higher bankroll growth than t
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{bankroll_all_training.pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Bankroll growth over the training phase for all agents.}
   \label{fig:bankroll_all_training}
 \end{figure*}
 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{bankroll_all_testing.pdf}
-  \caption{Cumulative reward during the training phase (all agents).}
+  \caption{Bankroll growth over the testing phase for all agents.}
   \label{fig:bankroll_all_testing}
 \end{figure*}
 
 Finally, the \textbf{Probability Calibration} graph compares the agent's predicted win probabilities against actual outcomes. Deviations from the diagonal reflect confidence misalignment—where curves above the diagonal indicate underconfidence, and below indicate overconfidence.
 
-\begin{figure}[ht]
+\bigskip
+
+Figure~\ref{fig:probability_distribution_all} compares predicted win probabilities against empirical accuracies for all five agents. Both \emph{Binary Basic (Crafted)} and \emph{Binary Basic (Raw)} lie almost exactly on the diagonal, indicating near‐perfect calibration at both 0.0 and 1.0 predicted probabilities. The \emph{Complex Discrete (Crafted)} agent’s points also cluster tightly around the diagonal (predictions at 0.05, 0.15, and 0.40 correspond to empirical accuracies near 1.0), suggesting well‐aligned confidence estimates. In contrast, \emph{Complex Discrete (Raw)} deviates substantially: a 0.10 predicted probability yields only ~0.65 accuracy, and 0.18 yields ~0.50, reflecting marked overconfidence. Finally, \emph{Complex Continuous (Crafted)} almost exclusively predicts 0.0, with empirical accuracy likewise at 0.0—indicating systematic underconfidence. Overall, engineered discrete‐reward agents achieve the closest alignment with perfect calibration, whereas raw and continuous‐reward agents exhibit significant miscalibration :contentReference[oaicite:2]{index=2}.
+
+\bigskip
+
+\begin{figure*}[t]
   \centering
-  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
-  \caption{Key training metrics tracked during agent development.}
-  \label{fig:training_metrics}
-\end{figure}
+  \includegraphics[width=\textwidth]{probability_distribution_all.pdf}
+  \caption{}
+  \label{fig:probability_distribution_all}
+\end{figure*}
 
 
 \section{Discussion}
 
-\subsection{Interpretation of Experimental Results}
-
-Our interpretation is.
-
 \subsection{Limitations of PPO in Betting Scenarios}
 
-While PPO has proven effective in continuous control tasks, its application to sports betting context presents several challenges. Firstly, PPO assumes a relatively stable reward structure and a Markovian environment \cite{schulman2017ppo}. However, betting markets, especially in esports, are inherently non-stationary. Odds inevitably flunctuate rapidly based on real-time information. This can happen for various reasons, such as roster changes, game patch updates, and meta shifts. Consequently, the agent's policy is subject to deprecation between training iterations in a long term scope. Thus, without proper updates to the data and tweaks, we can expect suboptimal wagering decisions. Second, PPO's on policy nature requires fresh interaction with data for each update, which can be costly in real-money betting environments.
+While PPO has proven effective in continuous control tasks, its application to sports betting context presents several challenges. Firstly, PPO assumes a relatively stable reward structure and a Markovian environment \cite{schulman2017proximalpolicyoptimizationalgorithms}. However, betting markets, especially in esports, are inherently non-stationary. Odds inevitably flunctuate rapidly based on real-time information. This can happen for various reasons, such as roster changes, game patch updates, and meta shifts. Consequently, the agent's policy is subject to deprecation between training iterations in a long term scope. Thus, without proper updates to the data and tweaks, we can expect suboptimal wagering decisions. Second, PPO's on policy nature requires fresh interaction with data for each update, which can be costly in real-money betting environments.
 
 Gathering sufficiently diverse episodes without incurring large financial risk is difficult. Synthetic or simulated data may lack accurate reflection of live market dynamics \cite{jansen2020rlbetting}. PPO's gradient based update rules can struggle with extremely sparse or high variance rewards, which are common in moneyline wagers where large payouts occur infrequently. This leads to unstable convergence or premature policy oscillations. 
 
@@ -698,17 +720,13 @@ Additionally, betting exchanges often adjust odds dynamically to balance their b
 
 Applying reinforcement learning to gambling raises important ethical questions. Automated agents could exploit gambling by enabling high-frequency wagering without human friction or emotional checks \cite{king2019ethics}. There is a risk that users might become over-confident on “black box” strategies, obscuring the inherent house edge and leading to financial harm.
 
-Deploying such agents in live markets could unintentionally facilitate predatory practices, such as match-fixing or exploitation of retail bettors. It is therefore crucial to incorporate ethical guardrails. Agents should incorporate maximum bet limits, mandatory “cool-off” periods, and transparent performance reporting before any real-money implementation. Researchers and practitioners should collaborate with regulatory bodies and gambling organizations to ensure that reinforcement learning based betting systems enhance consumer welfare rather than undermine,.
+Deploying such agents in live markets could unintentionally facilitate predatory practices, such as match-fixing or exploitation of retail bettors. It is therefore crucial to incorporate ethical guardrails. Agents should incorporate maximum bet limits, mandatory “cool-off” periods, and transparent performance reporting before any real-money implementation. Researchers and practitioners should collaborate with regulatory bodies and gambling organizations to ensure that reinforcement learning based betting systems enhance consumer welfare rather than undermine.
 
 \section{Conclusion}
 
-In this work, we explored the application of Proximal Policy Optimization (PPO) to the task of moneyline betting in professional Counter‐Strike 2. By incorporating a variety of economic and market‐derived features—such as delta economy, return on investment (ROI), implied probabilities, expected value, and Kelly Criterion—we demonstrated that an agent can learn wagering strategies that outperform baseline approaches relying solely on raw game statistics. Our results show that including sophisticated market signals leads to more stable training, improved calibration of win probabilities, and higher cumulative returns over simulated matches.
+This study applies Proximal Policy Optimization (PPO) to moneyline betting in Counter-Strike 2 and shows that integrating economic and market-derived features significantly improves agent performance. Agents augmented with delta economy, return on investment, implied probabilities, and buy-type indicators converge more quickly, exhibit lower variance in policy and value losses, and achieve consistently higher cumulative rewards and bankroll growth compared to agents relying solely on raw game statistics. Crafted feature vectors also yield better-calibrated win probabilities and tighter return distributions, confirming the value of financial signals in esports wagering.
 
-Despite these positive findings, several challenges remain. PPO’s reliance on fresh on‐policy data can be restrictive in real‐money settings, and the volatility of esports odds introduces non‐stationary that can degrade policy performance if not continually updated. Furthermore, our omission of overtime rounds and the simplified treatment of transaction costs limit direct applicability in live betting environments. Addressing these gaps—by incorporating real‐time odds updates, modeling fees and limits, and extending the dataset to include overtime—represents a clear direction for future work.
-
-Finally, we note the ethical responsibility inherent in deploying automated betting agents. Without appropriate safeguards, systems that exploit fleeting market inefficiencies risk facilitating problem gambling or unfair practices. In future research, we plan to investigate built‐in risk controls, such as dynamic bet size limits and mandatory cooldown intervals, to ensure that any real‐world implementation promotes responsible use.
-
-Overall, our study provides evidence that reinforcement learning can offer novel insights into esports betting, but careful consideration of practical constraints and ethical implications is essential for any transition from simulation to live deployment.
+Practical limitations remain: PPO’s on-policy updates demand fresh data in a dynamic betting market, and our simulation omits real-time odds updates, transaction fees, and overtime rounds. Addressing these gaps by incorporating dynamic odds, modeling fees, regulatory constraints, and extending to alternative learning methods can constitute clear future work. Ethical guardrails, such as bet limits and mandatory cooldowns, are essential to ensure responsible deployment. Overall, these results establish a foundation for applying reinforcement learning to esports betting while highlighting key considerations for live implementation.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
