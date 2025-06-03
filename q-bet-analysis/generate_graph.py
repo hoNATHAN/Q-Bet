@@ -13,32 +13,67 @@ import argparse
 
 os.makedirs("graphs", exist_ok=True)
 
-def cumulative_reward_graph(csv_file, agent_type):
+def cumulative_reward_graph():
     """
-    Creates a graph that shows Cumulative Rewards over time
-
-    Parameters:
-        csv_file: String of full path of csv file that has the rows: ["time_step", "episode", "reward", "cumulative_reward", "balance", "p_chosen", "correct"]
-        agent_type: String of agent type
+    Creates a graph that shows Normalized Cumulative Rewards over time for multiple agents.
     """
-    csv_df = pd.read_csv(csv_file)
+    # Map descriptive labels to file paths
+    training_csv_files = {
+        "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/step_log.csv",
+        "Binary Basic (Raw)": "../q-bet-agent/logs/binary_basic_raw/step_log.csv",
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/step_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/step_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/step_log.csv",
+    }
 
-    # Uncomment this if csv is printed every time_step
-    #cum_rewards = csv_df.groupby("episode")["reward"].mean().reset_index()
-    #time_type = "Episodes"
-    #plt.plot(cum_rewards["episode"], cum_rewards["average_reward"], marker='o')
+    plt.figure(figsize=(12, 7))
 
-    # Uncomment this if csv is printed every timestep
-    #time_type = "Time Step"
-    #plt.plot(cum_rewards["time_step"], cum_rewards["average_reward"], marker='o')
+    for label, path in training_csv_files.items():
+        if not os.path.exists(path):
+            print(f"[Warning] File not found: {path}")
+            continue
 
-    plt.figure(figsize=(10,6))
-    plt.title(f"Cumulative Reward vs. {time_type}: Agent {agent_type}")
-    plt.xlabel(time_type)
-    plt.ylabel("Cumulative Reward")
+        df = pd.read_csv(path)
+        rewards = df["cumulative_reward"]
+        normalized = (rewards - rewards.mean()) / rewards.std()
+        plt.plot(df["time_step"], normalized, label=label)
+
+    plt.title("Normalized Cumulative Reward vs. Time Step (All Agents) Training")
+    plt.xlabel("Time Step")
+    plt.ylabel("Normalized Cumulative Reward")
     plt.grid(True)
+    plt.legend()
     plt.tight_layout()
-    plt.savefig(f"graphs/cumulative_reward_{agent_type}.png")
+    plt.savefig("graphs/cumulative_reward_all_training.pdf", bbox_inches="tight")
+    plt.close()
+
+    testing_csv_files = {
+        "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/test_log.csv",
+        "Binary Basic (Raw)": "../q-bet-agent/logs/binary_basic_raw/test_log.csv",
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/test_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/test_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/test_log.csv",
+    }
+
+    plt.figure(figsize=(12, 7))
+
+    for label, path in testing_csv_files.items():
+        if not os.path.exists(path):
+            print(f"[Warning] File not found: {path}")
+            continue
+
+        df = pd.read_csv(path)
+        rewards = df["cumulative_reward"]
+        normalized = (rewards - rewards.mean()) / rewards.std()
+        plt.plot(df["episode"], normalized, label=label)
+
+    plt.title("Normalized Cumulative Reward vs. Episode (All Agents) Testing")
+    plt.xlabel("Episode")
+    plt.ylabel("Normalized Cumulative Reward")
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig("graphs/cumulative_reward_all_testing.pdf", bbox_inches="tight")
     plt.close()
 
 def policy_value_loss_graph(csv_file, agent_type):
@@ -60,7 +95,7 @@ def policy_value_loss_graph(csv_file, agent_type):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f"graphs/policy_value_loss_{agent_type}.png")
+    plt.savefig(f"graphs/policy_value_loss_{agent_type}.pdf", bbox_inches="tight")
     plt.close()
 
 def return_distribution_graph(csv_file, agent_type):
@@ -74,36 +109,74 @@ def return_distribution_graph(csv_file, agent_type):
     csv_df = pd.read_csv(csv_file)
 
     plt.figure(figsize=(10,6))
-    plt.plot(csv_df["cumulative_reward"], bins=30, edgecolor='black')
+    plt.hist(csv_df["cumulative_reward"], bins=30, edgecolor='black')
     plt.title(f"Return Distribution (per Episode): Agent {agent_type}")
     plt.xlabel("Cumulative Reward")
     plt.ylabel("Frequency")
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f"graphs/return_distribution_{agent_type}.png")
+    plt.savefig(f"graphs/return_distribution_{agent_type}.pdf", bbox_inches="tight")
     plt.close()
 
-def bankroll_graph(csv_file, agent_type):
+def bankroll_graph():
     """
-    Creates a graph that shows bankroll over time
+    Creates a graph that shows bankroll over time (EPISODE)
 
     Parameters:
         csv_file: String of full path of csv file that has the rows: ["time_step", "episode", "reward", "cumulative_reward", "balance", "p_chosen", "correct"]
         agent_type: String of agent type
     """
-    csv_df = pd.read_csv(csv_file)
+    training_csv_files = {
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/step_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/step_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/step_log.csv",
+    }
 
-    plt.figure(figsize=(10,6))
-    plt.plot(csv_df["time_step"], csv_df["balance"])
-    plt.title(f"Bankroll Over Time: Agent {agent_type}")
+    plt.figure(figsize=(12, 7))
+
+    for label, path in training_csv_files.items():
+        if not os.path.exists(path):
+            print(f"[Warning] File not found: {path}")
+            continue
+
+        df = pd.read_csv(path)
+        plt.plot(df["time_step"], df["balance"], label=label)
+
+    plt.title("Bankroll Over Time (All Agents) Training")
     plt.xlabel("Time Step")
     plt.ylabel("Balance")
     plt.grid(True)
+    plt.legend()
     plt.tight_layout()
-    plt.savefig(f"graphs/bankroll_{agent_type}.png")
+    plt.savefig("graphs/bankroll_all_training.pdf", bbox_inches="tight")
     plt.close()
 
-def prob_calibration_graph(csv_file, agent_type):
+    testing_csv_files = {
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/test_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/test_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/test_log.csv",
+    }
+
+    plt.figure(figsize=(12, 7))
+
+    for label, path in testing_csv_files.items():
+        if not os.path.exists(path):
+            print(f"[Warning] File not found: {path}")
+            continue
+
+        df = pd.read_csv(path)
+        plt.plot(df["episode"], df["balance"], label=label)
+
+    plt.title("Bankroll Over Time (All Agents) Testing")
+    plt.xlabel("Episode")
+    plt.ylabel("Balance")
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig("graphs/bankroll_all_testing.pdf", bbox_inches="tight")
+    plt.close()
+
+def prob_calibration_graph():
     """
     Creates a probability calibration graph
 
@@ -121,17 +194,54 @@ def prob_calibration_graph(csv_file, agent_type):
     plt.figure(figsize=(10,6))
     plt.plot(prob_pred, prob_true, marker='o', label='Agent Calibration')
     plt.plot([0, 1], [0, 1], linestyle='--', label='Perfect Calibration')
-    plt.title(f"Probability Calibration Plot: Agent {agent_type}")
+    plt.title(f"Probability Calibration Plot")
     plt.xlabel("Predicted Probability")
     plt.ylabel("Empirical Accuracy")
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f"graphs/probability_distribution_{agent_type}.png")
+    plt.savefig(f"graphs/probability_distribution_all.pdf", bbox_inches="tight")
     plt.close()
 
 
 if __name__ == ("__main__"):
+    training_csv_files = {
+        "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/step_log.csv",
+        "Binary Basic (Raw)": "../q-bet-agent/logs/binary_basic_raw/step_log.csv",
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/step_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/step_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/step_log.csv",
+    }
+    testing_csv_files = {
+        "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/test_log.csv",
+        "Binary Basic (Raw)": "../q-bet-agent/logs/binary_basic_raw/test_log.csv",
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/test_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/test_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/test_log.csv",
+    }
+    cumulative_reward_graph():
+
+    for label, path in training_csv_files.items():
+        if not os.path.exists(path):
+            print(f"[Warning] File not found: {path}")
+            continue
+        policy_value_loss_graph(path, label):
+
+    for label, path in testing_csv_files.items():
+        if not os.path.exists(path):
+            print(f"[Warning] File not found: {path}")
+            continue
+        return_distribution_graph(path, label):
+
+    bankroll_graph():
+
+    for label, path in testing_csv_files.items():
+        if not os.path.exists(path):
+            print(f"[Warning] File not found: {path}")
+            continue
+        prob_calibration_graph(path, label):
+        
+    '''
     parser = argparse.ArgumentParser(description="Generate graphs from agent logs.")
     parser.add_argument("--csv_path", type=str, help="Path to the CSV files")
     parser.add_argument("--agent_type", type=str, help="Type/name of the agent")
@@ -151,3 +261,4 @@ if __name__ == ("__main__"):
     return_distribution_graph(episode_log_file, agent_type)
     bankroll_graph(step_log_file, agent_type)
     prob_calibration_graph(step_log_file, agent_type)
+    '''
