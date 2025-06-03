@@ -116,9 +116,9 @@ class QBetEnv(gym.Env):
           -1 if you bet incorrectly,
           0 if you abstained.
         """
-        total_stake = stake_a + stake_b
-        if total_stake == 0.0:
+        if action == 2:
             return 0.0
+        # bet A or B
         chosen = 0 if stake_a > stake_b else 1
         return 1.0 if chosen == outcome else -1.0
 
