@@ -87,10 +87,10 @@ def policy_value_loss_graph(csv_file, agent_type):
     csv_df = pd.read_csv(csv_file)
 
     plt.figure(figsize=(10,6))
-    plt.plot(csv_df["time_step"], csv_df["policy_loss"], label="Policy Loss")
-    plt.plot(csv_df["time_step"], csv_df["value_loss"], label="Value Loss")
-    plt.title(f"Cumulative Reward vs. Time Step: Agent {agent_type}")
-    plt.xlabel("Time Step")
+    plt.plot(csv_df["episode"], csv_df["policy_loss"], label="Policy Loss")
+    plt.plot(csv_df["episode"], csv_df["value_loss"], label="Value Loss")
+    plt.title(f"Policy and Value Loss vs. Episode: Agent {agent_type}")
+    plt.xlabel("Episode")
     plt.ylabel("Policy and Value Loss Over Time")
     plt.legend()
     plt.grid(True)
@@ -178,39 +178,56 @@ def bankroll_graph():
 
 def prob_calibration_graph():
     """
-    Creates a probability calibration graph
-
-    Parameters:
-        csv_file: String of full path of csv file that has the rows: ["time_step", "episode", "reward", "cumulative_reward", "balance", "p_chosen", "correct"]
-        agent_type: String of agent type
+    Creates a probability calibration graph for multiple agents.
+    Each agent's calibration curve is plotted on the same figure.
     """
-    csv_df = pd.read_csv(csv_file)
+    testing_csv_files = {
+        "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/test_log.csv",
+        "Binary Basic (Raw)": "../q-bet-agent/logs/binary_basic_raw/test_log.csv",
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/test_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/test_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/test_log.csv",
+    }
 
-    y_true = csv_df["correct"]
-    y_prob = csv_df["p_chosen"]
+    plt.figure(figsize=(10, 6))
 
-    prob_true, prob_pred = calibration_curve(y_true, y_prob, n_bins=10, strategy='uniform')
+    for label, path in testing_csv_files.items():
+        if not os.path.exists(path):
+            print(f"File not found: {path}")
+            continue
 
-    plt.figure(figsize=(10,6))
-    plt.plot(prob_pred, prob_true, marker='o', label='Agent Calibration')
-    plt.plot([0, 1], [0, 1], linestyle='--', label='Perfect Calibration')
-    plt.title(f"Probability Calibration Plot")
+        csv_df = pd.read_csv(path)
+
+        # Ensure required columns are present
+        if "p_chosen" not in csv_df.columns or "correct" not in csv_df.columns:
+            print(f"Missing required columns in: {path}")
+            continue
+
+        y_true = csv_df["correct"]
+        y_prob = csv_df["p_chosen"]
+
+        prob_true, prob_pred = calibration_curve(y_true, y_prob, n_bins=10, strategy='uniform')
+
+        plt.plot(prob_pred, prob_true, marker='o', label=label)
+
+    plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Perfect Calibration')
+    plt.title("Probability Calibration Plot")
     plt.xlabel("Predicted Probability")
     plt.ylabel("Empirical Accuracy")
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f"graphs/probability_distribution_all.pdf", bbox_inches="tight")
+    plt.savefig("graphs/probability_distribution_all.pdf", bbox_inches="tight")
     plt.close()
 
-
 if __name__ == ("__main__"):
-    training_csv_files = {
-        "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/step_log.csv",
-        "Binary Basic (Raw)": "../q-bet-agent/logs/binary_basic_raw/step_log.csv",
-        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/step_log.csv",
-        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/step_log.csv",
-        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/step_log.csv",
+    # define update logs for policy/value loss
+    update_csv_files = {
+        "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/update_log.csv",
+        "Binary Basic (Raw)": "../q-bet-agent/logs/binary_basic_raw/update_log.csv",
+        "Complex Discrete (Crafted)": "../q-bet-agent/logs/complex_complex_discrete_crafted/update_log.csv",
+        "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/update_log.csv",
+        "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/update_log.csv",
     }
     testing_csv_files = {
         "Binary Basic (Crafted)": "../q-bet-agent/logs/binary_basic_crafted/test_log.csv",
@@ -219,27 +236,24 @@ if __name__ == ("__main__"):
         "Complex Discrete (Raw)": "../q-bet-agent/logs/complex_complex_discrete_raw/test_log.csv",
         "Complex Continuous (Crafted)": "../q-bet-agent/logs/complex_complex_continuous_crafted/test_log.csv",
     }
-    cumulative_reward_graph():
+    cumulative_reward_graph()
 
-    for label, path in training_csv_files.items():
+    for label, path in update_csv_files.items():
         if not os.path.exists(path):
             print(f"[Warning] File not found: {path}")
             continue
-        policy_value_loss_graph(path, label):
-
+        policy_value_loss_graph(path, label)
+    
     for label, path in testing_csv_files.items():
         if not os.path.exists(path):
             print(f"[Warning] File not found: {path}")
             continue
-        return_distribution_graph(path, label):
 
-    bankroll_graph():
+        print(path)
+        return_distribution_graph(path, label)
 
-    for label, path in testing_csv_files.items():
-        if not os.path.exists(path):
-            print(f"[Warning] File not found: {path}")
-            continue
-        prob_calibration_graph(path, label):
+    bankroll_graph()
+    prob_calibration_graph()
         
     '''
     parser = argparse.ArgumentParser(description="Generate graphs from agent logs.")

@@ -34,8 +34,11 @@ class QBetEnv(gym.Env):
 
         #define discrete stakes for complex_discrete, i capped them at 50 percent just for the sake of simplicity
         self.discrete_stakes = [0.10, 0.20, 0.30, 0.40, 0.50]
+        # dynamically infer observation_space from the first state's feature dimension
+        _, _, sample_state = self.matches[0][0]
+        feat_dim = sample_state.shape[0]
         self.observation_space = spaces.Box(
-            low=-np.inf, high=np.inf, shape=(19,), dtype=np.float32
+            low=-np.inf, high=np.inf, shape=(feat_dim,), dtype=np.float32
         )
 
         #action space setup: basic, complex_discrete, complex_continuous
@@ -113,9 +116,9 @@ class QBetEnv(gym.Env):
           -1 if you bet incorrectly,
           0 if you abstained.
         """
-        total_stake = stake_a + stake_b
-        if total_stake == 0.0:
+        if action == 2:
             return 0.0
+        # bet A or B
         chosen = 0 if stake_a > stake_b else 1
         return 1.0 if chosen == outcome else -1.0
 

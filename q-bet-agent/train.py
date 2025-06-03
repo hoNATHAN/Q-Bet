@@ -35,23 +35,28 @@ def main():
         '--initial-balance', type=float, default=1000.0,
         help='Initial bankroll balance to start with'
     )
+    parser.add_argument(
+        '--feature-type', choices=['crafted', 'raw'], default='crafted',
+        help='Feature vector type: crafted (engineered) or raw (full raw features)'
+    )
     args = parser.parse_args()
     #states which options were selected
-    print(f"Using reward scheme: {args.reward_scheme}, action space: {args.action_space}")
+    print(f"Using reward scheme: {args.reward_scheme}, action space: {args.action_space}, feature type: {args.feature_type}")
     # make per-config model and log dirs
-    model_dir = f"models/{args.reward_scheme}_{args.action_space}"
+    model_dir = f"models/{args.reward_scheme}_{args.action_space}_{args.feature_type}"
     os.makedirs(model_dir, exist_ok=True)
-    log_dir = f"logs/{args.reward_scheme}_{args.action_space}"
+    log_dir = f"logs/{args.reward_scheme}_{args.action_space}_{args.feature_type}"
     os.makedirs(log_dir, exist_ok=True)
 
     #selects cuda if its present
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    #loads all the match data 
-    all_states = load_data()
+    # select feature vector and load match-level data
+    use_raw = (args.feature_type == 'raw')
+    all_matches = load_data(raw=use_raw)   # now returns List[List[(mid,game_idx,feat)]]
     train_states, test_states = train_test_split(
-        all_states, test_size=0.2, random_state=42, shuffle=True
+        all_matches, test_size=0.2, random_state=42, shuffle=True
     )
 
     #builds the environment with the selected states and action space
@@ -130,7 +135,7 @@ def main():
     random.shuffle(match_indices)
 
     #establish the number of episodes, the save frequency, and the time step that we start at 
-    n_episodes   = 1000
+    n_episodes   = 7000
     save_freq    = 1000
     time_step    = 0
 
@@ -207,17 +212,22 @@ def main():
     # save final model per config
     agent.save(f"{model_dir}/ppo_latest.pth")
     
-    testing(agent, test_states, device, args.reward_scheme, args.action_space, args.initial_balance)
+    # run testing and log results
+    testing(agent, test_states, device, args.reward_scheme, args.action_space, args.initial_balance, log_dir)
 
     print("\n=== Baseline Random Agent Testing ===")
-    random_agent_test(test_states, device)
+    random_agent_test(test_states, device, log_dir)
 
 
-def testing(agent, test_states, device, reward_scheme, action_space_type, initial_balance):
+def testing(agent, test_states, device, reward_scheme, action_space_type, initial_balance, log_dir):
     """
     Runs the trained `agent` on each match in `test_states`,
     prints per-episode reward+balance, and overall average reward.
     """
+    # open test log file
+    testF = open(f"{log_dir}/test_log.csv", "w", newline="")
+    testW = csv.writer(testF)
+    testW.writerow(["episode", "reward", "cumulative_reward", "balance", "status"])
     print("\n" + "="*60)
     print("BEGIN TESTING")
 
@@ -229,6 +239,7 @@ def testing(agent, test_states, device, reward_scheme, action_space_type, initia
     )
     agent.policy_old.to(device)
     total_reward = 0.0
+    total_balance = 0.0
 
     for ep, _ in enumerate(test_states, start=1):
         obs = test_env.reset()
@@ -237,23 +248,35 @@ def testing(agent, test_states, device, reward_scheme, action_space_type, initia
 
         while not done:
             with torch.no_grad():
-                action = agent.select_action(obs)
+                    action = agent.select_action(obs)
+        
             obs, reward, done, info = test_env.step(action)
             ep_reward += reward
+            total_balance += info.get('balance', 0.0)
 
+        # successful completion
         total_reward += ep_reward
+        total_balance += info.get('balance', 0.0)
         print(f"[Test Ep {ep:3d}] Reward: {ep_reward:7.2f}  Balance: {info['balance']:7.2f}")
         agent.buffer.clear()
+        testW.writerow([ep, f"{ep_reward:.2f}", f"{total_reward:.2f}", f"{info.get('balance', 0.0):.2f}", 'success'])
 
     avg_reward = total_reward / max(len(test_states), 1)
+    avg_balance = total_balance / max(len(test_states), 1)
     print(f"\nAverage Test Reward over {len(test_states)} episodes: {avg_reward:.2f}")
+    testW.writerow(['average', f"{avg_reward:.2f}", '', f"{avg_balance:.2f}", ''])
+    testF.close()
     print("END TESTING")
 
 
-def random_agent_test(test_states, device):
+def random_agent_test(test_states, device, log_dir):
     """
     Tests a random agent that selects actions uniformly for baseline comparison.
     """
+    # open random baseline log file
+    randomF = open(f"{log_dir}/random_log.csv", "w", newline="")
+    randomW = csv.writer(randomF)
+    randomW.writerow(["episode", "reward", "balance"])
     print("\n" + "="*60)
     print("BEGIN RANDOM BASELINE TESTING")
 
@@ -274,11 +297,14 @@ def random_agent_test(test_states, device):
         total_reward += ep_reward
         total_balance += info.get('balance', 0.0)
         print(f"[Random Ep {ep:3d}] Reward: {ep_reward:7.2f}  Balance: {info.get('balance'):7.2f}")
+        randomW.writerow([ep, f"{ep_reward:.2f}", f"{info.get('balance', 0.0):.2f}"])
 
     avg_reward = total_reward / max(len(test_states), 1)
     avg_balance = total_balance / max(len(test_states), 1)
     print(f"\nAverage Random Reward over {len(test_states)} episodes: {avg_reward:.2f}")
     print(f"Average Random Final Balance: {avg_balance:.2f}")
+    randomW.writerow(['average', f"{avg_reward:.2f}", f"{avg_balance:.2f}"])
+    randomF.close()
     print("END RANDOM BASELINE TESTING")
 
 

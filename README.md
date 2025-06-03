@@ -48,7 +48,23 @@ To run the website
 
 # TODO write instructions to run agent
 
-To run the agent
+To train the RL betting agent, navigate to the `q-bet-agent` directory and run:
+  ```pwsh
+  cd q-bet-agent
+  python train.py \
+    --reward-scheme <binary|complex> \
+    --action-space <basic|complex_discrete|complex_continuous> \
+    --feature-type <crafted|raw> \
+    [--initial-balance <float>] \
+    [--resume]
+  ```
+
+  Flags:
+  - `--reward-scheme`: Reward function to use (`basic`, `binary`, or `complex`).
+  - `--action-space`: Action space type (`basic`, `complex_discrete`, or `complex_continuous`).
+  - `--feature-type`: Feature vectors (`crafted` or `raw`).
+  - `--initial-balance`: Starting bankroll (default: `1000.0`).
+  - `--resume`: Resume training from the latest checkpoint.
 
 # TODO write instructions to run web scraper
 
