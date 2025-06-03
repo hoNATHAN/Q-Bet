@@ -46,8 +46,6 @@ To run the agent
 cd into q-bet-agent
 To train and test, run python train.py --reward_scheme ['basic', 'binary', 'complex'] --action-space ['basic', 'complex_discrete', 'complex_continuous'] --resume --initial_balance float --feature-type ['crafted', 'raw']
 
-# TODO write instructions to run web scraper
-
 To run the web scraper
 cd into q-bet-scraper
 run python scrape.py
