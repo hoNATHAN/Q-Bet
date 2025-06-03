@@ -193,22 +193,41 @@ def prob_calibration_graph():
 
     for label, path in testing_csv_files.items():
         if not os.path.exists(path):
-            print(f"File not found: {path}")
+            print(f"[Warning] File not found: {path}")
             continue
 
-        csv_df = pd.read_csv(path)
+        df = pd.read_csv(path)
 
         # Ensure required columns are present
-        if "p_chosen" not in csv_df.columns or "correct" not in csv_df.columns:
-            print(f"Missing required columns in: {path}")
+        if "p_chosen" not in df.columns or "correct" not in df.columns:
+            print(f"[Warning] Missing required columns in: {path}")
             continue
 
-        y_true = csv_df["correct"]
-        y_prob = csv_df["p_chosen"]
+        # Drop rows with missing values
+        df = df.dropna(subset=["correct", "p_chosen"])
 
-        prob_true, prob_pred = calibration_curve(y_true, y_prob, n_bins=10, strategy='uniform')
+        # Convert to numeric and ensure binary targets
+        try:
+            df["correct"] = df["correct"].astype(int)
+            df["p_chosen"] = df["p_chosen"].astype(float)
+        except ValueError:
+            print(f"[Warning] Unable to convert data types in: {path}")
+            continue
 
-        plt.plot(prob_pred, prob_true, marker='o', label=label)
+        # Filter for valid binary labels
+        df = df[df["correct"].isin([0, 1])]
+        if df.empty:
+            print(f"[Warning] No valid binary labels in: {path}")
+            continue
+
+        y_true = df["correct"]
+        y_prob = df["p_chosen"]
+
+        try:
+            prob_true, prob_pred = calibration_curve(y_true, y_prob, n_bins=10, strategy='uniform')
+            plt.plot(prob_pred, prob_true, marker='o', label=label)
+        except Exception as e:
+            print(f"[Warning] Could not compute calibration for {label}: {e}")
 
     plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Perfect Calibration')
     plt.title("Probability Calibration Plot")
@@ -219,7 +238,6 @@ def prob_calibration_graph():
     plt.tight_layout()
     plt.savefig("graphs/probability_distribution_all.pdf", bbox_inches="tight")
     plt.close()
-
 if __name__ == ("__main__"):
     # define update logs for policy/value loss
     update_csv_files = {
