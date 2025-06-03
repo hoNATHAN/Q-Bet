@@ -556,6 +556,12 @@ Early in training (up to roughly 20,000 steps), all agents begin near zero; the 
 
 The \textbf{Policy and Value Loss} graph tracks the agent's optimization process, where decreasing policy loss indicates stabilization in policy updates, and decreasing value loss reflects improved estimation of expected returns. 
 
+\bigskip
+
+Across all five agents, incorporating crafted features consistently leads to lower and more stable policy and value losses compared to raw‐feature counterparts. In the binary reward setting, the Binary Basic (Raw) agent exhibits persistently high and noisy losses, whereas Binary Basic (Crafted) shows a gradual downward trend and reduced variance. For the Complex Discrete agents, the (Crafted) version converges most quickly—policy and value losses fall near zero by around episode 2000—while the raw variant remains erratic and slower to decrease. The Complex Continuous (Crafted) agent begins with higher initial loss but steadily declines thereafter, in contrast to its raw counterpart, which oscillates more throughout training. Overall, feature engineering not only accelerates convergence—especially for discrete rewards—but also dampens loss spikes, producing smoother learning curves.
+
+\bigskip
+
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{policy_value_loss_Binary Basic (Raw).pdf}
@@ -593,7 +599,13 @@ The \textbf{Policy and Value Loss} graph tracks the agent's optimization process
   \label{fig:policy_value_loss_Complex Discrete (Raw)}
 \end{figure*}
 
-The \textbf{Return Distribution} graph visualizes the spread of cumulative episode rewards; a tighter cluster around higher values suggests improved and consistent performance. 
+The \textbf{Return Distribution} graph visualizes the spread of cumulative episode rewards; a tighter cluster around higher values suggests improved and consistent performance.
+
+\bigskip
+
+The return‐distribution histograms show that agents with crafted features have much tighter, higher‐centered reward clusters, whereas raw‐feature agents display wide, low‐centered spreads. For example, the \emph{Binary Basic (Crafted)} agent’s returns concentrate around modest positive values (mostly 0–60), while \emph{Binary Basic (Raw)} has a scattered spread up to ~600 with many near‐zero outcomes . In the discrete‐reward setting, \emph{Complex Discrete (Crafted)} returns cluster densely in a high range (0–1.2×10⁶), whereas \emph{Complex Discrete (Raw)} shows a more erratic, lower‐frequency spread up to ~1.6×10⁵. Finally, \emph{Complex Continuous (Crafted)} produces a narrow spike below 100,000, indicating stable gains compared to its raw counterpart. Overall, engineered features lead to more consistent, centrally focused returns, while raw features result in extreme variance and lower median performance.
+
+\bigskip
 
 \begin{figure*}[t]
   \centering
@@ -633,6 +645,12 @@ The \textbf{Return Distribution} graph visualizes the spread of cumulative episo
 \end{figure*}
 
 The \textbf{Bankroll} graph models the agent's financial trajectory over time, analogous to profit/loss curves in real-world trading or betting scenarios. A sustained upward trend indicates successful policy learning. 
+
+\bigskip
+
+Agents using crafted features exhibit steadier and higher bankroll growth than the raw‐feature agent in both training and testing. During training, the \emph{Complex Discrete (Crafted)} agent’s bankroll climbs smoothly to around \$60{,}000 by 60{,}000 time steps, while the \emph{Complex Discrete (Raw)} agent fluctuates more and stays lower. The \emph{Complex Continuous (Crafted)} agent also outperforms the raw version but lags slightly behind the discrete crafted agent. In testing, the discrete crafted agent again ends with the highest balance, followed by the continuous crafted agent, and the raw agent remains volatile with the lowest final bankroll.
+
+\bigskip
 
 \begin{figure*}[t]
   \centering
