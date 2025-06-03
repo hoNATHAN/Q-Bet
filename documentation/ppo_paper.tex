@@ -87,15 +87,16 @@ This project explores the application of Proximal Policy Optimization (PPO), a r
 \maketitle
 
 \section{Introduction}
-Sports betting is a widely practiced recreational activity in which individuals place bets on specific outcomes of sporting events. The types of bets range broadly, including predicting specific events during a game or determining the ultimate winner of a match. This paper specifically explores moneyline bets, where the bets are placed solely on the final result of a contest.
+
+Sports betting is a widely practiced recreational activity in which individuals place bets on specific outcomes of sporting events. The types of bets range broadly, including predicting specific events during a game or determining the ultimate winner of a match. This paper specifically explores moneyline bets, where the bets are placed solely on the final winner of a contest.
 
 Despite its popularity, sports betting remains underrepresented as a quantitative research domain, partly due to its association with gambling, which contributes to limited academic inquiry and systematic study. Predicting winners accurately poses considerable challenges, as match outcomes are inherently stochastic due to significant variability in team performance and individual player dynamics.
 
 Effective betting strategies often hinge on identifying edges, which involve detecting discrepancies between bookmaker odds and bettors' valuations. Precisely computing match odds from fundamental analyses demands extensive computational resources. However, by considering established bookmakers' odds as a reliable proxy for the market's perceived fair value, we circumvent extensive calculations while still gaining actionable insights.
 
-Applying these concepts to professional esports introduces unique complexities. State representation in video games can lead to state explosion due to numerous exogenous variables. Moreover, continual game updates and modifications create unstable environments where strategies effective in one period may become obsolete in the next.
+Applying these concepts to professional esports introduces unique complexities. State representation in video games can lead to state explosion due to numerous game variables. Moreover, continual game updates and modifications create unstable environments where strategies effective in one period may become obsolete in the next.
 
-However, the esports title \textit{Counter-Strike 2 (CS2)} offers specific advantages for quantitative modeling. Economic management significantly influences game-play outcomes, with the team's budget serving as a critical predictive indicator. Within \textit{CS2}, team economics is determined by several well-defined factors, including purchases of weapons and equipment, the income from the wins and the earnings from the elimination of opponents. Matches typically span best-of-13 rounds, allowing for temporal economic analysis across discrete intervals.
+However, the esports title \textit{Counter-Strike 2 (CS2)} offers specific advantages for quantitative modeling. Economic management significantly influences game-play outcomes, with the team's budget serving as a critical predictive indicator. Within \textit{CS2}, team economics is determined by several well-defined factors, including purchases of weapons and the income from the wins and the earnings from the elimination of opponents. Matches typically span best-of-13 rounds, allowing for temporal economic analysis across discrete intervals.
 
 
 This paper applies reinforcement learning, specifically, PPO, to leverage these economic indicators for betting decisions. We further explore reward function formulations beyond simple correctness, investigating the impact on rewarding expected returns based on betting odds. In doing so, we examine the limitations of traditional betting methodologies, exploring whether integrating financial and probabilistic principles yields improved betting outcomes in esports scenarios.
@@ -106,7 +107,7 @@ This paper applies reinforcement learning, specifically, PPO, to leverage these 
 
 At the beginning of each round, players receive a monetary reward based on performance in the previous round, which can be used to purchase weapons and utility. These purchasing decisions lead to well-defined economic patterns known as \textit{buy types}, which are categorized from low spending to high spending, explored later in this paper \cite{cs2moneywiki}.
 
-In esports betting, a common wager type is the \textbf{moneyline} bet, which requires predicting the outright winner of a match. Bookmakers assign odds to each team based on perceived win probabilities. For example, a bet on a +150 underdog yields a \$150 profit on a \$100 stake if the team wins.
+In esports betting, a common wager type is the moneyline bet, which requires predicting the outright winner of a match. Bookmakers assign odds to each team based on perceived win probabilities. For example, a bet on a +150 underdog yields a \$150 profit on a \$100 stake if the team wins.
 
 \section{Hypothesis}
 
@@ -115,7 +116,7 @@ We hypothesize that incorporating sophisticated market signals in the input vect
 \section{Methodology}
 
 \subsection{Data Collection via Web Scraping}
-The dataset used to train the PPO agent was constructed by scraping esports match data from two primary sources: \textit{https://bo3.gg} for detailed Counter-Strike 2 (CS2) match data and \textit{https://www.oddsportal.com} for corresponding betting odds. The scraping process was implemented using Python scripts utilizing the libraries \textit{Playwright} and \textit{BeautifulSoup}.
+The dataset used to train the PPO agent was constructed by scraping esports match data from two primary sources: \textit{https://bo3.gg} for detailed Counter-Strike 2 (CS2) match data and \textit{https://www.oddsportal.com} for corresponding betting odds. The scraping process was implemented using Python scripts utilizing the libraries \textit{Playwright} and \textit{BeautifulSoup}. Our states are defined as the end of a round in a match between Team A and Team B.
 
 \bigskip
 
@@ -376,12 +377,10 @@ Our project employs PPO to train a betting agent that makes decisions based on g
 
    To guide policy and value function updates, the advantage function is estimated using Monte Carlor returns. For each time step in an episode, the agent computes the cumulative discounted reward based on the full trajectory. This serves as an estimate for how favorable a given state-action pair was compared to the baseline value function. While this method introduces higher variance compared to bootstrapped alternatives like Generalized Advantage Estimation (GAE), this advantage estimation provides a straightforward way to compute advantages from complete episode data. 
 
-\subsection{Hyperparameters}
-Learning Rates: 
-Discount Factor:
-Clipping Parameter:
-  Batch Size:
-  Epochs:
+\section{Hyperparameters}\label{sec:hyperparameters}
+
+The Proximal Policy Optimization (PPO) agent was configured with the following set of hyperparameters:
+
 
 \section{Training Procedure}
 
