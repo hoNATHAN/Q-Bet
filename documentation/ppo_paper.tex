@@ -87,23 +87,36 @@ This project explores the application of Proximal Policy Optimization (PPO), a r
 \maketitle
 
 \section{Introduction}
-Sports betting is a widely practiced recreational activity in which individuals place bets on specific outcomes of sporting events. The types of bets range broadly, including predicting specific events during a game or determining the ultimate winner of a match. This paper specifically explores moneyline bets, where the bets are placed solely on the final result of a contest.
+
+Sports betting is a widely practiced recreational activity in which individuals place bets on specific outcomes of sporting events. The types of bets range broadly, including predicting specific events during a game or determining the ultimate winner of a match. This paper specifically explores moneyline bets, where the bets are placed solely on the final winner of a contest.
 
 Despite its popularity, sports betting remains underrepresented as a quantitative research domain, partly due to its association with gambling, which contributes to limited academic inquiry and systematic study. Predicting winners accurately poses considerable challenges, as match outcomes are inherently stochastic due to significant variability in team performance and individual player dynamics.
 
 Effective betting strategies often hinge on identifying edges, which involve detecting discrepancies between bookmaker odds and bettors' valuations. Precisely computing match odds from fundamental analyses demands extensive computational resources. However, by considering established bookmakers' odds as a reliable proxy for the market's perceived fair value, we circumvent extensive calculations while still gaining actionable insights.
 
-Applying these concepts to professional esports introduces unique complexities. State representation in video games can lead to state explosion due to numerous exogenous variables. Moreover, continual game updates and modifications create unstable environments where strategies effective in one period may become obsolete in the next.
+Applying these concepts to professional esports introduces unique complexities. State representation in video games can lead to state explosion due to numerous game variables. Moreover, continual game updates and modifications create unstable environments where strategies effective in one period may become obsolete in the next.
 
-However, the esports title \textit{Counter-Strike 2 (CS2)} offers specific advantages for quantitative modeling. Economic management significantly influences game-play outcomes, with the team's budget serving as a critical predictive indicator. Within \textit{CS2}, team economics is determined by several well-defined factors, including purchases of weapons and equipment, the income from the wins and the earnings from the elimination of opponents. Matches typically span best-of-13 rounds, allowing for temporal economic analysis across discrete intervals.
+However, the esports title \textit{Counter-Strike 2 (CS2)} offers specific advantages for quantitative modeling. Economic management significantly influences game-play outcomes, with the team's budget serving as a critical predictive indicator. Within \textit{CS2}, team economics is determined by several well-defined factors, including purchases of weapons and the income from the wins and the earnings from the elimination of opponents. Matches typically span best-of-13 rounds, allowing for temporal economic analysis across discrete intervals.
 
 
-This paper applies reinforcement learning, specifically, Proximal Policy Optimization (PPO), to leverage these economic indicators for betting decisions. We further explore reward function formulations beyond simple correctness, investigating the impact on rewarding expected returns based on betting odds. In doing so, we examine the limitations of traditional betting methodologies, exploring whether integrating financial and probabilistic principles yields improved betting outcomes in esports scenarios.
+This paper applies reinforcement learning, specifically, PPO, to leverage these economic indicators for betting decisions. We further explore reward function formulations beyond simple correctness, investigating the impact on rewarding expected returns based on betting odds. In doing so, we examine the limitations of traditional betting methodologies, exploring whether integrating financial and probabilistic principles yields improved betting outcomes in esports scenarios.
+
+\section{Counter-Strike 2 and Moneyline Betting}
+
+\textit{Counter-Strike 2 (CS2)} is a competitive, team-based first-person shooter developed by Valve Corporation as the successor to Counter-Strike: Global Offensive. In a standard professional setting, two teams of five players compete in a best-of-24 round format, with each team alternating between offensive (Terrorists) and defensive (Counter-Terrorists) roles. The first team to win 13 rounds claims victory, with overtime played in the case of a 12-12 tie \cite{cs2competitivewiki}.
+
+At the beginning of each round, players receive a monetary reward based on performance in the previous round, which can be used to purchase weapons and utility. These purchasing decisions lead to well-defined economic patterns known as \textit{buy types}, which are categorized from low spending to high spending, explored later in this paper \cite{cs2moneywiki}.
+
+In esports betting, a common wager type is the moneyline bet, which requires predicting the outright winner of a match. Bookmakers assign odds to each team based on perceived win probabilities. For example, a bet on a +150 underdog yields a \$150 profit on a \$100 stake if the team wins.
+
+\section{Hypothesis}
+
+We hypothesize that incorporating sophisticated market signals in the input vector will enhance the agent's performance in learning profitable betting strategies. By integrating these rich representations of betting market dynamics and game-state context, the agent is expected to gain better long-term value and make more informed wagering decisions. We anticipate that models trained with high-level features will outperform those relying solely on raw game statistics or simplistic heurisitics.
 
 \section{Methodology}
 
 \subsection{Data Collection via Web Scraping}
-The dataset used to train the PPO agent was constructed by scraping esports match data from two primary sources: \textit{https://bo3.gg} for detailed Counter-Strike 2 (CS2) match data and \textit{https://www.oddsportal.com} for corresponding betting odds. The scraping process was implemented using Python scripts utilizing the libraries \textit{Playwright} and \textit{BeautifulSoup}.
+The dataset used to train the PPO agent was constructed by scraping esports match data from two primary sources: \textit{https://bo3.gg} for detailed Counter-Strike 2 (CS2) match data and \textit{https://www.oddsportal.com} for corresponding betting odds. The scraping process was implemented using Python scripts utilizing the libraries \textit{Playwright} and \textit{BeautifulSoup}. Our states are defined as the end of a round in a match between Team A and Team B.
 
 \bigskip
 
@@ -114,7 +127,7 @@ Extracted JSON data containing round-level statistics, including economic state,
 \bigskip
 
 \textbf{Betting Odds Data (oddsportal.com):}
-Leveraged \textit{Playwright} to handle interactive and dynamically updated odds information, which required simulating user interaction to reveal hidden or paginated odds. Employed \textit{BeautifulSoup} to parse HTML content efficiently, extracting structured odds including opening, closing, and intermediate odds offered by various bookmakers.
+Leveraged \textit{Playwright} to handle odds information, which required simulating user interaction to reveal hidden or paginated odds. Employed \textit{BeautifulSoup} to parse HTML content efficiently, extracting structured odds including opening, closing, and intermediate odds offered by various bookmakers. These odds are aligned with rounds of a match to accurately depict a full game state.
 
 \bigskip
 
@@ -215,29 +228,33 @@ f^* = \frac{bp - q}{b}
 
 \bigskip
 
-The following are game features that did not require 
+The following are game features that did not require further calculations:
 
 \begin{equation}
-  \text{Score}_{T}}, \quad T \in \{\text{A}, \text{B}\}
+  \text{Score}_T, \quad T \in \{\text{A}, \text{B}\}
 \end{equation}
 
 Score of the current round state. Data is sampled as a string (e.g. "1-5") and split into respective team score for the round.
 
+\smallskip
+
 \begin{equation}
-  \text{Kills}_{T}}, \quad T \in \{\text{A}, \text{B}\}
+  \text{Kills}_{T}, \quad T \in \{\text{A}, \text{B}\}
 \end{equation}
 
 Kills for each team for current round state.
 
+\smallskip
+
 \begin{equation}
-  \text{Duration}_{round}}, \quad round \in \{1, \text{Terminal Round}\}
+  \text{Duration}_{round}, \quad round \in \{1, \text{Terminal Round}\}
 \end{equation}
 
 Duration of the round in seconds.
 
 \bigskip
 
-The raw JSON match data obtained required preprocessing to serve as input for the Proximal Policy Optimization (PPO) model. Each round in a game was transformed into normalized PyTorch tensors, ensuring efficient and stable model training. Numerical features, such as team economic status, round outcomes, and individual player performance statistics, were normalized using min-max scaling or standardization to ensure consistency across varying scales.
+The raw JSON match data obtained required preprocessing to serve as input for the PPO model. Each round in a game was transformed into normalized PyTorch tensors, ensuring efficient and stable model training. Numerical features, such as team economic status, round outcomes, and individual player performance statistics, were normalized using min-max scaling or standardization to ensure consistency across varying scales.
 
 Features were selected based on their predictive value regarding match outcomes and their ability to encapsulate meaningful temporal and economic context. Specifically, selected features included team bankroll, Return on Investment (ROI), implied probability derived from betting odds, ROI based on odds, and Cost Per Kill (CPK). This targeted selection aimed to reduce dimensionality, improve signal-to-noise ratios, and enhance the model's capacity to generalize from historical data to future betting scenarios.
 
@@ -303,8 +320,6 @@ While acknowledging this gap, we chose to exclude overtime rounds due to time co
 
 We also examined the distribution of a team's round level ROI. To visualize the spread across teams, we used a violin plot to highlight both the density and variance in ROI outcomes.
 
-\smallskip
-
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{roi_violin.pdf}
@@ -314,7 +329,7 @@ We also examined the distribution of a team's round level ROI. To visualize the 
 
 \smallskip
 
-The distribution is highly skewed, with a small number of rounds producing extreme positive or negative values. To stabilize this feature for training, we cap ROI at the 99th percentile with an absolute value of 24.0 and apply a signed log transformation. This preserves information while compressing extreme magnitudes, improving stability and preventing outlier dominance during learning.
+As seen in Figure 3, the distribution is highly skewed, with a small number of rounds producing extreme positive or negative values. To stabilize this feature for training, we cap ROI at the 99th percentile with an absolute value of 24.0 and apply a signed log transformation. This preserves information while compressing extreme magnitudes, improving stability and preventing outlier dominance during learning.
 
 Lasty, in order to encode the match outcome, we apply one-hot encoding to the winner label, resulting in a two-dimensional binary vector indicating whether Team A or Team B won \cite{datacamp_onehot_2023}. This representation avoids introducing ordinal bias into the model and ensures compatibility with neural network inputs."
 
@@ -323,8 +338,34 @@ Lasty, in order to encode the match outcome, we apply one-hot encoding to the wi
 \text{Team B win} &\rightarrow [0,\ 1]
 \end{align*}
 
+
+\subsection{Control Variable}
+
+In order to verify that rich market signals provided an advantage, we employed an \textit{Agent 0} as our ground level experiment. This agent would not use any sophisticated signals and rely on the raw game state features from scraping. \textit{Agent 0} includes the variables previously defined as such:
+
+\begin{equation}
+  \text{Score}_{T},
+  \text{Kills}_{T},
+  \text{Duration}_{round}
+\end{equation}
+
+Additionally, since the agent does not utilize advanced economic signals such as delta economy, expected value (EV), or the Kelly Criterion, we introduce a categorical feature known as the \textit{buy type}. During the buy phase, each team allocates funds that can be categorized into one of four discrete tiers based on spending hierarchy: \textit{eco}, \textit{force}, \textit{semi-buy}, and \textit{full-buy}. These categories offer a simplified yet informative heuristic derived directly from game state data, without requiring external calculations.
+
+For each team \( T \in \{\text{A}, \text{B}\} \), buy types are one-hot encoded as follows:
+
+\begin{align}
+\text{Buy Type}_T(\text{eco})      &= [1,\ 0,\ 0,\ 0,\ 0] \nonumber \\
+\text{Buy Type}_T(\text{force})    &= [0,\ 1,\ 0,\ 0,\ 0] \nonumber \\
+\text{Buy Type}_T(\text{semi-buy}) &= [0,\ 0,\ 1,\ 0,\ 0] \nonumber \\
+\text{Buy Type}_T(\text{full-buy}) &= [0,\ 0,\ 0,\ 1,\ 0] \nonumber \\
+\text{Buy Type}_T(\text{unknown})  &= [0,\ 0,\ 0,\ 0,\ 1]
+\end{align}
+
+We include an additional \textit{unknown} flag to account for instances where a team’s buy type cannot be reliably determined. This preserves contextual integrity without introducing artificial bias into the model input.
+
 \section{PPO Model Overview}
-PPO is a policy gradient reinforcement learning algorithm. PPO is inteneded to optimize the policy performance while maintaining training stability. This algorithm was developed by researchers at Open AI, ihntroduced in 2017 by Schulman et al \cite{schulman2017proximalpolicyoptimizationalgorithms}. This was a simpler alternative to Trust Region Policy Optimization (TRPO).
+
+PPO is a policy gradient reinforcement learning algorithm. PPO is inteneded to optimize the policy performance while maintaining training stability. This algorithm was developed by researchers at Open AI, introduced in 2017 by Schulman et al \cite{schulman2017proximalpolicyoptimizationalgorithms}. This was a simpler alternative to Trust Region Policy Optimization (TRPO).
 
 Unlike TRPO, which relied on complex second-order optimization, PPO uses a clipped surrogate objective that restricts policy updates to stay within a safe range. The clipping mechanism helps stabilize learning by preventing excessive policy shifts, which risk training stability. PPO is favored for its ease of implementation and sample efficiency. PPO is also noted for strong empirical performance across continuous and discrete action space \cite{schulman2017proximalpolicyoptimizationalgorithms}.
 
@@ -336,12 +377,10 @@ Our project employs PPO to train a betting agent that makes decisions based on g
 
    To guide policy and value function updates, the advantage function is estimated using Monte Carlor returns. For each time step in an episode, the agent computes the cumulative discounted reward based on the full trajectory. This serves as an estimate for how favorable a given state-action pair was compared to the baseline value function. While this method introduces higher variance compared to bootstrapped alternatives like Generalized Advantage Estimation (GAE), this advantage estimation provides a straightforward way to compute advantages from complete episode data. 
 
-\subsection{Hyperparameters}
-Learning Rates: 
-Discount Factor:
-Clipping Parameter:
-  Batch Size:
-  Epochs:
+\section{Hyperparameters}\label{sec:hyperparameters}
+
+The Proximal Policy Optimization (PPO) agent was configured with the following set of hyperparameters:
+
 
 \section{Training Procedure}
 
@@ -378,6 +417,23 @@ r_{\text{complex}} =
 \end{cases}
 \end{equation}
 
+A visual overview of our agent distribution across reward functions is as follows:
+
+\begin{table}[h]
+  \caption{Agent Comparison Across Reward Functions}
+  \label{tab:agent_benchmarks}
+  \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Agent} & \textbf{Basic Reward} & \textbf{Complex Reward} \\
+    \midrule
+    Agent 0 (no bankroll/signals)     & \cmark  &        \\
+    Agent 1 (no bankroll)     & \cmark  &        \\
+    Agent 2 (with bankroll)   &         & \cmark \\
+    Agent 3 (with bankroll)   &         & \cmark \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
 \subsection{Action Space Definitions}
 
 A basic action space is defined as a discrete space of three actions: abstaining, betting on team A, or betting on team B.
@@ -394,19 +450,6 @@ A complex action space is defined as a discrete space of nine actions: abstainin
 
 With two different reward functions and action spaces, our project compares the perfomance of three different agents using various combinations. These three agents are defined as so: 
 
-\begin{table}[h]
-  \caption{Agent Comparison Across Reward Functions}
-  \label{tab:agent_benchmarks}
-  \begin{tabular}{lccccc}
-    \toprule
-    \textbf{Agent} & \textbf{Basic Reward} & \textbf{Complex Reward} \\
-    \midrule
-    Agent 1 (no bankroll)  & \cmark  &        \\
-    Agent 2 (with bankroll)   &         & \cmark \\
-    Agent 3 (with bankroll)   &         & \cmark \\
-    \bottomrule
-  \end{tabular}
-\end{table}
 
 \begin{table}[h]
   \caption{Agent Comparison Across Action Spaces}
@@ -415,9 +458,10 @@ With two different reward functions and action spaces, our project compares the 
     \toprule
     \textbf{Agent} & \textbf{Basic Actions} & \textbf{Complex Actions} \\
     \midrule
-    Agent 1 (no bankroll)  & \cmark  &         \\
-    Agent 2 (with bankroll)   & \cmark  &         \\
-    Agent 3 (with bankroll)   &         & \cmark  \\
+    Agent 1 (no bankroll/signals)     & \cmark  &         \\
+    Agent 1 (no bankroll)               & \cmark  &         \\
+    Agent 2 (with bankroll)             & \cmark  &         \\
+    Agent 3 (with bankroll)             &         & \cmark  \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -425,9 +469,87 @@ With two different reward functions and action spaces, our project compares the 
 \bigskip
 \section{Experiments and Results}
 
+To evaluate the training progress and behavior of our reinforcement learning agent, we log and visualize several key metrics throughout the training process. Figure~\ref{fig:training_metrics} summarizes these insights.
+
+The \textbf{Cumulative Reward} graph illustrates the total reward accumulated by the agent over time, providing a high-level view of learning progression. 
+
+\begin{figure}[ht]
+  \centering
+  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
+  \caption{Key training metrics tracked during agent development.}
+  \label{fig:training_metrics}
+\end{figure}
+
+The \textbf{Policy and Value Loss} graph tracks the agent's optimization process, where decreasing policy loss indicates stabilization in policy updates, and decreasing value loss reflects improved estimation of expected returns. 
+
+\begin{figure}[ht]
+  \centering
+  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
+  \caption{Key training metrics tracked during agent development.}
+  \label{fig:training_metrics}
+\end{figure}
+
+The \textbf{Return Distribution} graph visualizes the spread of cumulative episode rewards; a tighter cluster around higher values suggests improved and consistent performance. 
+
+\begin{figure}[ht]
+  \centering
+  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
+  \caption{Key training metrics tracked during agent development.}
+  \label{fig:training_metrics}
+\end{figure}
+
+The \textbf{Bankroll} graph models the agent's financial trajectory over time, analogous to profit/loss curves in real-world trading or betting scenarios. A sustained upward trend indicates successful policy learning. 
+
+\begin{figure}[ht]
+  \centering
+  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
+  \caption{Key training metrics tracked during agent development.}
+  \label{fig:training_metrics}
+\end{figure}
+
+Finally, the \textbf{Probability Calibration} graph compares the agent's predicted win probabilities against actual outcomes. Deviations from the diagonal reflect confidence misalignment—where curves above the diagonal indicate underconfidence, and below indicate overconfidence.
+
+\begin{figure}[ht]
+  \centering
+  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
+  \caption{Key training metrics tracked during agent development.}
+  \label{fig:training_metrics}
+\end{figure}
+
 
 \section{Discussion}
+
+\subsection{Interpretation of Experimental Results}
+
+Our interpretation is.
+
+\subsection{Limitations of PPO in Betting Scenarios}
+
+While PPO has proven effective in continuous control tasks, its application to sports betting context presents several challenges. Firstly, PPO assumes a relatively stable reward structure and a Markovian environment \cite{schulman2017ppo}. However, betting markets, especially in esports, are inherently non-stationary. Odds inevitably flunctuate rapidly based on real-time information. This can happen for various reasons, such as roster changes, game patch updates, and meta shifts. Consequently, the agent's policy is subject to deprecation between training iterations in a long term scope. Thus, without proper updates to the data and tweaks, we can expect suboptimal wagering decisions. Second, PPO's on policy nature requires fresh interaction with data for each update, which can be costly in real-money betting environments.
+
+Gathering sufficiently diverse episodes without incurring large financial risk is difficult. Synthetic or simulated data may lack accurate reflection of live market dynamics \cite{jansen2020rlbetting}. PPO's gradient based update rules can struggle with extremely sparse or high variance rewards, which are common in moneyline wagers where large payouts occur infrequently. This leads to unstable convergence or premature policy oscillations. 
+
+\subsection{Implications for Real-World Esports Betting}
+
+Our findings suggest that integrating sophisticated market signals can improve an agent's profitability relative to naive heuristics. Despite this, several practical considerations must be addressed before real application. Real-money betting platforms impose transaction fees and limits on bet sizes. These are not modeled in our simulations. Ignoring these factors can lead to overestimation of returns and underestimation of risks.
+
+Additionally, betting exchanges often adjust odds dynamically to balance their books, creating a feedback loop that our agent does not anticipate \cite{jansen2020rlbetting}. Finally, regulatory constraints vary by region and platform. As such, automated betting algorithms must adhere to strict compliance guidelines, which further limit the agent's ability to place rapid, high-frequency bets.
+
+\subsection{Ethical Considerations in Gambling Applications}
+
+Applying reinforcement learning to gambling raises important ethical questions. Automated agents could exploit gambling by enabling high-frequency wagering without human friction or emotional checks \cite{king2019ethics}. There is a risk that users might become over-confident on “black box” strategies, obscuring the inherent house edge and leading to financial harm.
+
+Deploying such agents in live markets could unintentionally facilitate predatory practices, such as match-fixing or exploitation of retail bettors. It is therefore crucial to incorporate ethical guardrails. Agents should incorporate maximum bet limits, mandatory “cool-off” periods, and transparent performance reporting before any real-money implementation. Researchers and practitioners should collaborate with regulatory bodies and gambling organizations to ensure that reinforcement learning based betting systems enhance consumer welfare rather than undermine,.
+
 \section{Conclusion}
+
+In this work, we explored the application of Proximal Policy Optimization (PPO) to the task of moneyline betting in professional Counter‐Strike 2. By incorporating a variety of economic and market‐derived features—such as delta economy, return on investment (ROI), implied probabilities, expected value, and Kelly Criterion—we demonstrated that an agent can learn wagering strategies that outperform baseline approaches relying solely on raw game statistics. Our results show that including sophisticated market signals leads to more stable training, improved calibration of win probabilities, and higher cumulative returns over simulated matches.
+
+Despite these positive findings, several challenges remain. PPO’s reliance on fresh on‐policy data can be restrictive in real‐money settings, and the volatility of esports odds introduces non‐stationarity that can degrade policy performance if not continually updated. Furthermore, our omission of overtime rounds and the simplified treatment of transaction costs limit direct applicability in live betting environments. Addressing these gaps—by incorporating real‐time odds updates, modeling fees and limits, and extending the dataset to include overtime—represents a clear direction for future work.
+
+Finally, we note the ethical responsibility inherent in deploying automated betting agents. Without appropriate safeguards, systems that exploit fleeting market inefficiencies risk facilitating problem gambling or unfair practices. In future research, we plan to investigate built‐in risk controls, such as dynamic bet size limits and mandatory cooldown intervals, to ensure that any real‐world implementation promotes responsible use.
+
+Overall, our study provides evidence that reinforcement learning can offer novel insights into esports betting, but careful consideration of practical constraints and ethical implications is essential for any transition from simulation to live deployment.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
