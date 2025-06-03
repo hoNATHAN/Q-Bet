@@ -1,7 +1,10 @@
 # Q-Bet
 
-**Final Project for CS 486 @ Drexel University**  
-A reinforcement-learning–based betting agent for Counter-Strike 2 esports matches, implemented using Proximal Policy Optimization (PPO). Q-Bet ingests round-level JSON game data, computes both raw and crafted feature vectors (including market-signal features like Expected Value and Kelly Criterion), and trains discrete-action-space PPO agents under different reward-function formulations. The goal is to learn when to bet (and how much) to maximize overall bankroll growth.
+**Final Project for CS 486 @ Drexel University**
+
+A reinforcement-learning betting agent for Counter-Strike 2 esports matches, implemented using Proximal Policy Optimization (PPO). We use a sample model provided by [Nikhil](https://github.com/nikhilbarhate99/PPO-PyTorch) that calculates advantage with Monte Carlo. Q-Bet ingests round-level JSON game data, computes both raw and crafted feature vectors (including market-signal features like Expected Value and Kelly Criterion), and trains discrete-action-space PPO agents under different reward-function formulations. The goal is to learn when to bet (and how much) to maximize overall bankroll growth.
+
+The following `README.md` provides a quick breakdown of what happens in our application. For further learning or clarification, please reference our paper in `Q-Bet/documentation/ppo-paper.pdf`.
 
 ---
 
@@ -12,28 +15,18 @@ A reinforcement-learning–based betting agent for Counter-Strike 2 esports matc
 3. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
-   - [Directory Structure](#directory-structure)
 4. [Data Preparation](#data-preparation)
    - [Match JSON Files](#match-json-files)
    - [Winners Lookup](#winners-lookup)
+6. [Feature Engineering](#feature-engineering)
 5. [Usage](#usage)
    - [Configuring Hyperparameters](#configuring-hyperparameters)
    - [Training an Agent](#training-an-agent)
    - [Evaluating an Agent](#evaluating-an-agent)
    - [Visualizing Results](#visualizing-results)
-6. [Feature Engineering](#feature-engineering)
-   - [Raw Feature Vector](#raw-feature-vector)
-   - [Crafted Feature Vector](#crafted-feature-vector)
-7. [Reward Functions](#reward-functions)
-   - [Basic Reward](#basic-reward)
-   - [Complex Reward](#complex-reward)
-8. [Action Spaces](#action-spaces)
-   - [Basic Action Space](#basic-action-space)
-   - [Complex Action Space](#complex-action-space)
-9. [File/Module Descriptions](#filemodule-descriptions)
 10. [Experiment Results](#experiment-results)
 11. [Contributing](#contributing)
-12. [License](#license)
+   - [How to Contribute](#how-to-contribute)
 
 ---
 
@@ -83,15 +76,147 @@ By maintaining discrete action sets––either a small 3-action set (abstain, b
 
 ### Prerequisites
 
+For python code:
+
 - **Python 3.8 +**
 - **PyTorch ≥ 1.9** (CPU or CUDA)
 - **NumPy**
+- **pandas**
 - **scikit-learn** (for any clustering or normalization routines)
 - **Matplotlib** (for plotting)
-- **tqdm** (optional, for progress bars)
-- **pytest** (optional, for unit tests)
+- **PlayWright** (web-scraping)
 
 ```bash
-# Example (pip) dependencies
-pip install torch numpy scikit-learn matplotlib tqdm pytest
+# pip dependencies
+pip install torch numpy scikit-learn matplotlib
 ```
+
+### Installation
+
+Copy the repository to your folder of choice
+
+```bash
+# navigate to your folder of choice
+cd dev
+
+# clone using HTTP
+git clone https://github.com/hoNATHAN/Q-Bet.git .
+
+# clone using SSH
+git clone git@github.com:hoNATHAN/Q-Bet.git .
+```
+
+## Data Preparation
+
+Data is webscraped from two websites. 
+
+- [bo3](https://bo3.gg/): where match data for rounds are scraped
+- [oddsportal](https://www.oddsportal.com/esports/): where match odds are scraped
+
+### Match JSON Files
+
+Go into the `q-bet-scraper` directory to run `scrape.py`
+
+```bash
+# go to root dir if not already there
+cd Q-Bet
+
+# cd into the scraper dir
+cd q-bet-scraper
+
+# run scrape.py using your python manager of choice
+python scrape.py
+python3 scrape.py
+uv run scrape.py # may want to uv venv first
+```
+
+This should populate raw JSON files in the `Q-Bet/data/match` and `Q-Bet/data/odds`.
+
+### Winners Lookup
+
+Our code requires preprocessing the raw scraped JSON to build a dictionary of winners. This helps during training phase to quick lookup if the agent bets correctly on the winning team.
+
+```bash
+cd Q-Bet/q-bet-analysis
+
+# run generate_winners.py using your python manager of choice
+python generate_winners.py
+python3 generate_winners.py
+uv run generate_winners.py # may want to uv venv first
+```
+
+## Feature Engineering
+
+As stated above, we pull several raw game states and process economy to sophisticated market signals.
+
+```bash
+cd Q-Bet/q-bet-agent/feature_vector.py
+```
+
+The file has well documented comments to help guide you on what happens. Essentially, `feature_vector.py` has two feature vector helpers. One that calculates a tensor for market signals and one for raw game statistics. This is later benchmarked for performance across different agents.
+
+`train.py` will feature vector the game states. Our JSON match data is aligned with the odds data and tensors are created for episodic training. 
+
+**Keep in mind that our states are defined as the end of a round in a CS2 match**
+
+## Usage
+
+Agent code is defined in `Q-Bet/q-bet-agent`.
+
+### Configuring Hyperparameters
+
+Our hyperparameters are as defined.
+
+### Training an Agent
+
+```bash
+cd Q-Bet/q-bet-agent
+
+# To train and test, run 
+python train.py --reward_scheme ['basic', 'binary', 'complex'] --action-space ['basic', 'complex_discrete', 'complex_continuous'] --resume --initial_balance float --feature-type ['crafted', 'raw']
+
+python3 train.py --reward_scheme ['basic', 'binary', 'complex'] --action-space ['basic', 'complex_discrete', 'complex_continuous'] --resume --initial_balance float --feature-type ['crafted', 'raw']
+
+uv run train.py --reward_scheme ['basic', 'binary', 'complex'] --action-space ['basic', 'complex_discrete', 'complex_continuous'] --resume --initial_balance float --feature-type ['crafted', 'raw']
+```
+
+### Evaluating an Agent
+
+We evaluate agents by analyzing the graph outputs.
+
+### Visualizing Results 
+
+To output all the graphs for agent performance. 
+
+```bash
+cd Q-Bet/q-bet-analysis
+python generate_graph.py
+python3 generate_graph.py
+uv run generate_graph.py
+```
+
+To output graphs to visualize feature distributions.
+
+```bash
+cd Q-Bet/q-bet-analysis
+python feature_distribution.py
+python3 feature_distribution.py
+uv run feature_distribution.py
+```
+
+## Contributing
+
+Thank you for your interest in contributing to this project! Whether you're fixing bugs, adding features, improving documentation, or sharing ideas, your help is appreciated.
+
+### How to Contribute
+
+1. **Fork the Repository**  
+
+   Click the "Fork" button at the top of the page to create a copy of the repository under your GitHub account.
+
+2. **Clone Your Fork**  
+
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
