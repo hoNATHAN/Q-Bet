@@ -377,16 +377,59 @@ Our project employs PPO to train a betting agent that makes decisions based on g
 
    To guide policy and value function updates, the advantage function is estimated using Monte Carlor returns. For each time step in an episode, the agent computes the cumulative discounted reward based on the full trajectory. This serves as an estimate for how favorable a given state-action pair was compared to the baseline value function. While this method introduces higher variance compared to bootstrapped alternatives like Generalized Advantage Estimation (GAE), this advantage estimation provides a straightforward way to compute advantages from complete episode data. 
 
-\section{Hyperparameters}\label{sec:hyperparameters}
+\subsection{Hyperparameters}
 
-The Proximal Policy Optimization (PPO) agent was configured with the following set of hyperparameters:
+We selected these hyperparameters based on values recommended in the original PPO paper \cite{schulman2017proximalpolicyoptimizationalgorithms}, which have been shown to work well across a range of tasks. They offer a strong baseline for stable training without extensive tuning, allowing us to focus on adapting PPO to the betting domain.
 
+\begin{table}[h]
+  \caption{PPO Hyperparameters}
+  \label{tab:ppo-hyperparams}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    Actor learning rate & 0.0003 \\
+    Critic learning rate & 0.001 \\
+    Discount factor ($\gamma$) & 0.99 \\
+    Epochs per update ($K_{\text{epochs}}$) & 80 \\
+    Clipping parameter ($\epsilon_{\text{clip}}$) & 0.2 \\
+    Continuous action space & \texttt{false (except for Agent 4)} \\
+    Initial action std.\ dev.\ & 0.6 \\
+    Device & \texttt{device} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Our hyper parameters are shown in Table 1. Agent 4 is an additional thought experiment to validate whether or not a non-discrete action space results to poor performance.
 
 \section{Training Procedure}
 
 Our project aims to evaluate multiple agent configurations by varying reward functions and action spaces. The choice of reward function plays a critical role in shaping agent behavior, as poorly designed rewards can hinder effective learning.
 
 While betting naturally lends itself to a continuous action space, allowing for flexible wager sizes, we constrain the action space to a discrete set of options for training simplicity and stability.
+
+During both training and testing, the agent could place or change a bet at the start of every round, using updated game state information before each decision. In reality, once you place a wager on a sportsbook, it is locked in for the entire match and cannot be adjusted mid‐game; our simulation instead lets the agent freely revise its bet each round to learn from finer grained outcomes. This approach sacrifices realism, since real bets cannot be changed. This overestimate performance, but it was chosen to simplify implementation and fit our time scope.
+
+\subsection{Feature Choice}
+
+We trained two versions of our PPO agent using different feature representations. The raw feature vector consists of unprocessed game state information (as previously described for Agent 0), directly reflecting the state of play. In contrast, the crafted feature vector includes additional market-derived signals such as odds, ROI, and betting indicators. This allows the agent to learn not just from gameplay data, but also from financial cues that influence real-world betting decisions.
+
+Agents using a complex reward function must be assigned a bankroll, since the reward is based on the percentage of their stake. Unlike binary win or loss signals, this setup models profit or loss relative to how much the agent bets, making bankroll management an essential part of the learning process.
+
+\begin{table}[h]
+  \caption{Agent Comparison Across Feature Vector Choice}
+  \label{tab:agent_benchmarks}
+  \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Agent} & \textbf{Raw Feature} & \textbf{Crafted Feature} \\
+    \midrule
+    Agent 0 (no bankroll/signals)     & \cmark  &        \\
+    Agent 1 (no bankroll)     & \cmark  &        \\
+    Agent 2 (w/ bankroll)   &         & \cmark \\
+    Agent 3 (w/ bankroll)   &         & \cmark \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \subsection{Reward Function Exploration}
 
@@ -395,10 +438,10 @@ Reward function is calculated as:
 r: (\text{action},\ \text{outcome}) \rightarrow \mathbb{R}
 \]
 
-Our basic reward function is defined as:
+Our basic binary reward function is defined as:
 
 \begin{equation}
-r_{\text{basic}} =
+r_{\text{binary}} =
 \begin{cases}
 +1, & \text{if bet is correct} \\
 -1, & \text{if bet is incorrect} \\
@@ -406,10 +449,10 @@ r_{\text{basic}} =
 \end{cases}
 \end{equation}
 
-Our complex reward function is defined as:
+Our complex discrete reward function is defined as:
 
 \begin{equation}
-r_{\text{complex}} =
+r_{\text{discrete}} =
 \begin{cases}
 \text{Stake} \times (\text{Odds} - 1), & \text{if bet is correct} \\
 -\text{Stake}, & \text{if bet is incorrect} \\
@@ -424,12 +467,12 @@ A visual overview of our agent distribution across reward functions is as follow
   \label{tab:agent_benchmarks}
   \begin{tabular}{lccccc}
     \toprule
-    \textbf{Agent} & \textbf{Basic Reward} & \textbf{Complex Reward} \\
+    \textbf{Agent} & \textbf{Binary} & \textbf{Discrete} \\
     \midrule
     Agent 0 (no bankroll/signals)     & \cmark  &        \\
     Agent 1 (no bankroll)     & \cmark  &        \\
-    Agent 2 (with bankroll)   &         & \cmark \\
-    Agent 3 (with bankroll)   &         & \cmark \\
+    Agent 2 (w/ bankroll)   &         & \cmark \\
+    Agent 3 (w/ bankroll)   &         & \cmark \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -442,10 +485,10 @@ A basic action space is defined as a discrete space of three actions: abstaining
 \mathcal{A}_{\text{basic}} = \{\text{abstain}, \text{bet A}, \text{bet B} \}
 \end{equation}
 
-A complex action space is defined as a discrete space of nine actions: abstaining, betting $\{5, 10, 25, 50\}$ percent of agent's bankroll on either team A or B
+A complex discrete action space is defined as a discrete space of nine actions: abstaining, betting $\{5, 10, 25, 50\}$ percent of agent's bankroll on either team A or B
 
 \begin{equation}
-\mathcal{A}_{\text{complex}} = \{\text{abstain}\} \cup \{(t, p) \mid t \in \{\text{A}, \text{B}\},\ p \in \{5\%, 10\%, 25\%, 50\%\} \}
+\mathcal{A}_{\text{discrete}} = \{\text{abstain}\} \cup \{(t, p) \mid t \in \{\text{A}, \text{B}\},\ p \in \{5\%, 10\%, 25\%, 50\%\} \}
 \end{equation}
 
 With two different reward functions and action spaces, our project compares the perfomance of three different agents using various combinations. These three agents are defined as so: 
@@ -456,12 +499,28 @@ With two different reward functions and action spaces, our project compares the 
   \label{tab:agent_benchmarks}
   \begin{tabular}{lccccc}
     \toprule
-    \textbf{Agent} & \textbf{Basic Actions} & \textbf{Complex Actions} \\
+    \textbf{Agent} & \textbf{Basic} & \textbf{Discrete} \\
     \midrule
-    Agent 1 (no bankroll/signals)     & \cmark  &         \\
+    Agent 0 (no bankroll/signals)     & \cmark  &         \\
     Agent 1 (no bankroll)               & \cmark  &         \\
     Agent 2 (with bankroll)             & \cmark  &         \\
     Agent 3 (with bankroll)             &         & \cmark  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Agent 4}
+
+We also benchmarked an agent that used a complex reward function and used a continuous action space. This was to demonstrate and experiment how a large non-discrete action space would performe against discrete actions.
+
+\begin{table}[h]
+  \caption{Agent Comparison Across Reward Functions}
+  \label{tab:agent_benchmarks}
+  \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Agent} & \textbf{Complex R.} & \textbf{Continuous A.} & \textbf{Crafted} \\
+    \midrule
+    Agent 4 (w/ bankroll)   & \cmark        & \cmark & \cmark\\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -471,41 +530,141 @@ With two different reward functions and action spaces, our project compares the 
 
 To evaluate the training progress and behavior of our reinforcement learning agent, we log and visualize several key metrics throughout the training process. Figure~\ref{fig:training_metrics} summarizes these insights.
 
+\bigskip
+
 The \textbf{Cumulative Reward} graph illustrates the total reward accumulated by the agent over time, providing a high-level view of learning progression. 
 
-\begin{figure}[ht]
+\begin{figure*}[t]
   \centering
-  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
-  \caption{Key training metrics tracked during agent development.}
-  \label{fig:training_metrics}
-\end{figure}
+  \includegraphics[width=\textwidth]{cumulative_reward_all_training.pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:cumulative_reward_all_training}
+\end{figure*}
+
+\bigskip
+
+Early in training (up to roughly 20,000 steps), all agents begin near zero; the \emph{Complex Continuous (Crafted)} agent (purple) rapidly climbs to a normalized reward of about 2 by 30,000 steps and then maintains a relatively stable plateau between 1.5 and 3, indicating that leveraging continuous profit signals alongside rich economic features helps the policy stabilize more quickly. In contrast, the \emph{Binary Basic (Raw)} agent (orange) remains nearly flat (around –1) throughout training, demonstrating that a simple $\pm1$ reward without economic context fails to guide meaningful learning. The \emph{Binary Basic (Crafted)} agent (blue) shows modest improvement over the raw version, reaching normalized rewards near 1 by 100,000 steps, which suggests that even a basic reward can benefit from added economic features. The \emph{Complex Discrete (Raw)} agent (red) exhibits high variance with large positive spikes (up to 5–6) but remains noisy and does not settle, indicating that a complex discrete reward alone can produce occasional large gains but lacks consistency. When the same discrete reward is combined with crafted features (\emph{Complex Discrete (Crafted)}, green), the agent converges faster—reaching around 3 by 40,000 steps—before the training curve ends at 60,000 steps; this early convergence suggests that feature engineering reduces variance and accelerates learning in the discrete‐reward setting. Overall, Figure~\ref{fig:cumulative_reward_all_training} demonstrates that richer reward formulations and the inclusion of economic and market‐derived features both improve convergence speed and lead to higher, more stable cumulative rewards compared to raw or binary reward functions alone.
+
+\bigskip
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{cumulative_reward_all_testing.pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:cumulative_reward_all_testing}
+\end{figure*}
 
 The \textbf{Policy and Value Loss} graph tracks the agent's optimization process, where decreasing policy loss indicates stabilization in policy updates, and decreasing value loss reflects improved estimation of expected returns. 
 
-\begin{figure}[ht]
-  \centering
-  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
-  \caption{Key training metrics tracked during agent development.}
-  \label{fig:training_metrics}
-\end{figure}
+\bigskip
 
-The \textbf{Return Distribution} graph visualizes the spread of cumulative episode rewards; a tighter cluster around higher values suggests improved and consistent performance. 
+Across all five agents, incorporating crafted features consistently leads to lower and more stable policy and value losses compared to raw‐feature counterparts. In the binary reward setting, the Binary Basic (Raw) agent exhibits persistently high and noisy losses, whereas Binary Basic (Crafted) shows a gradual downward trend and reduced variance. For the Complex Discrete agents, the (Crafted) version converges most quickly—policy and value losses fall near zero by around episode 2000—while the raw variant remains erratic and slower to decrease. The Complex Continuous (Crafted) agent begins with higher initial loss but steadily declines thereafter, in contrast to its raw counterpart, which oscillates more throughout training. Overall, feature engineering not only accelerates convergence—especially for discrete rewards—but also dampens loss spikes, producing smoother learning curves.
 
-\begin{figure}[ht]
+\bigskip
+
+\begin{figure*}[t]
   \centering
-  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
-  \caption{Key training metrics tracked during agent development.}
-  \label{fig:training_metrics}
-\end{figure}
+  \includegraphics[width=\textwidth]{policy_value_loss_Binary Basic (Raw).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:policy_value_loss_Binary Basic (Raw)}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{policy_value_loss_Binary Basic (Crafted).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:policy_value_loss_Binary Basic (Crafted)}
+\end{figure*}
+
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{policy_value_loss_Complex Continuous (Crafted).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:policy_value_loss_Complex Continuous (Crafted)}
+\end{figure*}
+
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{policy_value_loss_Complex Discrete (Crafted).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:policy_value_loss_Complex Discrete (Crafted)}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{policy_value_loss_Complex Discrete (Raw).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:policy_value_loss_Complex Discrete (Raw)}
+\end{figure*}
+
+The \textbf{Return Distribution} graph visualizes the spread of cumulative episode rewards; a tighter cluster around higher values suggests improved and consistent performance.
+
+\bigskip
+
+The return‐distribution histograms show that agents with crafted features have much tighter, higher‐centered reward clusters, whereas raw‐feature agents display wide, low‐centered spreads. For example, the \emph{Binary Basic (Crafted)} agent’s returns concentrate around modest positive values (mostly 0–60), while \emph{Binary Basic (Raw)} has a scattered spread up to ~600 with many near‐zero outcomes . In the discrete‐reward setting, \emph{Complex Discrete (Crafted)} returns cluster densely in a high range (0–1.2×10⁶), whereas \emph{Complex Discrete (Raw)} shows a more erratic, lower‐frequency spread up to ~1.6×10⁵. Finally, \emph{Complex Continuous (Crafted)} produces a narrow spike below 100,000, indicating stable gains compared to its raw counterpart. Overall, engineered features lead to more consistent, centrally focused returns, while raw features result in extreme variance and lower median performance.
+
+\bigskip
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{return_distribution_Binary Basic (Raw).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:return_distribution_Binary Basic (Raw)}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{return_distribution_Binary Basic (Crafted).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:return_distribution_Binary Basic (Crafted)}
+\end{figure*}
+
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{return_distribution_Complex Continuous (Crafted).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:return_distribution_Complex Continuous (Crafted)}
+\end{figure*}
+
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{return_distribution_Complex Discrete (Crafted).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:return_distribution_Complex Discrete (Crafted)}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{return_distribution_Complex Discrete (Raw).pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:return_distribution_Complex Discrete (Raw)}
+\end{figure*}
 
 The \textbf{Bankroll} graph models the agent's financial trajectory over time, analogous to profit/loss curves in real-world trading or betting scenarios. A sustained upward trend indicates successful policy learning. 
 
-\begin{figure}[ht]
+\bigskip
+
+Agents using crafted features exhibit steadier and higher bankroll growth than the raw‐feature agent in both training and testing. During training, the \emph{Complex Discrete (Crafted)} agent’s bankroll climbs smoothly to around \$60{,}000 by 60{,}000 time steps, while the \emph{Complex Discrete (Raw)} agent fluctuates more and stays lower. The \emph{Complex Continuous (Crafted)} agent also outperforms the raw version but lags slightly behind the discrete crafted agent. In testing, the discrete crafted agent again ends with the highest balance, followed by the continuous crafted agent, and the raw agent remains volatile with the lowest final bankroll.
+
+\bigskip
+
+\begin{figure*}[t]
   \centering
-  % \includegraphics[width=\linewidth]{training_metrics_placeholder.pdf}
-  \caption{Key training metrics tracked during agent development.}
-  \label{fig:training_metrics}
-\end{figure}
+  \includegraphics[width=\textwidth]{bankroll_all_training.pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:bankroll_all_training}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{bankroll_all_testing.pdf}
+  \caption{Cumulative reward during the training phase (all agents).}
+  \label{fig:bankroll_all_testing}
+\end{figure*}
 
 Finally, the \textbf{Probability Calibration} graph compares the agent's predicted win probabilities against actual outcomes. Deviations from the diagonal reflect confidence misalignment—where curves above the diagonal indicate underconfidence, and below indicate overconfidence.
 
@@ -545,7 +704,7 @@ Deploying such agents in live markets could unintentionally facilitate predatory
 
 In this work, we explored the application of Proximal Policy Optimization (PPO) to the task of moneyline betting in professional Counter‐Strike 2. By incorporating a variety of economic and market‐derived features—such as delta economy, return on investment (ROI), implied probabilities, expected value, and Kelly Criterion—we demonstrated that an agent can learn wagering strategies that outperform baseline approaches relying solely on raw game statistics. Our results show that including sophisticated market signals leads to more stable training, improved calibration of win probabilities, and higher cumulative returns over simulated matches.
 
-Despite these positive findings, several challenges remain. PPO’s reliance on fresh on‐policy data can be restrictive in real‐money settings, and the volatility of esports odds introduces non‐stationarity that can degrade policy performance if not continually updated. Furthermore, our omission of overtime rounds and the simplified treatment of transaction costs limit direct applicability in live betting environments. Addressing these gaps—by incorporating real‐time odds updates, modeling fees and limits, and extending the dataset to include overtime—represents a clear direction for future work.
+Despite these positive findings, several challenges remain. PPO’s reliance on fresh on‐policy data can be restrictive in real‐money settings, and the volatility of esports odds introduces non‐stationary that can degrade policy performance if not continually updated. Furthermore, our omission of overtime rounds and the simplified treatment of transaction costs limit direct applicability in live betting environments. Addressing these gaps—by incorporating real‐time odds updates, modeling fees and limits, and extending the dataset to include overtime—represents a clear direction for future work.
 
 Finally, we note the ethical responsibility inherent in deploying automated betting agents. Without appropriate safeguards, systems that exploit fleeting market inefficiencies risk facilitating problem gambling or unfair practices. In future research, we plan to investigate built‐in risk controls, such as dynamic bet size limits and mandatory cooldown intervals, to ensure that any real‐world implementation promotes responsible use.
 
