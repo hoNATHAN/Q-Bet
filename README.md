@@ -1,8 +1,8 @@
-# League of Legends eSports Moneyline Betting Agent
+# Counter-Strike 2 eSports Betting Agent
 
 **CS 486 Final Project — Drexel University**
 
-This project implements a **reinforcement learning agent** that places **moneyline bets** on professional _League of Legends_ esports matches. The goal is to learn optimal betting strategies by balancing **profit maximization** with **risk management**.
+This project implements a **reinforcement learning agent** that places **bets** on professional _Counter-Strike 2_ esports matches. The goal is to learn optimal betting strategies by balancing **profit maximization** with **risk management**.
 
 ---
 
@@ -27,8 +27,8 @@ We train a DRL (Deep Reinforcement Learning) agent that:
 
 Core components:
 
-- Match state embeddings from LoL esports data
-- A3C/DQN-based reinforcement learning model
+- Match data form bo3.gg and Betting odds Data from oddsportal.com
+- PPO-based reinforcement learning model
 - Custom reward function that simulates profit/loss from bets
 
 ---
@@ -42,30 +42,12 @@ Core components:
 
 ## Running Locally
 
-# TODO write instructions to run website
-
-To run the website
-
-# TODO write instructions to run agent
-
-To train the RL betting agent, navigate to the `q-bet-agent` directory and run:
-  ```pwsh
-  cd q-bet-agent
-  python train.py \
-    --reward-scheme <binary|complex> \
-    --action-space <basic|complex_discrete|complex_continuous> \
-    --feature-type <crafted|raw> \
-    [--initial-balance <float>] \
-    [--resume]
-  ```
-
-  Flags:
-  - `--reward-scheme`: Reward function to use (`basic`, `binary`, or `complex`).
-  - `--action-space`: Action space type (`basic`, `complex_discrete`, or `complex_continuous`).
-  - `--feature-type`: Feature vectors (`crafted` or `raw`).
-  - `--initial-balance`: Starting bankroll (default: `1000.0`).
-  - `--resume`: Resume training from the latest checkpoint.
+To run the agent
+cd into q-bet-agent
+To train and test, run python train.py --reward_scheme ['basic', 'binary', 'complex'] --action-space ['basic', 'complex_discrete', 'complex_continuous'] --resume --initial_balance float --feature-type ['crafted', 'raw']
 
 # TODO write instructions to run web scraper
 
 To run the web scraper
+cd into q-bet-scraper
+run python scrape.py
