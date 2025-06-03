@@ -132,20 +132,22 @@ def prob_calibration_graph(csv_file, agent_type):
 
 
 if __name__ == ("__main__"):
-    arser = argparse.ArgumentParser(description="Generate graphs from agent logs.")
-    parser.add_argument("--csv_file", type=str, help="Path to the CSV file")
+    parser = argparse.ArgumentParser(description="Generate graphs from agent logs.")
+    parser.add_argument("--csv_path", type=str, help="Path to the CSV files")
     parser.add_argument("--agent_type", type=str, help="Type/name of the agent")
 
     args = parser.parse_args()
 
-    csv_file = args.csv_file
+    csv_path = args.csv_path
     agent_type = args.agent_type
-    csv_path = None # CSV PATH
 
-    # Add Processing to get csvs relavent to agent?
+    csv_files = [f for f in os.listdir(csv_path) if os.path.isfile(os.path.join(csv_path, f))]
+    step_log_file = next((os.path.join(csv_path, f) for f in csv_files if "step_log" in f), None)
+    update_log_file = next((os.path.join(csv_path, f) for f in csv_files if "update_log" in f), None)
+    episode_log_file = next((os.path.join(csv_path, f) for f in csv_files if "episode_log" in f), None)
 
-    cumulative_reward_graph(csv_file, agent_type)
-    policy_value_loss_graph(csv_file, agent_type)
-    return_distribution_graph(csv_file, agent_type)
-    bankroll_graph(csv_file, agent_type)
-    prob_calibration_graph(csv_file, agent_type)
+    cumulative_reward_graph(step_log_file, agent_type)
+    policy_value_loss_graph(update_log_file, agent_type)
+    return_distribution_graph(episode_log_file, agent_type)
+    bankroll_graph(step_log_file, agent_type)
+    prob_calibration_graph(step_log_file, agent_type)
