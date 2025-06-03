@@ -16,6 +16,7 @@ import json
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 all_durations = []
 all_rounds = []
@@ -87,34 +88,60 @@ if __name__ == "__main__":
             all_rois.extend(rs)
 
     durations = np.array(all_durations)
-    print("--- DURATIONS ---")
-    print("Mean:", durations.mean())
-    print("Std:", durations.std())
-    print("95th Percentile:", np.percentile(durations, 95))
-    plt.hist(durations, bins=100)
-    plt.xlabel("Duration")
+    percentile_95 = float(np.percentile(durations, 95))
+    print(percentile_95)
+    plt.hist(durations, bins=30, alpha=0.7)
+    plt.axvline(percentile_95, color="red", linestyle="--", label="95th Percentile")
+    plt.title("Distribution of Round Durations")
+    plt.xlabel("Duration (seconds)")
     plt.ylabel("Frequency")
-    plt.title("Distribution of Durations")
+    plt.legend()
+    plt.savefig("round_duration_dist.pdf", bbox_inches="tight")
     plt.show()
 
     rounds_arr = np.array(all_rounds)
+    rounds_mean = rounds_arr.mean()
+    rounds_std = rounds_arr.std()
+    rounds_95 = float(np.percentile(rounds_arr, 95))
+
     print("\n--- ROUNDS ---")
-    print("Mean:", rounds_arr.mean())
-    print("Std:", rounds_arr.std())
-    print("95th Percentile:", np.percentile(rounds_arr, 95))
-    plt.hist(rounds_arr, bins=100)
+    print("Mean:", rounds_mean)
+    print("Std:", rounds_std)
+    print("95th Percentile:", rounds_95)
+
+    plt.figure()
+    plt.hist(rounds_arr, bins=100, alpha=0.7)
+    plt.axvline(rounds_95, color="red", linestyle="--", label="95th Percentile")
     plt.xlabel("Rounds")
     plt.ylabel("Frequency")
-    plt.title("Distribution of Rounds")
+    plt.title("Distribution of Rounds in a Match")
+    plt.legend()
+    plt.savefig("rounds_distribution.pdf", bbox_inches="tight")
+    plt.close()
+
+    # === ROIs ===
+    rois_arr = np.array(all_rois)
+    rois_mean = rois_arr.mean()
+    rois_std = rois_arr.std()
+    rois_99 = float(np.percentile(rois_arr, 99))
+
+    sns.violinplot(x=rois_arr)
+    plt.title("Violin Plot of Team's ROI")
+    plt.xlabel("ROI")
+    plt.savefig("roi_violin.pdf", bbox_inches="tight")
     plt.show()
 
-    rois_arr = np.array(all_rois)
     print("\n--- ROIS ---")
-    print("Mean:", rois_arr.mean())
-    print("Std:", rois_arr.std())
-    print("99th Percentile:", np.percentile(rois_arr, 99))
-    plt.hist(rois_arr, bins=100)
+    print("Mean:", rois_mean)
+    print("Std:", rois_std)
+    print("99th Percentile:", rois_99)
+
+    plt.figure()
+    plt.hist(rois_arr, bins=100, alpha=0.7)
+    plt.axvline(rois_99, color="red", linestyle="--", label="99th Percentile")
     plt.xlabel("ROI")
     plt.ylabel("Frequency")
     plt.title("Distribution of ROIs")
+    plt.legend()
+    plt.savefig("roi_distribution.pdf", bbox_inches="tight")
     plt.show()
