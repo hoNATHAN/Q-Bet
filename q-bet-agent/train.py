@@ -227,7 +227,7 @@ def testing(agent, test_states, device, reward_scheme, action_space_type, initia
     # open test log file
     testF = open(f"{log_dir}/test_log.csv", "w", newline="")
     testW = csv.writer(testF)
-    testW.writerow(["episode", "reward", "cumulative_reward", "balance", "status"])
+    testW.writerow(["episode", "reward", "cumulative_reward", "balance", "p_chosen", "correct", "status"])
     print("\n" + "="*60)
     print("BEGIN TESTING")
 
@@ -258,13 +258,17 @@ def testing(agent, test_states, device, reward_scheme, action_space_type, initia
         total_reward += ep_reward
         total_balance += info.get('balance', 0.0)
         print(f"[Test Ep {ep:3d}] Reward: {ep_reward:7.2f}  Balance: {info['balance']:7.2f}")
+        # compute action probability and correctness
+        lp_tensor = agent.buffer.logprobs[-1] if agent.buffer.logprobs else None
+        p_chosen = float(torch.exp(lp_tensor).cpu()) if lp_tensor is not None else 0.0
+        correct = 1 if ep_reward > 0 else 0
+        testW.writerow([ep, f"{ep_reward:.2f}", f"{total_reward:.2f}", f"{info.get('balance', 0.0):.2f}", f"{p_chosen:.2f}", correct, 'success'])
         agent.buffer.clear()
-        testW.writerow([ep, f"{ep_reward:.2f}", f"{total_reward:.2f}", f"{info.get('balance', 0.0):.2f}", 'success'])
 
     avg_reward = total_reward / max(len(test_states), 1)
     avg_balance = total_balance / max(len(test_states), 1)
     print(f"\nAverage Test Reward over {len(test_states)} episodes: {avg_reward:.2f}")
-    testW.writerow(['average', f"{avg_reward:.2f}", '', f"{avg_balance:.2f}", ''])
+    testW.writerow(['average', f"{avg_reward:.2f}", '', f"{avg_balance:.2f}", '', '', ''])
     testF.close()
     print("END TESTING")
 
